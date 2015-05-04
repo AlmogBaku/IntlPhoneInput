@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--<color name="primary">#55E6BC</color>-->
+    <color name="primary">#57E5BD</color>
+    <!--<color name="yellow_background">#FFEA00</color>-->
+
+    <color name="primary_disable">#4C7861</color>
+    <color name="secondary_text">#848484</color>
+    <color name="default_background">#F4F4F4</color>
+
+    <!--<color name="rim_color">#444444</color>-->
+    <color name="rim_color">#A8A8A8</color>
+    <color name="default_text">#484848</color>
+
+</resources>
