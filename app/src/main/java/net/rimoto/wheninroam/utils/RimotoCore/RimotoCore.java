@@ -29,7 +29,7 @@ import java.util.Map;
 public class RimotoCore {
     private static String CLIENT_ID     = null;
     private static String REDIRECT_URI  = "http://localhost";
-    private static String RESPONSE_TYPE = "token";
+    private static String RESPONSE_TYPE = "code";
     private static String AUTH_ENDPOINT = "http://core.rimoto.net/api/oauth/v2/auth";
     private static String OAUTH_SCOPE   = "";
 
@@ -44,6 +44,9 @@ public class RimotoCore {
     }
     public static void init(String client) {
         CLIENT_ID = client;
+    }
+    public static void setAuthType(String authType) {
+        RESPONSE_TYPE = authType;
     }
 
 

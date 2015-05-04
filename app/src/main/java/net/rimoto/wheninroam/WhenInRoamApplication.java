@@ -14,5 +14,6 @@ public class WhenInRoamApplication extends Application {
     public void onCreate() {
         super.onCreate();
         RimotoCore.init(rimotoClientID, "http://wheninroam.parseapp.com/inbound_rimoto_auth");
+        RimotoCore.setAuthType("token");
     }
 }
