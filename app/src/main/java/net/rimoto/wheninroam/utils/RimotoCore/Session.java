@@ -25,10 +25,10 @@ public class Session {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor prefsEditor = prefs.edit();
 
-        prefsEditor.putString("RimotoToken[access_token]", token.access_token);
-        prefsEditor.putLong("RimotoToken[expires_in]", token.expires_in);
-        prefsEditor.putLong("RimotoToken[expires_at]", token.expires_at.getTime());
-        prefsEditor.putString("RimotoToken[token_type]", token.token_type);
+        prefsEditor.putString("RimotoToken[access_token]", token.getAccess_token());
+        prefsEditor.putLong("RimotoToken[expires_in]", token.getExpires_in());
+        prefsEditor.putLong("RimotoToken[expires_at]", token.getExpires_at().getTime());
+        prefsEditor.putString("RimotoToken[token_type]", token.getToken_type());
 
         prefsEditor.apply();
 
@@ -43,7 +43,7 @@ public class Session {
     public static AccessToken getCurrentAccessToken(Context context) {
         //Stored static token
         if (currentAccessToken != null) {
-            if (new Date().before(currentAccessToken.expires_at)) {
+            if (currentAccessToken.isValid()) {
                 return currentAccessToken;
             } else {
                 currentAccessToken = null;
@@ -52,22 +52,27 @@ public class Session {
         }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        long expires_at_pref = prefs.getLong("RimotoToken[expires_at]", -1);
-        Date expires_at = (expires_at_pref == -1) ? null : new Date(expires_at_pref);
-        String access_token = prefs.getString("RimotoToken[access_token]", null);
 
-        if (expires_at == null || new Date().after(expires_at) || access_token == null) {
+        long expires_at_pref = prefs.getLong("RimotoToken[expires_at]", -1);
+        if(expires_at_pref==-1) {
             return null;
         }
+
+        Date expires_at = new Date(expires_at_pref);
+        String access_token = prefs.getString("RimotoToken[access_token]", null);
 
         AccessToken token = new AccessToken(
                 access_token,
                 prefs.getLong("RimotoToken[expires_in]", -1),
                 prefs.getString("RimotoToken[token_type]", null)
         );
-        token.expires_at = expires_at;
-        currentAccessToken = token;
+        token.setExpires_at(expires_at);
 
-        return token;
+        if(token.isValid()) {
+            currentAccessToken = token;
+            return token;
+        } else {
+            return null;
+        }
     }
 }
