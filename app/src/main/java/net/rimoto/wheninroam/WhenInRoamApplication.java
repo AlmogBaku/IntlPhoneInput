@@ -3,6 +3,7 @@ package net.rimoto.wheninroam;
 import android.app.Application;
 
 import net.rimoto.wheninroam.utils.RimotoCore.RimotoCore;
+import net.rimoto.wheninroam.utils.RimotoCore.RimotoException;
 
 import org.androidannotations.annotations.EApplication;
 
@@ -13,7 +14,9 @@ public class WhenInRoamApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        RimotoCore.init(rimotoClientID, "http://wheninroam.parseapp.com/inbound_rimoto_auth");
-        RimotoCore.setAuthType("token");
+        try {
+            RimotoCore.init(rimotoClientID);
+            RimotoCore.setAuthType("token");
+        } catch (RimotoException ignored) {}
     }
 }

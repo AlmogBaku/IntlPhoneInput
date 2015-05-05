@@ -82,13 +82,6 @@ public class RimotoCore {
     }
 
     /**
-     * Set auth_endpoint
-     * @param endpoint String
-     */
-    public static void setAuthEndpoint(String endpoint) {
-        AUTH_ENDPOINT=endpoint;
-    }
-    /**
      * Get auth_endpoint
      * @return String
      */
