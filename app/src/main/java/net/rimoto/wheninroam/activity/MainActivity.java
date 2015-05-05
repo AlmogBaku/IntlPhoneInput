@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import net.rimoto.wheninroam.R;
+import net.rimoto.wheninroam.utils.RimotoCore.Login;
 import net.rimoto.wheninroam.utils.RimotoCore.RimotoCore;
 import net.rimoto.wheninroam.utils.RimotoCore.RimotoException;
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public void loginClick() {
         Log.d("tst","wow!");
         try {
-            RimotoCore.getInstance().auth(this, (token, error) -> {
+            Login.getInstance().auth(this, (token, error) -> {
                 if(error==null) {
                     Log.d("tst", token.toString());
                 }

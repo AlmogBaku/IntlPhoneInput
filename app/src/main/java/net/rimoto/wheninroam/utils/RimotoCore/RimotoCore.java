@@ -1,27 +1,6 @@
 package net.rimoto.wheninroam.utils.RimotoCore;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
-import android.preference.PreferenceManager;
-import android.provider.Telephony;
-import android.telephony.TelephonyManager;
-import android.util.Log;
-import android.view.Window;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import android.text.TextUtils;
 
 /**
  *
@@ -42,192 +21,101 @@ public class RimotoCore {
         CLIENT_ID = client;
         REDIRECT_URI = redirect_uri;
     }
+    /**
+     * Initialize
+     * @param client Client_ID
+     */
     public static void init(String client) {
         CLIENT_ID = client;
     }
-    public static void setAuthType(String authType) {
+
+
+    /**
+     * Set client_id
+     * @param clientId String
+     */
+    public static void setClientId(String clientId) {
+        CLIENT_ID = clientId;
+    }
+    /**
+     * Get client_id
+     * @return String
+     */
+    public String getClientId() {
+        return CLIENT_ID;
+    }
+
+    /**
+     * Set redirect_uri
+     * @param redirectUri String
+     */
+    public static void setRedirectUri(String redirectUri) {
+        REDIRECT_URI = redirectUri;
+    }
+
+    /**
+     * Get redirect_uri
+     * @return String
+     */
+    public String getRedirectUri() {
+        return REDIRECT_URI;
+    }
+
+    /**
+     * Set authentication type(oauth's response_type)
+     * @param authType token|code
+     */
+    public static void setAuthType(String authType) throws RimotoException {
+        authType=authType.toLowerCase().trim();
+        if(!authType.equals("token") || !authType.equals("code")) {
+            throw new RimotoException("Invalid AuthType");
+        }
         RESPONSE_TYPE = authType;
     }
 
-
     /**
-     * Helper: Build Authentication Uri
-     * @param context Context
-     * @param redirectParams HashMap of extra parameters
-     * @return Uri
+     * Get authentication type(oauth's response_type)
+     * @return string
      */
-    private Uri buildAuthUri(Context context, HashMap<String,String> redirectParams) {
-        Uri redirectUri = buildRedirectUri(redirectParams);
-
-        Uri.Builder auth_uri = new Uri.Builder();
-        auth_uri.encodedPath(AUTH_ENDPOINT);
-        auth_uri.appendQueryParameter("client_id", CLIENT_ID);
-        auth_uri.appendQueryParameter("response_type", RESPONSE_TYPE);
-        auth_uri.appendQueryParameter("redirect_uri", redirectUri.toString());
-        auth_uri.appendQueryParameter("scope", OAUTH_SCOPE);
-
-        try {
-            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            String msisdn = telephonyManager.getLine1Number();
-            if (msisdn != null) {
-                auth_uri.appendQueryParameter("msisdn", msisdn);
-            }
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
-
-        return auth_uri.build();
+    public String getAuthType() {
+        return RESPONSE_TYPE;
     }
 
     /**
-     * Helper: Build Redirect Uri
-     * @param redirectParams HashMap of extra parameters
-     * @return Uri
+     * Set auth_endpoint
+     * @param endpoint String
      */
-    private Uri buildRedirectUri(HashMap<String,String> redirectParams) {
-        Uri.Builder redirect_uri = new Uri.Builder();
-        redirect_uri.encodedPath(REDIRECT_URI);
-        for(Object o : redirectParams.entrySet()) {
-            Map.Entry entry = (Map.Entry) o;
-            redirect_uri.appendQueryParameter(entry.getKey().toString(), entry.getValue().toString());
-        }
-        return redirect_uri.build();
+    public static void setAuthEndpoint(String endpoint) {
+        AUTH_ENDPOINT=endpoint;
     }
-
-    private LinearLayout mLinearLayout;
-    private WebView mWebView;
-
-    @SuppressLint("SetJavaScriptEnabled")
-    private void createLinearWebView(Context context) {
-        mLinearLayout = new LinearLayout(context);
-
-        mWebView = new WebView(mLinearLayout.getContext());
-        mLinearLayout.addView(mWebView);
-
-        mWebView.setVerticalScrollBarEnabled(false);
-        mWebView.getSettings().setJavaScriptEnabled(true);
-
-        mDialog.setContentView(mLinearLayout);
-    }
-
-    private Dialog mDialog;
-    private void createDialog(Context context) {
-        mDialog = new Dialog(context);
-        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mDialog.setCancelable(true);
-    }
-    private void hideAuthDialog() {
-        unregisterSMSReceiver();
-        if(mDialog!=null) {
-            mDialog.dismiss();
-            mLinearLayout = null;
-            mWebView = null;
-            mDialog = null;
-        }
-    }
-    private void showAuthDialog() {
-        registerSMSReceiver();
-        if(mDialog!=null) {
-            mDialog.show();
-        }
-    }
-
-
     /**
-     * Open authentication dialog
-     * @param context Context
-     * @param redirectParams  HashMap of extra parameters
-     * @param callback RimotoCallback
+     * Get auth_endpoint
+     * @return String
      */
-    public void auth(Context context, HashMap<String,String> redirectParams, final RimotoCallback callback) {
-        showSpinner(context);
-
-        createDialog(context);
-        mDialog.setOnCancelListener(d -> {
-            hideAuthDialog();
-            callback.done(null, new RimotoException("CANCELED"));
-        });
-        createLinearWebView(context);
-
-        RimotoCallback cb = (token, error) -> {
-            hideAuthDialog();
-            if(error!=null && token instanceof AccessToken) {
-                Session.saveAccessToken(context, (AccessToken) token);
-            }
-            callback.done(token, error);
-        };
-        
-        mWebView.setWebViewClient(new RimotoWebViewClient(cb) {
-            private boolean shown = false;
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-
-                if (!redirect) {
-                    loadingFinished = true;
-                }
-                if (loadingFinished && !shown) {
-                    hideSpinner();
-                    showAuthDialog();
-                    shown = true;
-                } else {
-                    redirect = false;
-                }
-            }
-        });
-
-        String AuthUrl = buildAuthUri(context, redirectParams).toString();
-        mWebView.loadUrl(AuthUrl);
-    }
-    public void auth(Context context, RimotoCallback cb) {
-        auth(context, new HashMap<>(), cb);
-    }
-
-    private SmsPincodeReceiver mRimotoSMSPincodeReceiver;
-    /**
-     * Register SMS receiver for auto-detect the SMS
-     */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    private void registerSMSReceiver() {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
-        filter.setPriority(999);
-
-        mRimotoSMSPincodeReceiver = new SmsPincodeReceiver((pin) -> {
-            mWebView.loadUrl(
-                    "javascript:(function() {" +
-                            "$('#password').val('"+pin+"');" +
-                            "$('button[type=submit]').click();" +
-                            "})();");
-            unregisterSMSReceiver();
-        });
-
-        mDialog.getContext().registerReceiver(mRimotoSMSPincodeReceiver, filter);
+    public String getAuthEndpoint() {
+        return AUTH_ENDPOINT;
     }
 
     /**
-     * Unregister the SMS receiver
+     * Set scope
+     * @param scope String
      */
-    private void unregisterSMSReceiver() {
-        if(mRimotoSMSPincodeReceiver !=null) {
-            mDialog.getContext().unregisterReceiver(mRimotoSMSPincodeReceiver);
-            mRimotoSMSPincodeReceiver = null;
-        }
+    public static void setScope(String scope) {
+        OAUTH_SCOPE = scope;
     }
-
-    private ProgressDialog dialog;
-    private void showSpinner(Context context) {
-        dialog = new ProgressDialog(context);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("Loading. Please wait...");
-        dialog.setIndeterminate(true);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();
+    /**
+     * Set scope from array
+     * @param scope String
+     */
+    public static void setScope(String[] scope) {
+        OAUTH_SCOPE = TextUtils.join(",", scope);
     }
-    private void hideSpinner() {
-        dialog.hide();
-        dialog=null;
+    /**
+     * Get scope
+     * @return String
+     */
+    public String getScope() {
+        return OAUTH_SCOPE;
     }
 
     private static RimotoCore mInstance = null;
