@@ -79,7 +79,7 @@ public class Login {
 
     /**
      * Create LoginView
-     * @param context
+     * @param context Context
      */
     @SuppressLint("SetJavaScriptEnabled")
     private void createLoginView(Context context) {
@@ -95,8 +95,8 @@ public class Login {
 
     /**
      * Create LoginDialog
-     * @param context
-     * @param callback
+     * @param context Context
+     * @param callback RimotoCallback
      */
     private void createLoginDialog(Context context, RimotoCallback callback) {
         mDialog = new Dialog(context);
@@ -182,14 +182,11 @@ public class Login {
             callback.done(token, error);
         };
 
+        UiUtils.showSpinner(context);
+
         mWebView.setWebViewClient(new RimotoWebViewClient(cb) {
             private boolean shown = false;
 
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap facIcon) {
-                super.onPageStarted(view, url, facIcon);
-                UiUtils.showSpinner(context);
-            }
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
