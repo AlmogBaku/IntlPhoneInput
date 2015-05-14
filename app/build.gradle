@@ -21,6 +21,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            res.srcDirs =
+                [
+                    'src/main/res/layout/LoginPager',
+                    'src/main/res'
+                ]
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -34,8 +43,14 @@ apt {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.1.1'
+    // AndroidAndotations
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
+
+    // Libs
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // dependencies
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
 }
