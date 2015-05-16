@@ -8,8 +8,9 @@ import android.util.Log;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.TitlePageIndicator;
 
+import net.rimoto.wheninroam.PagerIndicator.SimpleTitleIndicator;
 import net.rimoto.wheninroam.R;
-import net.rimoto.wheninroam.utils.IndicatorAggregator;
+import net.rimoto.wheninroam.PagerIndicator.IndicatorAggregator;
 import net.rimoto.wheninroam.utils.RimotoCore.Login;
 import net.rimoto.wheninroam.utils.RimotoCore.RimotoException;
 
@@ -18,7 +19,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-import net.rimoto.wheninroam.adapter.TestFragmentAdapter;
+import net.rimoto.wheninroam.adapter.LoginFragmentAdapter;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends FragmentActivity {
@@ -45,7 +46,7 @@ public class LoginActivity extends FragmentActivity {
     protected ViewPager mPager;
 
     @ViewById(R.id.titles)
-    protected TitlePageIndicator mTitleIndicator;
+    protected SimpleTitleIndicator mTitleIndicator;
 
     @ViewById(R.id.indicator)
     protected CirclePageIndicator mCircleIndicator;
@@ -54,7 +55,7 @@ public class LoginActivity extends FragmentActivity {
     protected void pagerAdapter() {
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
-        PagerAdapter mPagerAdapter = new TestFragmentAdapter(getSupportFragmentManager());
+        PagerAdapter mPagerAdapter = new LoginFragmentAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPagerAdapter);
 
         IndicatorAggregator indicatorAggregator = new IndicatorAggregator();

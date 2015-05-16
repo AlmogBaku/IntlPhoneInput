@@ -17,7 +17,7 @@
         android:layout_gravity="center_horizontal|bottom"
         android:padding="7dp">
 
-        <com.viewpagerindicator.TitlePageIndicator
+        <net.rimoto.wheninroam.PagerIndicator.SimpleTitleIndicator
             android:id="@+id/titles"
             android:layout_height="wrap_content"
             android:layout_width="fill_parent" />
