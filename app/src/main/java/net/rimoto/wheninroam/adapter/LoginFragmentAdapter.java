@@ -4,20 +4,25 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import com.viewpagerindicator.IconPagerAdapter;
-import net.rimoto.wheninroam.fragment.LoginFragment;
 import net.rimoto.wheninroam.fragment.LoginFragment_;
 
 public class LoginFragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
     protected static final String[] TITLES = new String[] { "Hey", "Yo", "Ya", "Ani", "Shoel", };
+    protected LoginFragment_[] mFragments;
 
     public LoginFragmentAdapter(FragmentManager fm) {
         super(fm);
+        mFragments = new LoginFragment_[getCount()];
     }
 
     @Override
     public Fragment getItem(int position) {
-        LoginFragment fragment = new LoginFragment_();
-        fragment.setPosition(position);
+        LoginFragment_ fragment = mFragments[position];
+        if(fragment==null) {
+            fragment = new LoginFragment_();
+            fragment.setPosition(position);
+            mFragments[position] = fragment;
+        }
         return fragment;
     }
 
@@ -36,8 +41,8 @@ public class LoginFragmentAdapter extends FragmentPagerAdapter implements IconPa
         return 0;
     }
 
-    @Override
-    public float getPageWidth(int page) {
-        return (float) (super.getPageWidth(page) * 1.5);
-    }
+//    @Override
+//    public float getPageWidth(int page) {
+//        return (float) (super.getPageWidth(page) * 1.5);
+//    }
 }
