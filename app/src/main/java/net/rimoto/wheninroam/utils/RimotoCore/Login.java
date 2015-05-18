@@ -176,7 +176,7 @@ public class Login {
         createLoginDialog(context, callback);
         RimotoCallback cb = (token, error) -> {
             dismissLoginDialog();
-            if(error!=null && token instanceof AccessToken) {
+            if(error==null && token instanceof AccessToken) {
                 Session.saveAccessToken(context, (AccessToken) token);
             }
             callback.done(token, error);
