@@ -14,7 +14,7 @@ public class UiUtils {
         spinner.show();
     }
     public static void hideSpinner() {
-        spinner.hide();
+        spinner.dismiss();
         spinner = null;
     }
 }
