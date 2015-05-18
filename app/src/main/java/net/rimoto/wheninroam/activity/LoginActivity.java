@@ -1,13 +1,13 @@
 package net.rimoto.wheninroam.activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 import com.viewpagerindicator.CirclePageIndicator;
-import com.viewpagerindicator.TitlePageIndicator;
 
+import net.rimoto.wheninroam.PagerIndicator.LoginAnimationIndicator;
 import net.rimoto.wheninroam.PagerIndicator.SimpleTitleIndicator;
 import net.rimoto.wheninroam.R;
 import net.rimoto.wheninroam.PagerIndicator.IndicatorAggregator;
@@ -23,25 +23,6 @@ import net.rimoto.wheninroam.adapter.LoginFragmentAdapter;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends FragmentActivity {
-    @Click(R.id.login_btn)
-    protected void loginClick() {
-        Log.d("tst","wow!");
-        try {
-            Login.getInstance().auth(this, (token, error) -> {
-                if(error==null) {
-                    Log.d("tst", token.toString());
-                }
-            });
-        } catch (RimotoException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
-    private static final int NUM_PAGES = 5;
-
     @ViewById(R.id.pager)
     protected ViewPager mPager;
 
@@ -61,6 +42,7 @@ public class LoginActivity extends FragmentActivity {
         IndicatorAggregator indicatorAggregator = new IndicatorAggregator();
         indicatorAggregator.addIndicator(mTitleIndicator);
         indicatorAggregator.addIndicator(mCircleIndicator);
+        indicatorAggregator.addIndicator(new LoginAnimationIndicator());
         indicatorAggregator.setViewPager(mPager);
     }
 
@@ -74,5 +56,28 @@ public class LoginActivity extends FragmentActivity {
             // Otherwise, select the previous step.
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
+    }
+
+    @Click(R.id.login_btn)
+    protected void loginClick() {
+        try {
+            Login.getInstance().auth(this, (token, error) -> {
+                if(error==null) {
+                    getVPNConfig();
+                    startWizard();
+                }
+            });
+        } catch (RimotoException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getVPNConfig() {
+
+    }
+    private void startWizard() {
+        Intent intent = new Intent(this, WizardActivity_.class);
+        startActivity(intent);
+        finish();
     }
 }
