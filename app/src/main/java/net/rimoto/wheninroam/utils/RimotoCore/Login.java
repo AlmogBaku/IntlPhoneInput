@@ -5,7 +5,6 @@ import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.IntentFilter;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Telephony;
@@ -189,18 +188,12 @@ public class Login {
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-
-                if (!redirect) {
-                    loadingFinished = true;
-                }
-                if (loadingFinished && !shown) {
+                if (!shown) {
                     UiUtils.hideSpinner();
                     showLoginDialog();
                     shown = true;
-                } else {
-                    redirect = false;
                 }
+                super.onPageFinished(view, url);
             }
         });
 
