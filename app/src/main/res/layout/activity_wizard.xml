@@ -6,15 +6,21 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
+        android:text="Check for roaming-switcher status"
+        android:id="@+id/roamingDataBtn"
         android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/textView2"
+        android:id="@+id/roamingSwitcherStatusView"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open roaming settings"
+        android:id="@+id/openSettingsBtn"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>
