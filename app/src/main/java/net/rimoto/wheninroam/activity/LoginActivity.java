@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -11,8 +12,9 @@ import net.rimoto.wheninroam.PagerIndicator.LoginAnimationIndicator;
 import net.rimoto.wheninroam.PagerIndicator.SimpleTitleIndicator;
 import net.rimoto.wheninroam.R;
 import net.rimoto.wheninroam.PagerIndicator.IndicatorAggregator;
-import net.rimoto.wheninroam.utils.RimotoCore.Login;
-import net.rimoto.wheninroam.utils.RimotoCore.RimotoException;
+import net.rimoto.core.API;
+import net.rimoto.core.Login;
+import net.rimoto.core.RimotoException;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -20,6 +22,11 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import net.rimoto.wheninroam.adapter.LoginFragmentAdapter;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import retrofit.mime.TypedByteArray;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends FragmentActivity {
@@ -73,7 +80,18 @@ public class LoginActivity extends FragmentActivity {
     }
 
     private void getVPNConfig() {
+        API.getInstance().getOvpn(new Callback<Response>() {
+            @Override
+            public void success(Response response, Response response2) {
+                String ovpn = new String(((TypedByteArray) response.getBody()).getBytes());
+                Log.d("ovpn", ovpn);
+            }
 
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("ovpn-err", error.getMessage());
+            }
+        });
     }
     private void startWizard() {
         Intent intent = new Intent(this, WizardActivity_.class);

@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import net.rimoto.core.Session;
 import net.rimoto.wheninroam.R;
-import net.rimoto.wheninroam.utils.RimotoCore.Session;
 
 import org.androidannotations.annotations.EActivity;
 
@@ -16,7 +16,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         Intent intent;
-        if(Session.getCurrentAccessToken(this)==null) {
+        if(Session.getCurrentAccessToken()==null) {
             intent = new Intent(this, LoginActivity_.class);
         } else {
             intent = new Intent(this, WizardActivity_.class);

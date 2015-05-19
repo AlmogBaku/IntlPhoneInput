@@ -1,48 +1,61 @@
-package net.rimoto.wheninroam.utils.RimotoCore;
+package net.rimoto.core;
 
+import android.content.Context;
 import android.text.TextUtils;
 
 /**
  *
  */
 public class RimotoCore {
-    private static String CLIENT_ID     = null;
     private static String REDIRECT_URI  = "http://localhost";
     private static String RESPONSE_TYPE = "code";
-    private static String AUTH_ENDPOINT = "http://core.rimoto.net/api/oauth/v2/auth";
+    private static String API_ENDPOINT  = "http://core.rimoto.net/api";
+    private static String AUTH_ENDPOINT = "/oauth/v2/auth";
     private static String OAUTH_SCOPE   = "";
 
+    private static Context sApplicationContext;
+    private static String sClientId;
     /**
      * Initialize
+     * @param applicationContext Context
      * @param client Client_ID
      * @param redirect_uri Redirect_URI
      */
-    public static void init(String client, String redirect_uri) {
-        CLIENT_ID = client;
+    public static void init(Context applicationContext, String client, String redirect_uri) {
+        init(applicationContext, client);
         REDIRECT_URI = redirect_uri;
     }
     /**
      * Initialize
+     * @param applicationContext Context
      * @param client Client_ID
      */
-    public static void init(String client) {
-        CLIENT_ID = client;
+    public static void init(Context applicationContext, String client) {
+        sApplicationContext = applicationContext;
+        sClientId = client;
     }
 
+    /**
+     * Get application context
+     * @return Context
+     */
+    public static Context getsApplicationContext() {
+        return sApplicationContext;
+    }
 
     /**
      * Set client_id
-     * @param clientId String
+     * @param sClientId String
      */
-    public static void setClientId(String clientId) {
-        CLIENT_ID = clientId;
+    public static void setsClientId(String sClientId) {
+        RimotoCore.sClientId = sClientId;
     }
     /**
      * Get client_id
      * @return String
      */
     public String getClientId() {
-        return CLIENT_ID;
+        return sClientId;
     }
 
     /**
@@ -82,11 +95,19 @@ public class RimotoCore {
     }
 
     /**
-     * Get auth_endpoint
+     * Get API Endpoint
+     * @return String
+     */
+    public static String getApiEndpoint() {
+        return API_ENDPOINT;
+    }
+
+    /**
+     * Get 3-Legs Authentication Endpoint
      * @return String
      */
     public String getAuthEndpoint() {
-        return AUTH_ENDPOINT;
+        return API_ENDPOINT+AUTH_ENDPOINT;
     }
 
     /**
@@ -111,16 +132,16 @@ public class RimotoCore {
         return OAUTH_SCOPE;
     }
 
-    private static RimotoCore mInstance = null;
+    private static RimotoCore sInstance = null;
     public static RimotoCore getInstance() throws RimotoException {
-        if(CLIENT_ID==null) {
+        if(sClientId ==null || sApplicationContext==null) {
             throw new RimotoException("You must Initialize the API");
         }
 
-        if(mInstance == null)
+        if(sInstance == null)
         {
-            mInstance = new RimotoCore();
+            sInstance = new RimotoCore();
         }
-        return mInstance;
+        return sInstance;
     }
 }

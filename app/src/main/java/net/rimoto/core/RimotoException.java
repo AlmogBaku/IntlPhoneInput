@@ -1,4 +1,4 @@
-package net.rimoto.wheninroam.utils.RimotoCore;
+package net.rimoto.core;
 
 public class RimotoException extends Exception {
     public int statusCode;

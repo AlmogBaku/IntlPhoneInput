@@ -1,8 +1,11 @@
-package net.rimoto.wheninroam.utils.RimotoCore;
+package net.rimoto.core;
 
 import android.net.Uri;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import net.rimoto.core.models.AccessToken;
+import net.rimoto.core.models.CodeToken;
 
 public class RimotoWebViewClient extends WebViewClient {
     private RimotoCallback mCallback;

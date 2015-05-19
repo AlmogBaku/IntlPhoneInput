@@ -1,6 +1,6 @@
-package net.rimoto.wheninroam.utils.RimotoCore;
+package net.rimoto.core;
 
-import android.content.Context;
+import net.rimoto.core.models.TokenInterface;
 
 public interface RimotoCallback {
     void done(TokenInterface token, RimotoException error);

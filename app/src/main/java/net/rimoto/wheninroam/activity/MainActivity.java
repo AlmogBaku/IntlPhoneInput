@@ -4,9 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import net.rimoto.wheninroam.R;
-import net.rimoto.wheninroam.utils.RimotoCore.Login;
-import net.rimoto.wheninroam.utils.RimotoCore.RimotoCore;
-import net.rimoto.wheninroam.utils.RimotoCore.RimotoException;
+import net.rimoto.core.Login;
+import net.rimoto.core.RimotoException;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;

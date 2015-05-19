@@ -1,4 +1,4 @@
-package net.rimoto.wheninroam.utils.RimotoCore;
+package net.rimoto.core;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -13,19 +13,22 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
 
+import net.rimoto.core.models.AccessToken;
+import net.rimoto.core.utils.UI;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Login {
-    private static RimotoCore mRimotoCore = null;
-    private static Login mInstance = null;
+    private static RimotoCore sRimotoCore = null;
+    private static Login sInstance = null;
     public static Login getInstance() throws RimotoException {
-        if(mInstance == null)
+        if(sInstance == null)
         {
-            mRimotoCore = RimotoCore.getInstance();
-            mInstance = new Login();
+            sRimotoCore = RimotoCore.getInstance();
+            sInstance = new Login();
         }
-        return mInstance;
+        return sInstance;
     }
 
     /**
@@ -38,11 +41,11 @@ public class Login {
         Uri redirectUri = buildRedirectUri(redirectParams);
 
         Uri.Builder auth_uri = new Uri.Builder();
-        auth_uri.encodedPath(mRimotoCore.getAuthEndpoint());
-        auth_uri.appendQueryParameter("client_id", mRimotoCore.getClientId());
-        auth_uri.appendQueryParameter("response_type", mRimotoCore.getAuthType());
+        auth_uri.encodedPath(sRimotoCore.getAuthEndpoint());
+        auth_uri.appendQueryParameter("client_id", sRimotoCore.getClientId());
+        auth_uri.appendQueryParameter("response_type", sRimotoCore.getAuthType());
         auth_uri.appendQueryParameter("redirect_uri", redirectUri.toString());
-        auth_uri.appendQueryParameter("scope", mRimotoCore.getScope());
+        auth_uri.appendQueryParameter("scope", sRimotoCore.getScope());
 
         try {
             TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -64,7 +67,7 @@ public class Login {
      */
     private Uri buildRedirectUri(HashMap<String,String> redirectParams) {
         Uri.Builder redirect_uri = new Uri.Builder();
-        redirect_uri.encodedPath(mRimotoCore.getRedirectUri());
+        redirect_uri.encodedPath(sRimotoCore.getRedirectUri());
         for(Object o : redirectParams.entrySet()) {
             Map.Entry entry = (Map.Entry) o;
             redirect_uri.appendQueryParameter(entry.getKey().toString(), entry.getValue().toString());
@@ -176,12 +179,12 @@ public class Login {
         RimotoCallback cb = (token, error) -> {
             dismissLoginDialog();
             if(error==null && token instanceof AccessToken) {
-                Session.saveAccessToken(context, (AccessToken) token);
+                Session.saveAccessToken((AccessToken) token);
             }
             callback.done(token, error);
         };
 
-        UiUtils.showSpinner(context);
+        UI.showSpinner(context);
 
         mWebView.setWebViewClient(new RimotoWebViewClient(cb) {
             private boolean shown = false;
@@ -189,7 +192,7 @@ public class Login {
             @Override
             public void onPageFinished(WebView view, String url) {
                 if (!shown) {
-                    UiUtils.hideSpinner();
+                    UI.hideSpinner();
                     showLoginDialog();
                     shown = true;
                 }
