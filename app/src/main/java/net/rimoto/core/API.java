@@ -11,15 +11,11 @@ import retrofit.http.GET;
 
 public class API {
     public interface RimotoAPI {
-        @GET("/subscriber/me/ovpn")
-        void getOvpn(Callback<Response> cb);
-        @GET("/subscriber/me/ovpn")
-        Response getOvpn();
+        @GET("/subscriber/me/ovpn") void getOvpn(Callback<Response> cb);
+        @GET("/subscriber/me/ovpn") Response getOvpn();
 
-        @GET("/subscriber/me/policy")
-        void getPolicies(Callback<Policy[]> cb);
-        @GET("/subscriber/me/policy")
-        Policy[] getPolicies();
+        @GET("/subscriber/me/policy") void getPolicies(Callback<Policy[]> cb);
+        @GET("/subscriber/me/policy") Policy[] getPolicies();
     }
 
     private static RequestInterceptor sRequestInterceptor = request -> {
