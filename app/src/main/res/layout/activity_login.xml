@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="@string/login_title_0"
+        android:textColor="@color/white"
         android:textAllCaps="true"
         android:background="@drawable/pink_rounded_bg"
         android:layout_gravity="center_horizontal|top" />
