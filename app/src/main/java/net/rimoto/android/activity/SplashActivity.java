@@ -1,11 +1,11 @@
-package net.rimoto.wheninroam.activity;
+package net.rimoto.android.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import net.rimoto.core.Session;
-import net.rimoto.wheninroam.R;
+import net.rimoto.android.R;
 
 import org.androidannotations.annotations.EActivity;
 

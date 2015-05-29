@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'android-apt'
-
 def AAVersion = '3.3'
 
 android {
@@ -9,7 +8,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "net.rimoto.wheninroam"
+        applicationId "net.rimoto.android"
         minSdkVersion 14
         targetSdkVersion 22
         versionCode 1
@@ -19,15 +18,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    sourceSets {
-        main {
-            res.srcDirs =
-                [
-                    'src/main/res/layout/LoginPager',
-                    'src/main/res'
-                ]
         }
     }
     compileOptions {
@@ -53,7 +43,7 @@ dependencies {
     // dependencies
     compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
-    compile 'com.google.code.gson:gson:1.7.2'
+    compile 'com.google.code.gson:gson:2.3'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
     compile 'com.squareup.okhttp:okhttp:2.0.0'

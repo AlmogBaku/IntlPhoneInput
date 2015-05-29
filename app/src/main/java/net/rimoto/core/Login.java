@@ -140,6 +140,8 @@ public class Login {
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private void registerSMSReceiver() {
+        if(mDialog==null) return;
+
         IntentFilter filter = new IntentFilter();
         filter.addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
         filter.setPriority(999);

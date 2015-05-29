@@ -13,4 +13,9 @@
     <color name="rim_color">#A8A8A8</color>
     <color name="default_text">#484848</color>
 
+    <!-- Rimoto colors -->
+    <color name="orange">#f78614</color>
+    <color name="pink">#de1d84</color>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
 </resources>

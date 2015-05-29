@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <net.rimoto.android.views.LoginForegroundView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <net.rimoto.android.views.SimpleTitleIndicator
+        android:id="@+id/titles"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/login_title_0"
+        android:textAllCaps="true"
+        android:background="@drawable/pink_rounded_bg"
+        android:layout_gravity="center_horizontal|top" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,31 +32,37 @@
         android:layout_gravity="center_horizontal|bottom"
         android:padding="7dp">
 
-        <net.rimoto.wheninroam.PagerIndicator.SimpleTitleIndicator
-            android:id="@+id/titles"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent" />
-
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/indicator"
-            android:padding="10dp"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
+
+            android:padding="10dip"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            app:radius="5dp"
+            app:fillColor="@color/white"
+            app:pageColor="@color/transparent"
+            app:strokeColor="@color/white"
+            app:strokeWidth="1dp"
             />
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/login_btn_width"
             android:layout_height="wrap_content"
             android:text="@string/login_btn"
-            android:id="@+id/login_btn" />
+            android:textAllCaps="true"
+            android:background="@drawable/transparent_rounded_bg"
+            android:textColor="@color/orange"
+            android:id="@+id/login_btn"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Terms of use"
+            android:text="@string/tos"
             android:id="@+id/tos"
+            android:textAllCaps="true"
+            android:textSize="@dimen/tos_btn_size"
             android:layout_gravity="center_horizontal" />
-
     </LinearLayout>
 </FrameLayout>

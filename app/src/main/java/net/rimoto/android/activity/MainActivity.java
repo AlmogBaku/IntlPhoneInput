@@ -1,9 +1,9 @@
-package net.rimoto.wheninroam.activity;
+package net.rimoto.android.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import net.rimoto.wheninroam.R;
+import net.rimoto.android.R;
 import net.rimoto.core.Login;
 import net.rimoto.core.RimotoException;
 

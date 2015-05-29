@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.rimoto.wheninroam" >
+    package="net.rimoto.android" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,17 +10,17 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 
     <application
-        android:name=".WhenInRoamApplication_"
+        android:name=".RimotoApplication_"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".activity.SplashActivity_"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -32,6 +32,6 @@
             android:name=".activity.WizardActivity_"
             android:label="@string/app_name" >
         </activity>
-    </application>
 
+    </application>
 </manifest>
