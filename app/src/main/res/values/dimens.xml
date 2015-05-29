@@ -3,5 +3,5 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="login_btn_width">250dp</dimen>
-    <dimen name="tos_btn_size">12sp</dimen>
+    <dimen name="tos_btn_size">11sp</dimen>
 </resources>

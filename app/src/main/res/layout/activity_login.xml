@@ -61,7 +61,6 @@
             android:layout_height="wrap_content"
             android:text="@string/tos"
             android:id="@+id/tos"
-            android:textAllCaps="true"
             android:textSize="@dimen/tos_btn_size"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal" />
