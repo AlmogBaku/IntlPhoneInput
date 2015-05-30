@@ -7,11 +7,11 @@ import android.text.TextUtils;
  *
  */
 public class RimotoCore {
-    private static String REDIRECT_URI  = "http://localhost";
-    private static String RESPONSE_TYPE = "code";
-    private static String API_ENDPOINT  = "http://core.rimoto.net/api";
-    private static String AUTH_ENDPOINT = "/oauth/v2/auth";
-    private static String OAUTH_SCOPE   = "";
+    private static String REDIRECT_URI          = "http://localhost";
+    private static String RESPONSE_TYPE         = "code";
+    private static final String API_ENDPOINT    = "http://core.rimoto.net/api";
+    private static final String AUTH_ENDPOINT   = "/oauth/v2/auth";
+    private static String OAUTH_SCOPE           = "";
 
     private static Context sApplicationContext;
     private static String sClientId;
