@@ -14,6 +14,7 @@ public class UI {
         sSpinner.show();
     }
     public static void hideSpinner() {
+        if(sSpinner == null) return;
         sSpinner.dismiss();
         sSpinner = null;
     }
