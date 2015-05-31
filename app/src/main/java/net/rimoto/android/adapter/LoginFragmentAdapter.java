@@ -4,11 +4,10 @@ import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import com.viewpagerindicator.IconPagerAdapter;
 
 import net.rimoto.android.fragment.LoginSlideFragment_;
 
-public class LoginFragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
+public class LoginFragmentAdapter extends FragmentPagerAdapter {
     private String packageName;
     private Resources resources;
 
@@ -35,10 +34,5 @@ public class LoginFragmentAdapter extends FragmentPagerAdapter implements IconPa
     public CharSequence getPageTitle(int position) {
         int id = resources.getIdentifier("login_title_"+(position % getCount()), "string", packageName);
         return resources.getString(id);
-    }
-
-    @Override
-    public int getIconResId(int index) {
-        return 0;
     }
 }
