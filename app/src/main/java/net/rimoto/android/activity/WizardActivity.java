@@ -30,7 +30,7 @@ public class WizardActivity extends FragmentActivity {
         mPagerAdapter = new WizardFragmentAdapter(getSupportFragmentManager(), getContentResolver());
         mPager.setAdapter(mPagerAdapter);
 
-        mCircleIndicator`.setViewPager(mPager);
+        mCircleIndicator.setViewPager(mPager);
     }
 
     @Override

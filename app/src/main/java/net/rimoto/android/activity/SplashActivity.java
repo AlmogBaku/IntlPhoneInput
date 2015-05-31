@@ -3,6 +3,7 @@ package net.rimoto.android.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import net.rimoto.core.Session;
 import net.rimoto.android.R;
@@ -21,7 +22,11 @@ public class SplashActivity extends Activity {
         } else {
             intent = new Intent(this, WizardActivity_.class);
         }
-        startActivity(intent);
-        finish();
+
+        new Handler().postDelayed(()-> {
+            startActivity(intent);
+            finish();
+        }, 2000);
+
     }
 }
