@@ -11,4 +11,8 @@
     <string name="login_title_4">Booking.com</string>
     <string name="tos">By clicking \"sign up\" you accept our <u>terms of use</u>.</string>
     <string name="login_main_title">traveling abroad?</string>
+    <string name="connect">connect</string>
+
+    <string name="wizard_title_roaming">Use for free!</string>
+    <string name="wizard_title_vpn">Complete &amp; activate</string>
 </resources>

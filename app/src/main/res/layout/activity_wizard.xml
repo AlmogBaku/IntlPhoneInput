@@ -1,32 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/simplebg"
     android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Check for roaming-switcher status"
-        android:id="@+id/roamingDataBtn"
-        android:layout_gravity="center_horizontal" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/roamingSwitcherStatusView"
-        android:layout_gravity="center_horizontal" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Open roaming settings"
-        android:id="@+id/openSettingsBtn"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGIN"
-        android:id="@+id/gotoLoginBtn"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
+        android:layout_gravity="center_horizontal|bottom"
+        android:padding="7dp">
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_gravity="center_horizontal"
+
+            android:padding="10dip"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            app:radius="5dp"
+            app:fillColor="@color/orange"
+            app:pageColor="@color/transparent"
+            app:strokeColor="@color/orange"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:layout_width="@dimen/login_btn_width"
+            android:layout_height="@dimen/login_btn_height"
+            android:text="@string/connect"
+            android:textAllCaps="true"
+            android:background="@drawable/orange_rounded_bg"
+            android:textColor="@color/white"
+            android:textSize="@dimen/login_btn_fontSize"
+            android:fontFamily="sans-serif-medium"
+            android:id="@+id/connectBtn"
+            android:layout_gravity="center_horizontal"
+            tools:ignore="UnusedAttribute" />
+    </LinearLayout>
+
+
+</FrameLayout>

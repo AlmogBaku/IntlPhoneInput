@@ -72,8 +72,7 @@
             app:fillColor="@color/white"
             app:pageColor="@color/transparent"
             app:strokeColor="@color/white"
-            app:strokeWidth="1dp"
-            />
+            app:strokeWidth="1dp" />
 
         <Button
             android:layout_width="@dimen/login_btn_width"
