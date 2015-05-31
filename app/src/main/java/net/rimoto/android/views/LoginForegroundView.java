@@ -31,11 +31,6 @@ public class LoginForegroundView extends SurfaceView implements SurfaceHolder.Ca
         init();
     }
 
-    public LoginForegroundView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        init();
-    }
-
     private void init() {
         this.setBackgroundColor(Color.TRANSPARENT);
         getHolder().addCallback(this);

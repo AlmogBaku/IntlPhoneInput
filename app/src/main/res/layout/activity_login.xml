@@ -11,20 +11,48 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
     <net.rimoto.android.views.LoginForegroundView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <net.rimoto.android.views.SimpleTitleIndicator
-        android:id="@+id/titles"
-        android:layout_height="wrap_content"
+
+    <RelativeLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:text="@string/login_title_0"
-        android:textColor="@color/white"
-        android:textAllCaps="true"
-        android:background="@drawable/pink_rounded_bg"
-        android:layout_gravity="center_horizontal|top" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:paddingLeft="14dp"
+        android:paddingRight="14dp">
+
+        <net.rimoto.android.views.SimpleTitleIndicator
+            android:id="@+id/titles"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/login_title_0"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:background="@drawable/pink_rounded_bg"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold"
+            android:layout_below="@+id/login_main_title"
+            android:layout_centerHorizontal="true"
+            tools:ignore="UnusedAttribute" />
+
+        <net.rimoto.android.views.PacificoTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="45sp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/login_main_title"
+            android:textColor="@color/orange"
+            android:id="@+id/login_main_title"
+            android:layout_marginBottom="-7sp"
+            android:lineSpacingMultiplier="0.8"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
     <LinearLayout
         android:orientation="vertical"
@@ -49,13 +77,16 @@
 
         <Button
             android:layout_width="@dimen/login_btn_width"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/login_btn_height"
             android:text="@string/login_btn"
             android:textAllCaps="true"
             android:background="@drawable/transparent_rounded_bg"
             android:textColor="@color/orange"
+            android:textSize="@dimen/login_btn_fontSize"
+            android:fontFamily="sans-serif-medium"
             android:id="@+id/login_btn"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            tools:ignore="UnusedAttribute" />
 
         <TextView
             android:layout_width="wrap_content"

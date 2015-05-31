@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import com.viewpagerindicator.IconPagerAdapter;
 
-import net.rimoto.android.fragment.LoginFragment_;
+import net.rimoto.android.fragment.LoginSlideFragment_;
 
 public class LoginFragmentAdapter extends FragmentPagerAdapter implements IconPagerAdapter {
     private String packageName;
@@ -20,7 +20,7 @@ public class LoginFragmentAdapter extends FragmentPagerAdapter implements IconPa
 
     @Override
     public Fragment getItem(int position) {
-        LoginFragment_ fragment = new LoginFragment_();
+        LoginSlideFragment_ fragment = new LoginSlideFragment_();
         fragment.setPosition(position);
 
         return fragment;
