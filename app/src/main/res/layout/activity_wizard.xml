@@ -17,8 +17,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:padding="7dp">
+        android:layout_gravity="right|bottom"
+        android:paddingBottom="15dp">
 
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/indicator"

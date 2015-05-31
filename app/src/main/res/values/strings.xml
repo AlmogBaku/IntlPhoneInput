@@ -15,4 +15,10 @@
 
     <string name="wizard_title_roaming">Use for free!</string>
     <string name="wizard_title_vpn">Complete &amp; activate</string>
+    <string name="wizard_boxa_font">sans-serif-medium</string>
+    <string name="wizard_roaming_boxa1_title">No roaming plan? No worries!</string>
+    <string name="wizard_roaming_boxa1_text">Using the services BELOW will not result in roaming fees.</string>
+    <string name="wizard_roaming_boxa2_title">Already have a roaming plan?</string>
+    <string name="wizard_roaming_boxa2_text">Use Rimoto and make your data last longer.</string>
+    <string name="wizard_vpn_boxa_text">Ti start enjoying the free services, please establish the connection to rimoto\'s cloud</string>
 </resources>
