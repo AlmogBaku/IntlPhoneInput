@@ -37,8 +37,7 @@ public class WizardFragmentAdapter extends FragmentPagerAdapter {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     protected boolean isDataRoamingEnabled() {
         try {
-            // return true or false if data roaming is enabled or not
-            return Settings.Global.getInt(contentResolver, Settings.Global.DATA_ROAMING) == 1;
+            return Settings.Global.getInt(contentResolver, Settings.Global.DATA_ROAMING) == 1; // return true or false if data roaming is enabled or not
         } catch (Settings.SettingNotFoundException e) {
             return false;
         }
