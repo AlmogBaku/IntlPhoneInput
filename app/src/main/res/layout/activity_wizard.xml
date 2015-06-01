@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/simplebg"
     android:layout_height="match_parent">
 
     <android.support.v4.view.ViewPager
@@ -40,7 +39,7 @@
             android:textAllCaps="true"
             android:background="@drawable/orange_rounded_bg"
             android:textColor="@color/white"
-            android:textSize="@dimen/login_btn_fontSize"
+            android:textSize="@dimen/login_btn_textSize"
             android:fontFamily="sans-serif-medium"
             android:id="@+id/connectBtn"
             android:layout_gravity="center_horizontal"

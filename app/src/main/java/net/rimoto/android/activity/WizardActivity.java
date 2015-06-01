@@ -1,5 +1,6 @@
 package net.rimoto.android.activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,6 +11,7 @@ import net.rimoto.android.R;
 import net.rimoto.android.adapter.WizardFragmentAdapter;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
@@ -38,5 +40,13 @@ public class WizardActivity extends FragmentActivity {
         super.onResume();
         // TODO fix this
         mPagerAdapter.notifyDataSetChanged();
+    }
+
+
+    @Click
+    protected void connectBtn() {
+        Intent intent = new Intent(this, MainActivity_.class);
+        startActivity(intent);
+        this.finish();
     }
 }

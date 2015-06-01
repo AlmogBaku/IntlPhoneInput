@@ -81,7 +81,7 @@
             android:textAllCaps="true"
             android:background="@drawable/transparent_rounded_bg"
             android:textColor="@color/orange"
-            android:textSize="@dimen/login_btn_fontSize"
+            android:textSize="@dimen/login_btn_textSize"
             android:fontFamily="sans-serif-medium"
             android:id="@+id/login_btn"
             android:layout_gravity="center_horizontal"
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:text="@string/tos"
             android:id="@+id/tos"
-            android:textSize="@dimen/tos_btn_size"
+            android:textSize="@dimen/tos_btn_textSize"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>

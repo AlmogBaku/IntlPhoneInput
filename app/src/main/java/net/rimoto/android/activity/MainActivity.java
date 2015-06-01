@@ -1,6 +1,5 @@
 package net.rimoto.android.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import net.rimoto.android.R;
@@ -14,7 +13,7 @@ import org.androidannotations.annotations.OptionsMenu;
 
 @EActivity(R.layout.activity_main)
 @OptionsMenu(R.menu.menu_main)
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends RimotoCompatActivity {
     @OptionsItem(R.id.action_settings)
     public void actionSettings() {
         Log.d("tst", "lol");

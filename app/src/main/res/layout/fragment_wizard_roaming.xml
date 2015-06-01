@@ -7,7 +7,7 @@
     <net.rimoto.android.views.PacificoTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="45sp"
+        android:textSize="@dimen/wizard_roaming_title_textSize"
         android:layout_gravity="center_horizontal"
         android:text="@string/wizard_title_roaming"
         android:textColor="@color/orange"
@@ -39,7 +39,7 @@
                 android:textColor="@color/white"
                 android:gravity="center_horizontal"
                 android:fontFamily="@string/wizard_boxa_font"
-                android:textSize="@dimen/wizard_boxa_title"
+                android:textSize="@dimen/wizard_boxa_title_textSize"
                 android:text="@string/wizard_roaming_boxa1_title"
                 tools:ignore="UnusedAttribute" />
             <TextView
@@ -48,7 +48,7 @@
                 android:textColor="@color/white"
                 android:gravity="center_horizontal"
                 android:fontFamily="@string/wizard_boxa_font"
-                android:textSize="@dimen/wizard_boxa_text"
+                android:textSize="@dimen/wizard_boxa_textSize"
                 android:text="@string/wizard_roaming_boxa1_text"
                 tools:ignore="UnusedAttribute" />
         </LinearLayout>
@@ -70,7 +70,7 @@
                 android:textColor="@color/white"
                 android:gravity="center_horizontal"
                 android:fontFamily="@string/wizard_boxa_font"
-                android:textSize="@dimen/wizard_boxa_title"
+                android:textSize="@dimen/wizard_boxa_title_textSize"
                 android:text="@string/wizard_roaming_boxa2_title"
                 tools:ignore="UnusedAttribute" />
             <TextView
@@ -79,7 +79,7 @@
                 android:textColor="@color/white"
                 android:gravity="center_horizontal"
                 android:fontFamily="@string/wizard_boxa_font"
-                android:textSize="@dimen/wizard_boxa_text"
+                android:textSize="@dimen/wizard_boxa_textSize"
                 android:text="@string/wizard_roaming_boxa2_text"
                 tools:ignore="UnusedAttribute" />
         </LinearLayout>

@@ -3,6 +3,26 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="actionBarStyle">@style/MyActionBar</item> <!-- Support library compatibility -->
+        <item name="actionOverflowButtonStyle">@style/MyActionOverflowButton</item>
+
+        <item name="android:windowBackground">@color/simplebg</item>
     </style>
 
+    <!-- ActionBar styles -->
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+        <item name="background">@color/transparent</item>
+    </style>
+
+    <!-- ActionBar title text -->
+    <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/orange</item>
+        <item name="android:textSize">@dimen/title_textSize</item>
+    </style>
+
+    <style name="MyActionOverflowButton" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:background">@color/pink</item>
+        <item name="android:src">@drawable/abc_ic_menu_copy_mtrl_am_alpha</item>
+    </style>
 </resources>

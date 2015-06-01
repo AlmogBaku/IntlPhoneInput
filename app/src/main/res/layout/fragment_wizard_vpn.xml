@@ -8,7 +8,7 @@
     <net.rimoto.android.views.PacificoTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="43sp"
+        android:textSize="@dimen/wizard_vpn_title_textSize"
         android:layout_gravity="center_horizontal"
         android:text="@string/wizard_title_vpn"
         android:textColor="@color/orange"
@@ -35,7 +35,7 @@
             android:textColor="@color/white"
             android:gravity="center_horizontal"
             android:fontFamily="@string/wizard_boxa_font"
-            android:textSize="@dimen/wizard_boxa_title"
+            android:textSize="@dimen/wizard_boxa_title_textSize"
             android:text="@string/wizard_vpn_boxa_text"
             tools:ignore="UnusedAttribute" />
 

@@ -21,4 +21,8 @@
     <string name="wizard_roaming_boxa2_title">Already have a roaming plan?</string>
     <string name="wizard_roaming_boxa2_text">Use Rimoto and make your data last longer.</string>
     <string name="wizard_vpn_boxa_text">To start enjoying the free services, please establish the connection to rimoto\'s cloud</string>
+    <string name="action_logs">Send logs</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_disconnect">Disconnect</string>
+    <string name="main_activity_title">rimoto is on!</string>
 </resources>
