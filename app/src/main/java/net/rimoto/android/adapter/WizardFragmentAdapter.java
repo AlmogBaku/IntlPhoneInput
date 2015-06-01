@@ -40,6 +40,8 @@ public class WizardFragmentAdapter extends FragmentPagerAdapter {
             return Settings.Global.getInt(contentResolver, Settings.Global.DATA_ROAMING) == 1; // return true or false if data roaming is enabled or not
         } catch (Settings.SettingNotFoundException e) {
             return false;
+        } catch (NoClassDefFoundError e) {
+            return false;
         }
     }
 }
