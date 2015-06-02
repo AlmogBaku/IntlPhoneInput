@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Rimoto</string>
+    <string name="app_name">rimoto</string>
 
     <string name="action_settings">Settings</string>
     <string name="login_btn">Sign up</string>
@@ -19,7 +19,7 @@
     <string name="wizard_roaming_boxa1_title">No roaming plan? No worries!</string>
     <string name="wizard_roaming_boxa1_text">Using the services BELOW will not result in roaming fees.</string>
     <string name="wizard_roaming_boxa2_title">Already have a roaming plan?</string>
-    <string name="wizard_roaming_boxa2_text">Use Rimoto and make your data last longer.</string>
+    <string name="wizard_roaming_boxa2_text">Use rimoto and make your data last longer.</string>
     <string name="wizard_vpn_boxa_text">To start enjoying the free services, please establish the connection to rimoto\'s cloud</string>
     <string name="action_logs">Send logs</string>
     <string name="action_logout">Logout</string>
