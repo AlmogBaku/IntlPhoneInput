@@ -41,7 +41,7 @@ public class LoginForegroundView extends SurfaceView implements SurfaceHolder.Ca
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inScaled = false;
-        mForeground = BitmapFactory.decodeResource(getResources(), R.drawable.window_foreground, options);
+        mForeground = BitmapFactory.decodeResource(getResources(), R.drawable.login_foreground, options);
     }
 
     @Override

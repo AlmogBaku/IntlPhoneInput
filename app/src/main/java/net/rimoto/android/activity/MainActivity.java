@@ -18,18 +18,4 @@ public class MainActivity extends RimotoCompatActivity {
     public void actionSettings() {
         Log.d("tst", "lol");
     }
-
-    @Click(R.id.login_btn)
-    public void loginClick() {
-        Log.d("tst","wow!");
-        try {
-            Login.getInstance().auth(this, (token, error) -> {
-                if(error==null) {
-                    Log.d("tst", token.toString());
-                }
-            });
-        } catch (RimotoException e) {
-            e.printStackTrace();
-        }
-    }
 }

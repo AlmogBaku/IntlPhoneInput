@@ -2,6 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="title_textSize">35sp</dimen>
 
+    <dimen name="login_main_title_fontSize">60sp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="login_btn_width">250dp</dimen>
@@ -10,6 +11,10 @@
     <dimen name="tos_btn_textSize">11sp</dimen>
     <dimen name="wizard_boxa_title_textSize">20sp</dimen>
     <dimen name="wizard_boxa_textSize">15sp</dimen>
-    <dimen name="wizard_roaming_title_textSize">45sp</dimen>
-    <dimen name="wizard_vpn_title_textSize">43sp</dimen>
+    <dimen name="wizard_roaming_title_textSize">80sp</dimen>
+    <dimen name="wizard_vpn_title_textSize">55sp</dimen>
+    <dimen name="wizard_title_marginTop">25dp</dimen>
+
+    <dimen name="topUpBtn_textSize">27sp</dimen>
+    <dimen name="topUpBtn_height">53sp</dimen>
 </resources>

@@ -5,7 +5,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LoginActivity">
+    android:windowTranslucentStatus="false"
+    android:statusBarColor="@color/transparent"
+    android:navigationBarColor="@color/transparent"
+    tools:context=".activity.LoginActivity"
+    tools:ignore="UnusedAttribute">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
@@ -41,17 +45,17 @@
             tools:ignore="UnusedAttribute" />
 
         <net.rimoto.android.views.PacificoTextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="45sp"
+            android:textSize="@dimen/login_main_title_fontSize"
             android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:text="@string/login_main_title"
             android:textColor="@color/orange"
             android:id="@+id/login_main_title"
-            android:layout_marginBottom="-7sp"
-            android:lineSpacingMultiplier="0.8"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_marginBottom="-22sp"
+            android:layout_marginTop="-25sp"
+            android:layout_alignParentTop="true" />
     </RelativeLayout>
 
     <LinearLayout

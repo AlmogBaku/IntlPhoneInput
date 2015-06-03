@@ -23,8 +23,6 @@ public class LoginSlideFragment extends Fragment {
     @AfterViews
     protected void changeImage() {
         if(mPosition != -1) {
-            if(mPosition%2==0) mPosition=0;
-            else mPosition=4;
             int id = getResources().getIdentifier("login_slide_pic"+mPosition, "drawable", getActivity().getPackageName());
             mLoginSlide.setImageResource(id);
         }

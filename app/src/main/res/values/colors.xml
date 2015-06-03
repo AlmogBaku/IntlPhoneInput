@@ -17,6 +17,6 @@
     <color name="orange">#f78614</color>
     <color name="pink">#de1d84</color>
     <color name="white">#ffffff</color>
-    <color name="transparent">#00000000</color>
+    <color name="transparent">@android:color/transparent</color>
     <color name="simplebg">#f4f4f4</color>
 </resources>

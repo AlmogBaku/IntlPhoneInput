@@ -19,7 +19,7 @@ public class RimotoCompatActivity extends AppCompatActivity {
 
 
         SpannableString spannableString = new SpannableString(this.getTitle());
-        spannableString.setSpan(new TypefaceSpan(this, "Pacifico.ttf"), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new TypefaceSpan(this, "fonts/Pacifico-Old.ttf"), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         setTitle(spannableString);
     }

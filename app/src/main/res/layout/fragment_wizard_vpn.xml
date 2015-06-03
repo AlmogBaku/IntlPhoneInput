@@ -6,17 +6,17 @@
     android:layout_height="match_parent">
 
     <net.rimoto.android.views.PacificoTextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/wizard_vpn_title_textSize"
         android:layout_gravity="center_horizontal"
-        android:text="@string/wizard_title_vpn"
+        android:gravity="center_horizontal"        android:text="@string/wizard_title_vpn"
         android:textColor="@color/orange"
         android:id="@+id/login_main_title"
         android:lineSpacingMultiplier="0.8"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="@dimen/wizard_title_marginTop" />
 
     <LinearLayout
         android:layout_width="295dp"

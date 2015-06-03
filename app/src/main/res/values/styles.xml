@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="RimotoTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="actionBarStyle">@style/MyActionBar</item> <!-- Support library compatibility -->
         <item name="actionOverflowButtonStyle">@style/MyActionOverflowButton</item>
@@ -22,7 +22,6 @@
     </style>
 
     <style name="MyActionOverflowButton" parent="@style/Widget.AppCompat.ActionButton.Overflow">
-        <item name="android:background">@color/pink</item>
-        <item name="android:src">@drawable/abc_ic_menu_copy_mtrl_am_alpha</item>
+        <item name="android:src">@drawable/more_overflow</item>
     </style>
 </resources>
