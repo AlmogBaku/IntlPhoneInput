@@ -34,14 +34,19 @@ public class WizardFragmentAdapter extends FragmentPagerAdapter {
         else return 2;
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     protected boolean isDataRoamingEnabled() {
+        return dataRoamingSwitcherStatus()==1;
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    protected int dataRoamingSwitcherStatus() {
+        if(Build.BRAND.toLowerCase().trim().equals("oneplus")) {
+            return -1;
+        }
         try {
-            return Settings.Global.getInt(contentResolver, Settings.Global.DATA_ROAMING) == 1; // return true or false if data roaming is enabled or not
-        } catch (Settings.SettingNotFoundException e) {
-            return false;
+            return Settings.Global.getInt(contentResolver, Settings.Global.DATA_ROAMING, 0);
         } catch (NoClassDefFoundError e) {
-            return false;
+            return -1;
         }
     }
 }
