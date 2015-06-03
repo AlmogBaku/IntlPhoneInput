@@ -10,13 +10,13 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/wizard_vpn_title_textSize"
         android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"        android:text="@string/wizard_title_vpn"
+        android:gravity="center_horizontal"
+        android:text="@string/wizard_title_vpn"
         android:textColor="@color/orange"
         android:id="@+id/login_main_title"
-        android:lineSpacingMultiplier="0.8"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/wizard_title_marginTop" />
+        android:layout_marginTop="@dimen/wizard_vpn_title_marginTop" />
 
     <LinearLayout
         android:layout_width="295dp"

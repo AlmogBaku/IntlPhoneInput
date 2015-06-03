@@ -13,10 +13,8 @@
         android:text="@string/wizard_title_roaming"
         android:textColor="@color/orange"
         android:id="@+id/login_main_title"
-        android:lineSpacingMultiplier="0.8"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/wizard_title_marginTop" />
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:layout_width="295dp"
