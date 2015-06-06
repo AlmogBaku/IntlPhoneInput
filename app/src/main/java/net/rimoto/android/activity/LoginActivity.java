@@ -49,8 +49,8 @@ public class LoginActivity extends FragmentActivity {
         indicatorAggregator.addIndicator(mCircleIndicator);
         indicatorAggregator.setViewPager(mPager);
 
-        mPager.setInterval(7500);
-        mPager.setScrollDurationFactor(27);
+        mPager.setInterval(6500);
+        mPager.setScrollDurationFactor(10);
         mPager.setBorderAnimation(false);
         mPager.startAutoScroll();
     }
