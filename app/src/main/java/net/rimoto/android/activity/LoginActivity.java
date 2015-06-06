@@ -3,7 +3,6 @@ package net.rimoto.android.activity;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 
 import com.viewpagerindicator.CirclePageIndicator;
@@ -22,6 +21,7 @@ import org.androidannotations.annotations.ViewById;
 
 import net.rimoto.android.adapter.LoginFragmentAdapter;
 
+import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -30,7 +30,7 @@ import retrofit.mime.TypedByteArray;
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends FragmentActivity {
     @ViewById(R.id.pager)
-    protected ViewPager mPager;
+    protected AutoScrollViewPager mPager;
 
     @ViewById(R.id.titles)
     protected SimpleTitleIndicator mTitleIndicator;
@@ -48,6 +48,11 @@ public class LoginActivity extends FragmentActivity {
         indicatorAggregator.addIndicator(mTitleIndicator);
         indicatorAggregator.addIndicator(mCircleIndicator);
         indicatorAggregator.setViewPager(mPager);
+
+        mPager.setInterval(6500);
+        mPager.setScrollDurationFactor(27);
+        mPager.setBorderAnimation(false);
+        mPager.startAutoScroll();
     }
 
     @Override

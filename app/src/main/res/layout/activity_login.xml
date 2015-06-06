@@ -11,7 +11,7 @@
     tools:context=".activity.LoginActivity"
     tools:ignore="UnusedAttribute">
 
-    <android.support.v4.view.ViewPager
+    <cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
