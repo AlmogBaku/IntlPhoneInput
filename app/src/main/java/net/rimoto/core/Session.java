@@ -74,4 +74,20 @@ public class Session {
             return null;
         }
     }
+
+    public static void logout() {
+        clear();
+    }
+
+    public static void clear() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(RimotoCore.getsApplicationContext());
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+
+        prefsEditor.remove("RimotoToken[access_token]");
+        prefsEditor.remove("RimotoToken[expires_in]");
+        prefsEditor.remove("RimotoToken[expires_at]");
+        prefsEditor.remove("RimotoToken[token_type]");
+
+        prefsEditor.apply();
+    }
 }

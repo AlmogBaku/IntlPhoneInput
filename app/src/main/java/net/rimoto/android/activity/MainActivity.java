@@ -1,12 +1,11 @@
 package net.rimoto.android.activity;
 
+import android.content.Intent;
 import android.util.Log;
 
 import net.rimoto.android.R;
-import net.rimoto.core.Login;
-import net.rimoto.core.RimotoException;
+import net.rimoto.core.Session;
 
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
@@ -17,5 +16,13 @@ public class MainActivity extends RimotoCompatActivity {
     @OptionsItem(R.id.action_settings)
     public void actionSettings() {
         Log.d("tst", "lol");
+    }
+
+    @OptionsItem(R.id.action_logout)
+    protected void action_logout() {
+        Session.logout();
+        Intent intent = new Intent(this, LoginActivity_.class);
+        startActivity(intent);
+        this.finish();
     }
 }
