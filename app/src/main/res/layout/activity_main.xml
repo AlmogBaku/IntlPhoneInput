@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/apps_demo"
         android:layout_above="@+id/topUpBtn"
-        android:layout_centerInParent="true" />
+        android:layout_centerHorizontal="true" />
 
     <net.rimoto.android.views.PacificoButton
         android:background="@color/orange"
