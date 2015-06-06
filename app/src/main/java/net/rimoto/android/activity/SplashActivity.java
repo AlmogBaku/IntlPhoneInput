@@ -23,10 +23,10 @@ public class SplashActivity extends Activity {
             intent = new Intent(this, WizardActivity_.class);
         }
 
-        new Handler().postDelayed(()-> {
+        final Handler mHandler = new Handler();
+        mHandler.postDelayed(() -> {
             startActivity(intent);
             finish();
         }, 2000);
-
     }
 }
