@@ -13,10 +13,6 @@ import org.androidannotations.annotations.OptionsMenu;
 @EActivity(R.layout.activity_main)
 @OptionsMenu(R.menu.menu_main)
 public class MainActivity extends RimotoCompatActivity {
-    @OptionsItem(R.id.action_settings)
-    public void actionSettings() {
-        Log.d("tst", "lol");
-    }
 
     @OptionsItem(R.id.action_logout)
     protected void action_logout() {

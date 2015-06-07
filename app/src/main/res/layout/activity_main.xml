@@ -3,24 +3,11 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/apps_demo"
-        android:layout_above="@+id/topUpBtn"
-        android:layout_centerHorizontal="true" />
-
-    <net.rimoto.android.views.PacificoButton
-        android:background="@color/orange"
+    <fragment
         android:layout_width="match_parent"
-        android:layout_height="@dimen/topUpBtn_height"
-        android:textSize="@dimen/topUpBtn_textSize"
-        android:text="@string/topUpBtn"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:layout_alignParentEnd="false"
-        android:id="@+id/topUpBtn" />
+        android:layout_height="match_parent"
+        android:name="net.rimoto.android.fragment.MainFragment_"
+        android:id="@+id/fragment"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>
