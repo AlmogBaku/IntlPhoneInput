@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My tag"
-        android:id="@+id/textView"
+        android:id="@+id/tagName"
         android:layout_gravity="center_horizontal" />
 
     <android.support.v7.widget.RecyclerView
