@@ -25,8 +25,7 @@ public class SCEService {
 
     /**
      * 
-     * @return
-     *     The id
+     * @return The id
      */
     public int getId() {
         return id;
@@ -34,8 +33,7 @@ public class SCEService {
 
     /**
      * 
-     * @param id
-     *     The id
+     * @param id The id
      */
     public void setId(int id) {
         this.id = id;
@@ -43,8 +41,7 @@ public class SCEService {
 
     /**
      * 
-     * @return
-     *     The name
+     * @return The name
      */
     public String getName() {
         return name;
@@ -52,8 +49,7 @@ public class SCEService {
 
     /**
      * 
-     * @param name
-     *     The name
+     * @param name The name
      */
     public void setName(String name) {
         this.name = name;
@@ -61,58 +57,63 @@ public class SCEService {
 
     /**
      * 
-     * @return
-     *     The slug
+     * @return The slug
      */
+    @SuppressWarnings("unused")
     public String getSlug() {
         return slug;
     }
 
     /**
      * 
-     * @param slug
-     *     The slug
+     * @param slug The slug
      */
+    @SuppressWarnings("unused")
     public void setSlug(String slug) {
         this.slug = slug;
     }
 
     /**
      *
-     * @return
-     *     The description
+     * @return The description
      */
+    @SuppressWarnings("unused")
     public String getDescription() {
         return description;
     }
 
     /**
      *
-     * @param description
-     *     The description
+     * @param description The description
      */
+    @SuppressWarnings("unused")
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
      *
-     * @return
-     *     The tags
+     * @return The tags
      */
+    @SuppressWarnings("unused")
     public List<ServiceTag> getTags() {
         return tags;
     }
 
     /**
      *
-     * @param tags
-     *     The tags
+     * @param tags The tags
      */
+    @SuppressWarnings("unused")
     public void setTags(List<ServiceTag> tags) {
         this.tags = tags;
     }
 
+    /**
+     * Check if equals
+     * @param o Object to compare
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         return (o instanceof SCEService) && (((SCEService) o).getId() == this.getId());

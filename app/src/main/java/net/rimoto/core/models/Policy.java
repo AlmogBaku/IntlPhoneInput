@@ -38,8 +38,7 @@ public class Policy {
 
     /**
      *
-     * @return
-     *     The id
+     * @return The id
      */
     public int getId() {
         return id;
@@ -47,8 +46,7 @@ public class Policy {
 
     /**
      *
-     * @param id
-     *     The id
+     * @param id The id
      */
     public void setId(int id) {
         this.id = id;
@@ -56,27 +54,27 @@ public class Policy {
 
     /**
      *
-     * @return
-     *     The maxBandwidth
+     * @return The maxBandwidth
      */
+    @SuppressWarnings("unused")
     public int getMaxBandwidth() {
         return maxBandwidth;
     }
 
     /**
      *
-     * @param maxBandwidth
-     *     The max_bandwidth
+     * @param maxBandwidth The max_bandwidth
      */
+    @SuppressWarnings("unused")
     public void setMaxBandwidth(int maxBandwidth) {
         this.maxBandwidth = maxBandwidth;
     }
 
     /**
      *
-     * @return
-     *     The expiresIn
+     * @return The expiresIn
      */
+    @SuppressWarnings("unused")
     public int getExpiresIn() {
 
         return expiresIn;
@@ -84,53 +82,52 @@ public class Policy {
 
     /**
      *
-     * @param expiresIn
-     *     The expires_in
+     * @param expiresIn The expires_in
      */
+    @SuppressWarnings("unused")
     public void setExpiresIn(int expiresIn)  {
         this.expiresIn = expiresIn;
     }
 
     /**
      *
-     * @return
-     *     The startTime
+     * @return The startTime
      */
+    @SuppressWarnings("unused")
     public Date getStartTime() {
         return startTime;
     }
 
     /**
      *
-     * @param startTime
-     *     The start_time
+     * @param startTime The start_time
      */
+    @SuppressWarnings("unused")
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
     /**
      *
-     * @return
-     *     The endTime
+     * @return The endTime
      */
+    @SuppressWarnings("unused")
     public Date endTime() {
         return endTime;
     }
 
     /**
      *
-     * @param endTime
-     *     The endTime
+     * @param endTime The endTime
      */
+    @SuppressWarnings("unused")
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
     /**
      *
-     * @return
-     *     The services
+     * @return The services
      */
     public List<SCEService> getServices() {
         return services;
@@ -138,29 +135,38 @@ public class Policy {
 
     /**
      *
-     * @param services
-     *     The services
+     * @param services The services
      */
+    @SuppressWarnings("unused")
     public void setServices(List<SCEService> services) {
         this.services = services;
     }
 
     /**
      * 
-     * @return
-     *     The created
+     * @return The created
      */
+    @SuppressWarnings("unused")
     public Date getCreated() {
         return created;
     }
 
     /**
      * 
-     * @param created
-     *     The created
+     * @param created The created
      */
+    @SuppressWarnings("unused")
     public void setCreated(Date created) throws ParseException {
         this.created = created;
     }
 
+    /**
+     * Check if equals
+     * @param o Object to compare
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object o) {
+        return (o instanceof Policy) && (((Policy) o).getId() == this.getId());
+    }
 }

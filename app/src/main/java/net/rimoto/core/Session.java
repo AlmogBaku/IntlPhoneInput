@@ -75,10 +75,16 @@ public class Session {
         }
     }
 
+    /**
+     * Logout
+     */
     public static void logout() {
         clear();
     }
 
+    /**
+     * Clear session
+     */
     public static void clear() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(RimotoCore.getsApplicationContext());
         SharedPreferences.Editor prefsEditor = prefs.edit();

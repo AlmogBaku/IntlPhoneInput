@@ -21,8 +21,7 @@ public class ServiceTag {
 
     /**
      * 
-     * @return
-     *     The id
+     * @return The id
      */
     public int getId() {
         return id;
@@ -30,8 +29,7 @@ public class ServiceTag {
 
     /**
      * 
-     * @param id
-     *     The id
+     * @param id The id
      */
     public void setId(int id) {
         this.id = id;
@@ -39,8 +37,7 @@ public class ServiceTag {
 
     /**
      * 
-     * @return
-     *     The name
+     * @return The name
      */
     public String getName() {
         return name;
@@ -48,8 +45,7 @@ public class ServiceTag {
 
     /**
      * 
-     * @param name
-     *     The name
+     * @param name The name
      */
     public void setName(String name) {
         this.name = name;
@@ -57,18 +53,18 @@ public class ServiceTag {
 
     /**
      * 
-     * @return
-     *     The slug
+     * @return The slug
      */
+    @SuppressWarnings("unused")
     public String getSlug() {
         return slug;
     }
 
     /**
      * 
-     * @param slug
-     *     The slug
+     * @param slug The slug
      */
+    @SuppressWarnings("unused")
     public void setSlug(String slug) {
         this.slug = slug;
     }
@@ -79,9 +75,21 @@ public class ServiceTag {
         return (o instanceof ServiceTag) && (((ServiceTag) o).getId() == this.getId());
     }
 
+    /**
+     * Add SCEService
+     * @param service SCEService
+     */
     public void addService(SCEService service) {
         if(!services.contains(service)) {
             services.add(service);
         }
+    }
+
+    /**
+     *
+     * @return SCEServices
+     */
+    public List<SCEService> getServices() {
+        return services;
     }
 }

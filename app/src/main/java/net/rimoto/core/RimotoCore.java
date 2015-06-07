@@ -47,6 +47,7 @@ public class RimotoCore {
      * Set client_id
      * @param sClientId String
      */
+    @SuppressWarnings("unused")
     public static void setsClientId(String sClientId) {
         RimotoCore.sClientId = sClientId;
     }
@@ -62,6 +63,7 @@ public class RimotoCore {
      * Set redirect_uri
      * @param redirectUri String
      */
+    @SuppressWarnings("unused")
     public static void setRedirectUri(String redirectUri) {
         REDIRECT_URI = redirectUri;
     }
@@ -114,6 +116,7 @@ public class RimotoCore {
      * Set scope
      * @param scope String
      */
+    @SuppressWarnings("unused")
     public static void setScope(String scope) {
         OAUTH_SCOPE = scope;
     }
@@ -121,6 +124,7 @@ public class RimotoCore {
      * Set scope from array
      * @param scope String
      */
+    @SuppressWarnings("unused")
     public static void setScope(String[] scope) {
         OAUTH_SCOPE = TextUtils.join(",", scope);
     }
