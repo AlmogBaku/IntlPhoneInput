@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My tag"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:id="@+id/servicesRecycler"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>

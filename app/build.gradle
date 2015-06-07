@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'android-apt'
-def AAVersion = '3.3'
 
 apt {
     arguments {
@@ -33,15 +32,18 @@ android {
 }
 
 dependencies {
-    // AndroidAndotations
-    apt "org.androidannotations:androidannotations:$AAVersion"
-    compile "org.androidannotations:androidannotations-api:$AAVersion"
+    // Android Support Libs
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:recyclerview-v7:22.1.1'
+
+    // AndroidAnnotations
+    apt "org.androidannotations:androidannotations:3.3"
+    compile "org.androidannotations:androidannotations-api:3.3"
 
     // Libs
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     // dependencies
-    compile 'com.android.support:appcompat-v7:22.1.1'
     compile 'fr.avianey.com.viewpagerindicator:library:2.4.1@aar'
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.squareup.retrofit:retrofit:1.9.0'

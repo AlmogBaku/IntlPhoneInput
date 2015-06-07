@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.MainFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:id="@+id/tagsRecycler"
+        android:layout_gravity="center_horizontal" />
+
+    <net.rimoto.android.views.PacificoButton
+        android:background="@color/orange"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topUpBtn_height"
+        android:textSize="@dimen/topUpBtn_textSize"
+        android:text="@string/topUpBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:layout_alignParentEnd="false"
+        android:id="@+id/topUpBtn"
+        tools:ignore="UnusedAttribute" />
+
+</RelativeLayout>
