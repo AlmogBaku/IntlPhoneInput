@@ -76,7 +76,7 @@ public class ServiceTag {
 
     @Override
     public boolean equals(Object o) {
-        return (o instanceof SCEService) && (((SCEService) o).getId() == this.getId());
+        return (o instanceof ServiceTag) && (((ServiceTag) o).getId() == this.getId());
     }
 
     public void addService(SCEService service) {
