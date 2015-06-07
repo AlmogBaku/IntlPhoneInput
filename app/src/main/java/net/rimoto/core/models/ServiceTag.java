@@ -3,7 +3,10 @@ package net.rimoto.core.models;
 
 import com.google.gson.annotations.Expose;
 
-public class Service {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ServiceTag {
 
     @Expose
     private int id;
@@ -14,8 +17,7 @@ public class Service {
     @Expose
     private String slug;
 
-    @Expose
-    private String description;
+    private List<SCEService> services = new ArrayList<>();
 
     /**
      * 
@@ -71,22 +73,15 @@ public class Service {
         this.slug = slug;
     }
 
-    /**
-     *
-     * @return
-     *     The description
-     */
-    public String getDescription() {
-        return description;
+
+    @Override
+    public boolean equals(Object o) {
+        return (o instanceof SCEService) && (((SCEService) o).getId() == this.getId());
     }
 
-    /**
-     *
-     * @param description
-     *     The description
-     */
-    public void setDescription(String description) {
-        this.description = description;
+    public void addService(SCEService service) {
+        if(!services.contains(service)) {
+            services.add(service);
+        }
     }
-
 }

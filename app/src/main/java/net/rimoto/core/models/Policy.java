@@ -5,12 +5,9 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import net.rimoto.core.utils.ISO8601;
 
 public class Policy {
 
@@ -23,14 +20,18 @@ public class Policy {
 
     @SerializedName("expires_in")
     @Expose
-    private Date expiresIn;
+    private int expiresIn;
 
     @SerializedName("start_time")
     @Expose
     private Date startTime;
 
+    @SerializedName("end_time")
     @Expose
-    private List<Service> services = new ArrayList<>();
+    private Date endTime;
+
+    @Expose
+    private List<SCEService> services = new ArrayList<>();
 
     @Expose
     private Date created;
@@ -76,7 +77,7 @@ public class Policy {
      * @return
      *     The expiresIn
      */
-    public Date getExpiresIn() {
+    public int getExpiresIn() {
 
         return expiresIn;
     }
@@ -86,18 +87,8 @@ public class Policy {
      * @param expiresIn
      *     The expires_in
      */
-    public void setExpiresIn(String expiresIn) throws ParseException {
-        this.expiresIn = ISO8601.toCalendar(expiresIn).getTime();
-    }
-    /**
-     *
-     * @param expiresIn
-     *     The expires_in
-     */
-    public void setExpiresIn(int expiresIn){
-        if(expiresIn==-1) {
-            this.expiresIn = null;
-        }
+    public void setExpiresIn(int expiresIn)  {
+        this.expiresIn = expiresIn;
     }
 
     /**
@@ -114,8 +105,26 @@ public class Policy {
      * @param startTime
      *     The start_time
      */
-    public void setStartTime(String startTime) throws ParseException {
-        this.startTime = ISO8601.toCalendar(startTime).getTime();
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    /**
+     *
+     * @return
+     *     The endTime
+     */
+    public Date endTime() {
+        return endTime;
+    }
+
+    /**
+     *
+     * @param endTime
+     *     The endTime
+     */
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     /**
@@ -123,7 +132,7 @@ public class Policy {
      * @return
      *     The services
      */
-    public List<Service> getServices() {
+    public List<SCEService> getServices() {
         return services;
     }
 
@@ -132,7 +141,7 @@ public class Policy {
      * @param services
      *     The services
      */
-    public void setServices(List<Service> services) {
+    public void setServices(List<SCEService> services) {
         this.services = services;
     }
 
@@ -150,8 +159,8 @@ public class Policy {
      * @param created
      *     The created
      */
-    public void setCreated(String created) throws ParseException {
-        this.created = ISO8601.toCalendar(created).getTime();
+    public void setCreated(Date created) throws ParseException {
+        this.created = created;
     }
 
 }
