@@ -54,7 +54,7 @@ public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesR
         }
         public void setService(SCEService service) {
             this.service = service;
-            serviceName.setText(service.getName() + ":");
+            serviceName.setText(service.getName());
             int id = itemView.getContext().getResources().getIdentifier("service_"+service.getSlug(), "drawable", packageName);
             if(id!=0) {
                 serviceIcon.setImageResource(id);

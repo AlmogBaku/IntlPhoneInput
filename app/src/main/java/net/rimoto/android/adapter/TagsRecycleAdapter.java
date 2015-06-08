@@ -70,7 +70,7 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
             servicesRecycler = (RecyclerView) itemView.findViewById(R.id.servicesRecycler);
         }
         public void setTag(ServiceTag tag) {
-            tagName.setText(tag.getName());
+            tagName.setText(tag.getName() + ":");
             SCEServicesRecycleAdapter adapter = (SCEServicesRecycleAdapter) servicesRecycler.getAdapter();
             adapter.setServices(tag.getServices());
             adapter.notifyDataSetChanged();
