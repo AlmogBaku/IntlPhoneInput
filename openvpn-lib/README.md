@@ -26,7 +26,7 @@ OpenVPN-Android-Lib
 ### 2. Embed the library in the gradle
 1. Import the **openvpn-android-library** in your **project**'s `settings.gradle` file:
     ```
-    include ':openvpn-lib' // OpenVPN Library
+    include ':openvpn-lib:openvpn' // OpenVPN Library
     ```
 1. Import the **openvpn** library in your **module**'s gradle:
     ```
