@@ -21,8 +21,15 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import net.rimoto.android.adapter.LoginFragmentAdapter;
+import net.rimoto.core.utils.VpnUtils;
+import net.rimoto.vpnlib.VpnManager;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
+import de.blinkt.openvpn.VpnProfile;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -73,28 +80,13 @@ public class LoginActivity extends InstabugFragmentActivity {
         try {
             Login.getInstance().auth(this, (token, error) -> {
                 if(error==null) {
-                    getVPNConfig();
+                    VpnUtils.importVPNConfig(this);
                     startWizard();
                 }
             });
         } catch (RimotoException e) {
             e.printStackTrace();
         }
-    }
-
-    private void getVPNConfig() {
-        API.getInstance().getOvpn(new Callback<Response>() {
-            @Override
-            public void success(Response response, Response response2) {
-                String ovpn = new String(((TypedByteArray) response.getBody()).getBytes());
-                Log.d("ovpn", ovpn);
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("ovpn-err", error.getMessage());
-            }
-        });
     }
     private void startWizard() {
         Intent intent = new Intent(this, WizardActivity_.class);
