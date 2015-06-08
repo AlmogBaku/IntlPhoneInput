@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'android-apt'
+apply plugin: 'testfairy'
 
 apt {
     arguments {
@@ -28,6 +29,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    testfairyConfig {
+        testersGroups "Admins,QA,Friends"
+        apiKey "04b1118777fc7003d1bc7c498fb417e82aa856f5"
     }
 }
 
