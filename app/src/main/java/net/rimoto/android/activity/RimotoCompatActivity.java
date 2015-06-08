@@ -7,12 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 
+import com.instabug.wrapper.support.activity.InstabugAppCompatActivity;
+
 import net.rimoto.android.views.TypefaceSpan;
 
 /**
  * AppCompactActivity with rimoto enhancements
  */
-public class RimotoCompatActivity extends AppCompatActivity {
+public class RimotoCompatActivity extends InstabugAppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

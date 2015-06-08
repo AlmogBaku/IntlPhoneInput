@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.instabug.wrapper.support.activity.InstabugFragmentActivity;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import net.rimoto.android.R;
@@ -17,7 +18,7 @@ import org.androidannotations.annotations.ViewById;
 
 
 @EActivity(R.layout.activity_wizard)
-public class WizardActivity extends FragmentActivity {
+public class WizardActivity extends InstabugFragmentActivity {
     @ViewById(R.id.pager)
     protected ViewPager mPager;
 

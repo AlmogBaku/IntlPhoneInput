@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 
+import com.instabug.wrapper.support.activity.InstabugFragmentActivity;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import net.rimoto.android.views.SimpleTitleIndicator;
@@ -28,7 +29,7 @@ import retrofit.client.Response;
 import retrofit.mime.TypedByteArray;
 
 @EActivity(R.layout.activity_login)
-public class LoginActivity extends FragmentActivity {
+public class LoginActivity extends InstabugFragmentActivity {
     @ViewById(R.id.pager)
     protected AutoScrollViewPager mPager;
 

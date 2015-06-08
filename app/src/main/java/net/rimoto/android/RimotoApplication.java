@@ -2,6 +2,8 @@ package net.rimoto.android;
 
 import android.app.Application;
 
+import com.instabug.library.Instabug;
+
 import net.rimoto.core.RimotoCore;
 import net.rimoto.core.RimotoException;
 
@@ -15,6 +17,8 @@ public class RimotoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Instabug.initialize(this, "cfad51965edc86000b61bd545c4d84d2");
+
         try {
             RimotoCore.init(this, rimotoClientID, rimoto_authURI);
             RimotoCore.setAuthType("token");
