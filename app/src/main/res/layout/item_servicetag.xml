@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="My tag"
         android:id="@+id/tagName"
-        android:layout_gravity="center_horizontal" />
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="@color/pink"
+        android:textStyle="bold"
+        android:textSize="@dimen/item_servicetag_textSize"
+        android:textAllCaps="true"
+        android:layout_gravity="center_horizontal"
+        tools:ignore="UnusedAttribute"
+        android:layout_marginBottom="7sp" />
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/servicesRecycler_width"
+        android:layout_height="@dimen/servicesRecycler_height"
         android:id="@+id/servicesRecycler"
+        android:background="@drawable/tag_recycler_bg"
         android:layout_gravity="center_horizontal" />
 
 

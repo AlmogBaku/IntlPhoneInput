@@ -3,11 +3,40 @@
     android:layout_height="match_parent"
     tools:context=".fragment.MainFragment">
 
+    <LinearLayout
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pink_rounded_bg"
+        android:orientation="vertical"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            android:fontFamily="@string/wizard_boxa_font"
+            android:textAllCaps="true"
+            android:textSize="@dimen/wizard_boxa_textSize"
+            android:text="@string/main_boxa_text"
+            tools:ignore="UnusedAttribute" />
+
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/tagsRecycler"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/topUpBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout" />
 
     <net.rimoto.android.views.PacificoButton
         android:background="@color/orange"
@@ -15,12 +44,12 @@
         android:layout_height="@dimen/topUpBtn_height"
         android:textSize="@dimen/topUpBtn_textSize"
         android:text="@string/topUpBtn"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:textColor="@color/white"
         android:textAllCaps="false"
-        android:layout_alignParentEnd="false"
         android:id="@+id/topUpBtn"
-        tools:ignore="UnusedAttribute" />
+        tools:ignore="UnusedAttribute"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

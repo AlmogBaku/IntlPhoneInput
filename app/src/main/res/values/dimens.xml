@@ -17,4 +17,10 @@
 
     <dimen name="topUpBtn_textSize">27sp</dimen>
     <dimen name="topUpBtn_height">53sp</dimen>
+    <dimen name="servicesRecycler_height">80dp</dimen>
+    <dimen name="servicesRecycler_width">220dp</dimen>
+    <dimen name="item_servicetag_textSize">12sp</dimen>
+    <dimen name="item_service_textSize">10sp</dimen>
+    <dimen name="item_service_marginRight">13dp</dimen>
+    <dimen name="item_service_icon_padding">10.5dp</dimen>
 </resources>

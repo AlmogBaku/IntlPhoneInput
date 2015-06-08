@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical" android:layout_width="61dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/item_service_marginRight"
+    android:layout_marginEnd="@dimen/item_service_marginRight" >
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/orange_rounded_bg"
-        android:id="@+id/imageView" />
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/orange_circle"
+        android:padding="@dimen/item_service_icon_padding"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/serviceIcon" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Service"
+        android:textAllCaps="true"
+        android:textColor="@color/orange"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/item_service_textSize"
         android:id="@+id/serviceName" />
 </LinearLayout>
