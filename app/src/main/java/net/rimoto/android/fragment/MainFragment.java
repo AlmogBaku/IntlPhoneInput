@@ -40,7 +40,7 @@ public class MainFragment extends Fragment {
         }
 
         public void failure(RetrofitError error) {
-            Log.d("err", error.toString());
+            error.printStackTrace();
         }
     };
 }
