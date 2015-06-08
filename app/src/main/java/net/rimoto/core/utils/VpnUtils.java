@@ -3,6 +3,7 @@ package net.rimoto.core.utils;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
@@ -12,6 +13,7 @@ import net.rimoto.vpnlib.VpnLog;
 import net.rimoto.vpnlib.VpnManager;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -42,7 +44,7 @@ public class VpnUtils {
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("ovpn-err", error.getMessage());
+                error.printStackTrace();
             }
         });
     }
@@ -96,5 +98,32 @@ public class VpnUtils {
         Intent intent = new Intent(context, VpnManager.class);
         intent.setAction(VpnManager.ACTION_DISCONNECT);
         context.startService(intent);
+    }
+
+    /**
+     * Send logs
+     * @param context Context
+     */
+    public static void sendLogs(Context context) {
+        try {
+            String logs = VpnLog.getRecentLogs();
+            String device = String.format("Brand: %s | Model: %s | Product: %s | Manufacturer: %s",
+                    Build.BRAND, Build.MODEL, Build.PRODUCT, Build.MANUFACTURER);
+            API.getInstance().sendLogs(logs, device, new Callback<Boolean>() {
+                @Override
+                public void success(Boolean response, Response response2) {
+                    Toast.makeText(context, "Logs sent", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    Toast.makeText(context, "Error sending logs.", Toast.LENGTH_SHORT).show();
+                    error.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            Toast.makeText(context, "Error fetching logs.", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 }

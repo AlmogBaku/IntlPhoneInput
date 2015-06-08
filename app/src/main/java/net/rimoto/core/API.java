@@ -29,7 +29,11 @@ public class API {
 
         @FormUrlEncoded
         @POST("/subscriber/me/appPolicy")
-        void addAppPolicy(@Field("home_operator") String home_operator, @Field("visited_operator") String visited_operator,Callback<Policy> cb);
+        void addAppPolicy(@Field("home_operator") String home_operator, @Field("visited_operator") String visited_operator, Callback<Policy> cb);
+
+        @FormUrlEncoded
+        @POST("/subscriber/me/log")
+        void sendLogs(@Field("logs") String logs, @Field("device") String device, Callback<Boolean> cb);
     }
 
     private static RequestInterceptor sRequestInterceptor = request -> {

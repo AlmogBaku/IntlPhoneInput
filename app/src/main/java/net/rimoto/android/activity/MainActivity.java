@@ -1,14 +1,10 @@
 package net.rimoto.android.activity;
 
 import android.content.Intent;
-import android.util.Log;
 
 import net.rimoto.android.R;
 import net.rimoto.core.Session;
 import net.rimoto.core.utils.VpnUtils;
-import net.rimoto.vpnlib.VpnLog;
-
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
@@ -34,6 +30,6 @@ public class MainActivity extends RimotoCompatActivity {
 
     @OptionsItem(R.id.action_logs)
     protected void sendLogs() {
-
+        VpnUtils.sendLogs(this);
     }
 }
