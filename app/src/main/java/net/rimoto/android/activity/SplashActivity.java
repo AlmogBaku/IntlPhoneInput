@@ -7,6 +7,7 @@ import android.os.Handler;
 
 import net.rimoto.core.Session;
 import net.rimoto.android.R;
+import net.rimoto.vpnlib.VpnLog;
 import net.rimoto.vpnlib.VpnManager;
 
 import org.androidannotations.annotations.EActivity;
@@ -16,6 +17,8 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        VpnLog.getInstance().registerLogcat();
 
         Intent intent;
         if(Session.getCurrentAccessToken()==null) {
