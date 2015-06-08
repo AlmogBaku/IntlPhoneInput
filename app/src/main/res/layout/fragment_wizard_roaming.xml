@@ -85,24 +85,4 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Open roaming settings"
-        android:id="@+id/openSettingsBtn"
-        android:layout_gravity="center_horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/login_main_title"
-        android:layout_alignStart="@+id/login_main_title"
-        android:layout_marginBottom="84dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LOGIN"
-        android:id="@+id/gotoLoginBtn"
-        android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/openSettingsBtn"
-        android:layout_alignLeft="@+id/login_main_title" />
-
 </RelativeLayout>
