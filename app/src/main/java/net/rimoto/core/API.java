@@ -13,7 +13,11 @@ import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
+import retrofit.http.Body;
+import retrofit.http.Field;
+import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
+import retrofit.http.POST;
 
 public class API {
     public interface RimotoAPI {
@@ -22,6 +26,10 @@ public class API {
 
         @GET("/subscriber/me/policy") void getPolicies(Callback<List<Policy>> cb);
         @GET("/subscriber/me/policy") List<Policy> getPolicies();
+
+        @FormUrlEncoded
+        @POST("/subscriber/me/appPolicy")
+        void addAppPolicy(@Field("home_operator") String home_operator, @Field("visited_operator") String visited_operator,Callback<Policy> cb);
     }
 
     private static RequestInterceptor sRequestInterceptor = request -> {

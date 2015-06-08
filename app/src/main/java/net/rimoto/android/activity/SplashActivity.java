@@ -7,6 +7,7 @@ import android.os.Handler;
 
 import net.rimoto.core.Session;
 import net.rimoto.android.R;
+import net.rimoto.vpnlib.VpnManager;
 
 import org.androidannotations.annotations.EActivity;
 
@@ -20,7 +21,11 @@ public class SplashActivity extends Activity {
         if(Session.getCurrentAccessToken()==null) {
             intent = new Intent(this, LoginActivity_.class);
         } else {
-            intent = new Intent(this, WizardActivity_.class);
+            if(VpnManager.isActive(this)) {
+                intent = new Intent(this, MainActivity_.class);
+            } else {
+                intent = new Intent(this, WizardActivity_.class);
+            }
         }
 
         final Handler handler = new Handler();
