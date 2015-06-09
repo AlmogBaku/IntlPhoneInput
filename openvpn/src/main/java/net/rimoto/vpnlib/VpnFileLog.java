@@ -45,9 +45,12 @@ public class VpnFileLog implements VpnStatus.LogListener {
 
         if(logs.size()>MAX_LINES) {
             while(logs.size()>MAX_LINES) logs.remove(0);
-            FileWriter fw = new FileWriter(logFile, false);
-            for(String l:logs) fw.append(l);
-            fw.close();
+
+            for(String l:logs) {
+                bufferedWriter.append(l);
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.flush();
         }
     }
 
