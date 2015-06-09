@@ -14,6 +14,9 @@ public class Policy {
     @Expose
     private int id;
 
+    @Expose
+    private String name;
+
     @SerializedName("max_bandwidth")
     @Expose
     private int maxBandwidth;
@@ -168,5 +171,21 @@ public class Policy {
     @Override
     public boolean equals(Object o) {
         return (o instanceof Policy) && (((Policy) o).getId() == this.getId());
+    }
+
+    /**
+     * Get policy name
+     * @return String
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Set policy name
+     * @param name String
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -2,6 +2,7 @@
 package net.rimoto.core.models;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,10 @@ public class SCEService {
 
     @Expose
     private String description;
+
+    @SerializedName("android_bundle_id")
+    @Expose
+    private String androidBundleId;
 
     @Expose
     private List<ServiceTag> tags = new ArrayList<>();
@@ -117,5 +122,23 @@ public class SCEService {
     @Override
     public boolean equals(Object o) {
         return (o instanceof SCEService) && (((SCEService) o).getId() == this.getId());
+    }
+
+    /**
+     * Get android bundle id
+     * @return String
+     */
+    @SuppressWarnings("unused")
+    public String getAndroidBundleId() {
+        return androidBundleId;
+    }
+
+    /**
+     * Set android bundle id
+     * @param androidBundleId String
+     */
+    @SuppressWarnings("unused")
+    public void setAndroidBundleId(String androidBundleId) {
+        this.androidBundleId = androidBundleId;
     }
 }
