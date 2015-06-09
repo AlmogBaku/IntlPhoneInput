@@ -1,11 +1,12 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="RimotoTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="RimotoTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="actionBarStyle">@style/MyActionBar</item> <!-- Support library compatibility -->
         <item name="actionOverflowButtonStyle">@style/MyActionOverflowButton</item>
 
+        <item name="android:textColorPrimary">@color/orange</item>
         <item name="android:windowBackground">@color/simplebg</item>
     </style>
 
@@ -17,7 +18,6 @@
 
     <!-- ActionBar title text -->
     <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/orange</item>
         <item name="android:textSize">@dimen/title_textSize</item>
     </style>
 
