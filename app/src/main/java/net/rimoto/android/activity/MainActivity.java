@@ -14,6 +14,7 @@ import org.androidannotations.annotations.OptionsMenu;
 public class MainActivity extends RimotoCompatActivity {
     @OptionsItem(R.id.action_logout)
     protected void action_logout() {
+        VpnUtils.stopVPN(this);
         Session.logout();
         Intent intent = new Intent(this, LoginActivity_.class);
         startActivity(intent);
