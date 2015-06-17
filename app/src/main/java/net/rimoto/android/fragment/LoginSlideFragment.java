@@ -27,4 +27,10 @@ public class LoginSlideFragment extends Fragment {
             mLoginSlide.setImageResource(id);
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        mLoginSlide=null;
+        super.onDestroyView();
+    }
 }
