@@ -48,6 +48,7 @@
         android:textAllCaps="false"
         android:id="@+id/topUpBtn"
         tools:ignore="UnusedAttribute"
+        android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

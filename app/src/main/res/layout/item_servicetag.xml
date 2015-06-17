@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp">
+    android:layout_marginTop="5dp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,6 +22,8 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="@dimen/servicesRecycler_width"
         android:layout_height="@dimen/servicesRecycler_height"
+        android:paddingRight="3dp"
+        android:paddingLeft="3dp"
         android:id="@+id/servicesRecycler"
         android:background="@drawable/tag_recycler_bg"
         android:layout_gravity="center_horizontal" />
