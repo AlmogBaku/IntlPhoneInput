@@ -27,4 +27,5 @@
     <string name="main_activity_title">rimoto is on!</string>
     <string name="topUpBtn">get full access</string>
     <string name="main_boxa_text">You have free access to:</string>
+    <string name="wizard_roaming_settings_text">Please turn on \"data roaming\", to enjoy rimoto\'s free access.</string>
 </resources>

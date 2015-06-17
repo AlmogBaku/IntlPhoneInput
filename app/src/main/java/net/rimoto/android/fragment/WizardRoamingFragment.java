@@ -13,6 +13,7 @@ import org.androidannotations.annotations.EFragment;
 @EFragment(R.layout.fragment_wizard_roaming)
 public class WizardRoamingFragment extends Fragment {
 
+    @Click(R.id.roaming_setting)
     protected void openRoamingSettings() {
         Intent intent = new Intent();
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

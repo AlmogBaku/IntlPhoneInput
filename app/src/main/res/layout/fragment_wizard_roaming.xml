@@ -12,9 +12,39 @@
         android:gravity="center_horizontal"
         android:text="@string/wizard_title_roaming"
         android:textColor="@color/orange"
-        android:id="@+id/login_main_title"
+        android:id="@+id/main_title"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pink_rounded_bg"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_below="@+id/main_title"
+        android:id="@+id/roaming_setting"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            android:fontFamily="@string/wizard_boxa_font"
+            android:textSize="@dimen/wizard_boxa_title_textSize"
+            android:text="@string/wizard_roaming_settings_text"
+            tools:ignore="UnusedAttribute" />
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/switch_illustrate"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="295dp"
@@ -24,7 +54,7 @@
         android:orientation="vertical"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:layout_below="@+id/login_main_title"
+        android:layout_below="@id/roaming_setting"
         android:layout_centerHorizontal="true">
 
         <LinearLayout
@@ -52,12 +82,15 @@
                 tools:ignore="UnusedAttribute" />
         </LinearLayout>
 
+        <!-- Line -->
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:background="@color/white" />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
