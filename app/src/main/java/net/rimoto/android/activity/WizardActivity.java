@@ -83,37 +83,28 @@ public class WizardActivity extends InstabugFragmentActivity {
         mPagerAdapter.notifyDataSetChanged();
     }
 
-
-    private class RimotoStateListener implements VpnStatus.StateListener {
-        @Override
-        public void updateState(String state, String logmessage, int localizedResId, VpnStatus.ConnectionStatus level) {
-            Log.d("vp", state);
-            if(state.equals("CONNECTED")) {
-                UI.hideSpinner();
-                startMainActivity();
-                this.finish();
-            } else if(state.equals("EXITING")) {
-                UI.hideSpinner();
-                Toast toast = Toast.makeText(WizardActivity.this, "There was some problem with connecting you :\\", Toast.LENGTH_LONG);
-                toast.show();
-                this.finish();
-            }
-        }
-
-        private void finish() {
-            VpnStatus.removeStateListener(this);
-            mStateListener=null;
-        }
-    }
-
-    private RimotoStateListener mStateListener = new RimotoStateListener();
-
     @Click
     protected void connectBtn() {
         connectBtn.setEnabled(false);
-        UI.showSpinner(this, "Connecting to rimoto's cloud..");
+        VpnUtils.VpnConnectionSpinner(this, new VpnUtils.RimotoStateCallback() {
+            @Override
+            public void connected() {
+                startMainActivity();
+            }
+            @Override
+            public void exiting() {
+                Toast toast = Toast.makeText(WizardActivity.this, "There was some problem with connecting you :\\", Toast.LENGTH_LONG);
+                toast.show();
+            }
+
+            @Override
+            public void shouldntConnect() {
+                Toast toast = Toast.makeText(WizardActivity.this, "Rimoto will connect to the cloud as soon you'll be abroad on wifi.", Toast.LENGTH_LONG);
+                toast.show();
+                startMainActivity();
+            }
+        });
         VpnUtils.startVPN(this);
-        VpnStatus.addStateListener(mStateListener);
     }
     private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity_.class);

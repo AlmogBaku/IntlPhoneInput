@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import net.rimoto.core.API;
+import net.rimoto.vpnlib.RimotoPolicy;
 import net.rimoto.vpnlib.VpnLog;
 import net.rimoto.vpnlib.VpnManager;
 
@@ -18,6 +19,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import de.blinkt.openvpn.VpnProfile;
+import de.blinkt.openvpn.core.ProfileManager;
+import de.blinkt.openvpn.core.VpnStatus;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -124,6 +127,64 @@ public class VpnUtils {
         } catch (IOException e) {
             Toast.makeText(context, "Error fetching logs.", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Rimoto VPN State Callback
+     */
+    public interface RimotoStateCallback {
+        void connected();
+        void exiting();
+        void shouldntConnect();
+    }
+
+    /**
+     * VPN State listener
+     */
+    private static class RimotoStateListener implements VpnStatus.StateListener {
+        private RimotoStateCallback mCallback;
+
+        public RimotoStateListener(RimotoStateCallback callback) {
+            mCallback = callback;
+        }
+
+        @Override
+        public void updateState(String state, String logmessage, int localizedResId, VpnStatus.ConnectionStatus level) {
+            Log.d("vp", state);
+            if(state.equals("CONNECTED")) {
+                UI.hideSpinner();
+                mCallback.connected();
+                this.finish();
+            } else if(state.equals("EXITING")) {
+                UI.hideSpinner();
+                mCallback.exiting();
+                this.finish();
+            }
+        }
+
+        private void finish() {
+            VpnStatus.removeStateListener(this);
+            mStateListener=null;
+            mCallback=null;
+        }
+    }
+
+    private static RimotoStateListener mStateListener;
+
+    /**
+     * Vpn Connection Spinner
+     * @param context Context
+     * @param callback RimotoStateCallback
+     */
+    public static void VpnConnectionSpinner(Context context, RimotoStateCallback callback) {
+        VpnProfile profile = ProfileManager.get(context, getCurrentProfileUUID(context));
+        if(RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(context), profile)) {
+            UI.showSpinner(context, "Connecting to rimoto's cloud..");
+            mStateListener = new RimotoStateListener(callback);
+            VpnStatus.addStateListener(mStateListener);
+        } else {
+            callback.shouldntConnect();
         }
     }
 }
