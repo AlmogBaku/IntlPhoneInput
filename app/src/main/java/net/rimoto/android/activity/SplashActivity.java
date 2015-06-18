@@ -20,7 +20,7 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        VpnLog.getInstance().registerLogcat();
+//        VpnLog.getInstance().registerLogcat();
 
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
