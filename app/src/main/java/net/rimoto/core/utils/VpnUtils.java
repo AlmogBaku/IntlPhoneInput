@@ -83,7 +83,6 @@ public class VpnUtils {
     public static void startVPN(Context context) {
         String UUID = getCurrentProfileUUID(context);
         if(UUID != null) {
-            VpnLog.getInstance().registerLogcat();
             Intent intent = new Intent(context, VpnManager.class);
             intent.setAction(VpnManager.ACTION_CONNECT);
             intent.putExtra(VpnManager.EXTRA_PROFILE_UUID, UUID);
