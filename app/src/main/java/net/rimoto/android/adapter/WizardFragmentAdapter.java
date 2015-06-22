@@ -6,12 +6,12 @@ import android.os.Build;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import net.rimoto.android.fragment.WizardRoamingFragment_;
 import net.rimoto.android.fragment.WizardVpnFragment_;
 
-public class WizardFragmentAdapter extends FragmentPagerAdapter {
+public class WizardFragmentAdapter extends FragmentStatePagerAdapter {
     private ContentResolver contentResolver;
 
     public WizardFragmentAdapter(FragmentManager fm, ContentResolver contentResolver) {
@@ -21,11 +21,17 @@ public class WizardFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if(getCount()==1 || position==1) {
+        if(getCount()==1) {
             return new WizardVpnFragment_();
-        } else {
+        } else if (position==0) {
             return new WizardRoamingFragment_();
+        } else {
+            return new WizardVpnFragment_();
         }
+    }
+
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 
     @Override
@@ -34,7 +40,7 @@ public class WizardFragmentAdapter extends FragmentPagerAdapter {
         else return 2;
     }
 
-    protected boolean isDataRoamingEnabled() {
+    public boolean isDataRoamingEnabled() {
         return dataRoamingSwitcherStatus()==1;
     }
 

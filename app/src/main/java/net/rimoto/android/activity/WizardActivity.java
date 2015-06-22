@@ -43,6 +43,7 @@ public class WizardActivity extends InstabugFragmentActivity {
 
     PagerAdapter mPagerAdapter;
 
+
     @AfterViews
     protected void afterViews() {
         // Instantiate a ViewPager and a PagerAdapter.
@@ -50,7 +51,7 @@ public class WizardActivity extends InstabugFragmentActivity {
         mPager.setAdapter(mPagerAdapter);
 
         mCircleIndicator.setViewPager(mPager);
-        
+
         addAppPolicy();
     }
 
@@ -64,6 +65,7 @@ public class WizardActivity extends InstabugFragmentActivity {
             public void success(Policy policy, Response response) {
                 connectBtn.setEnabled(true);
             }
+
             @Override
             public void failure(RetrofitError error) {
                 error.printStackTrace();
@@ -79,13 +81,18 @@ public class WizardActivity extends InstabugFragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // TODO fix this
         mPagerAdapter.notifyDataSetChanged();
     }
 
+    private boolean connecting=false;
+
     @Click
     protected void connectBtn() {
-        connectBtn.setEnabled(false);
+        if(connecting) {
+            return;
+        }
+
+        connecting = true;
         VpnUtils.VpnConnectionSpinner(this, new VpnUtils.RimotoStateCallback() {
             @Override
             public void connected() {

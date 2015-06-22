@@ -93,4 +93,13 @@ public class LoginActivity extends InstabugFragmentActivity {
         startActivity(intent);
         finish();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPager = null;
+        mTitleIndicator = null;
+        mCircleIndicator = null;
+        System.gc();
+    }
 }
