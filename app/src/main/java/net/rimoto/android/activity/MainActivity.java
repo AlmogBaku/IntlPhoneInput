@@ -1,10 +1,13 @@
 package net.rimoto.android.activity;
 
 import android.content.Intent;
+import android.os.Handler;
 
 import net.rimoto.android.R;
 import net.rimoto.core.Session;
 import net.rimoto.core.utils.VpnUtils;
+import net.rimoto.vpnlib.VpnManager;
+
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
@@ -24,9 +27,12 @@ public class MainActivity extends RimotoCompatActivity {
     @OptionsItem(R.id.action_disconnect)
     protected void disconnect() {
         VpnUtils.stopVPN(this);
-        Intent intent = new Intent(this, WizardActivity_.class);
-        startActivity(intent);
-        this.finish();
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            Intent intent = new Intent(this, WizardActivity_.class);
+            startActivity(intent);
+            this.finish();
+        }, 500);
     }
 
     @OptionsItem(R.id.action_logs)
