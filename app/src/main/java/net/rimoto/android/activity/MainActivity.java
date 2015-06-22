@@ -27,6 +27,8 @@ public class MainActivity extends RimotoCompatActivity {
     @OptionsItem(R.id.action_disconnect)
     protected void disconnect() {
         VpnUtils.stopVPN(this);
+
+        //Start after the routes have resetted as well
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
             Intent intent = new Intent(this, WizardActivity_.class);
