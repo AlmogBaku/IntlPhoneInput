@@ -41,7 +41,6 @@ public class VpnManager extends IntentService {
     private boolean mByBoot;
 
     private OpenVPNService mVpnService;
-    private Boolean mDisconnectOnServiceBinded = false;
     private ServiceConnection mVpnConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
@@ -49,8 +48,7 @@ public class VpnManager extends IntentService {
             OpenVPNService.LocalBinder binder = (OpenVPNService.LocalBinder) service;
             mVpnService = binder.getService();
 
-            if(mDisconnectOnServiceBinded)
-                disconnect();
+            disconnect();
         }
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
@@ -117,8 +115,6 @@ public class VpnManager extends IntentService {
             return;
         }
 
-        mDisconnectOnServiceBinded = true;
-
         Intent intent = new Intent(this, OpenVPNService.class);
         intent.setAction(OpenVPNService.START_SERVICE);
         bindService(intent, mVpnConnection, Context.BIND_AUTO_CREATE);
@@ -135,8 +131,7 @@ public class VpnManager extends IntentService {
             VpnStatus.logDebug(TAG + "Stopping..");
             mVpnService.getManagement().stopVPN();
         } else {
-            VpnStatus.logInfo(TAG + "Waiting for VPN service binding..");
-            mDisconnectOnServiceBinded = true;
+            VpnStatus.logInfo(TAG + "Waiting for VPN Management service binding..");
             return;
         }
 
@@ -149,7 +144,6 @@ public class VpnManager extends IntentService {
             VpnManager.setActiveProfileDisconnected(this);
         }
 
-        mDisconnectOnServiceBinded = false;
         unbindService(mVpnConnection);
         mVpnConnection = null;
     }
