@@ -80,10 +80,10 @@ public class RimotoCore {
      * Set authentication type(oauth's response_type)
      * @param authType token|code
      */
-    public static void setAuthType(String authType) throws RimotoException {
+    public static void setAuthType(String authType) {
         authType=authType.toLowerCase().trim();
         if(!authType.equals("token") && !authType.equals("code")) {
-            throw new RimotoException("Invalid AuthType");
+            return;
         }
         RESPONSE_TYPE = authType;
     }
