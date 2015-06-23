@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">rimoto</string>
 
+    <!-- VPN -->
+    <string name="notifcation_title">rimoto - %s</string>
+
     <string name="action_settings">Settings</string>
     <string name="login_btn">Sign up</string>
 
