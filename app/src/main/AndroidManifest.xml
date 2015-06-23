@@ -41,5 +41,9 @@
             android:label="@string/main_activity_title" >
         </activity>
 
+        <service
+            android:name=".utils.LeakSlackUploadService"
+            android:enabled="false" />
+
     </application>
 </manifest>
