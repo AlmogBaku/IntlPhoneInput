@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -16,7 +15,6 @@ import net.rimoto.android.R;
 import net.rimoto.android.adapter.WizardFragmentAdapter;
 import net.rimoto.core.API;
 import net.rimoto.core.models.Policy;
-import net.rimoto.core.utils.UI;
 import net.rimoto.core.utils.VpnUtils;
 
 import org.androidannotations.annotations.AfterViews;
@@ -24,7 +22,6 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-import de.blinkt.openvpn.core.VpnStatus;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -84,15 +81,10 @@ public class WizardActivity extends InstabugFragmentActivity {
         mPagerAdapter.notifyDataSetChanged();
     }
 
-    private boolean connecting=false;
-
     @Click
     protected void connectBtn() {
-        if(connecting) {
-            return;
-        }
+        connectBtn.setEnabled(false);
 
-        connecting = true;
         VpnUtils.VpnConnectionSpinner(this, new VpnUtils.RimotoStateCallback() {
             @Override
             public void connected() {

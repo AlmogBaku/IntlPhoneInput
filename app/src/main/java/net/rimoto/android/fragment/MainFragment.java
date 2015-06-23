@@ -43,4 +43,10 @@ public class MainFragment extends Fragment {
             error.printStackTrace();
         }
     };
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        tagsRecycler=null;
+    }
 }
