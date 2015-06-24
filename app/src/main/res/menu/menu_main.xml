@@ -4,6 +4,6 @@
 
     <item android:id="@+id/action_settings" app:showAsAction="never" android:title="@string/action_settings" />
     <item android:id="@+id/action_disconnect" app:showAsAction="never" android:title="@string/action_disconnect" />
-    <item android:id="@+id/action_logs" app:showAsAction="never" android:title="@string/action_logs" />
+    <item android:id="@+id/action_reportbug" app:showAsAction="never" android:title="@string/action_reportbug" />
     <item android:id="@+id/action_logout" app:showAsAction="never" android:title="@string/action_logout" />
 </menu>

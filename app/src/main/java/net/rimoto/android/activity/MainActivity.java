@@ -3,6 +3,8 @@ package net.rimoto.android.activity;
 import android.content.Intent;
 import android.os.Handler;
 
+import com.instabug.library.Instabug;
+
 import net.rimoto.android.R;
 import net.rimoto.core.Session;
 import net.rimoto.core.utils.VpnUtils;
@@ -36,9 +38,9 @@ public class MainActivity extends RimotoCompatActivity {
         }, 500);
     }
 
-    @OptionsItem(R.id.action_logs)
-    protected void sendLogs() {
-        VpnUtils.sendLogs(this);
+    @OptionsItem(R.id.action_reportbug)
+    protected void reportBug() {
+        Instabug.getInstance().invoke();
     }
 
     @Override

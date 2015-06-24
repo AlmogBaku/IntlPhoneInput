@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import net.rimoto.android.utils.InstabugRimoto;
 import net.rimoto.core.Session;
 import net.rimoto.android.R;
 import net.rimoto.vpnlib.VpnLog;
@@ -22,19 +23,21 @@ public class SplashActivity extends Activity {
 
 //        VpnLog.getInstance().registerLogcat();
 
+        Intent intent;
+        if(Session.getCurrentAccessToken()==null) {
+            intent = new Intent(this, LoginActivity_.class);
+        } else {
+            InstabugRimoto.attachUser();
+
+            if(VpnManager.isActive(this)) {
+                intent = new Intent(this, MainActivity_.class);
+            } else {
+                intent = new Intent(this, WizardActivity_.class);
+            }
+        }
+
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
-            Intent intent;
-            if(Session.getCurrentAccessToken()==null) {
-                intent = new Intent(this, LoginActivity_.class);
-            } else {
-                if(VpnManager.isActive(this)) {
-                    intent = new Intent(this, MainActivity_.class);
-                } else {
-                    intent = new Intent(this, WizardActivity_.class);
-                }
-            }
-
             startActivity(intent);
             finish();
         }, SPLASH_TIME_OUT);

@@ -1,17 +1,16 @@
 package net.rimoto.android.activity;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 
 import com.instabug.wrapper.support.activity.InstabugFragmentActivity;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import net.rimoto.android.utils.InstabugRimoto;
 import net.rimoto.android.views.SimpleTitleIndicator;
 import net.rimoto.android.R;
 import net.rimoto.android.views.IndicatorAggregator;
-import net.rimoto.core.API;
+
 import net.rimoto.core.Login;
 import net.rimoto.core.RimotoException;
 
@@ -22,18 +21,8 @@ import org.androidannotations.annotations.ViewById;
 
 import net.rimoto.android.adapter.LoginFragmentAdapter;
 import net.rimoto.core.utils.VpnUtils;
-import net.rimoto.vpnlib.VpnManager;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
-import de.blinkt.openvpn.VpnProfile;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-import retrofit.mime.TypedByteArray;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends InstabugFragmentActivity {
@@ -81,6 +70,7 @@ public class LoginActivity extends InstabugFragmentActivity {
             Login.getInstance().auth(this, (token, error) -> {
                 if(error==null) {
                     VpnUtils.importVPNConfig(this);
+                    InstabugRimoto.attachUser();
                     startWizard();
                 }
             });

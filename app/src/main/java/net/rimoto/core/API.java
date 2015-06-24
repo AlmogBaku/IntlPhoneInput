@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import net.rimoto.core.models.AccessToken;
 import net.rimoto.core.models.Policy;
+import net.rimoto.core.models.Subscriber;
 
 import java.util.List;
 
@@ -21,6 +22,9 @@ import retrofit.http.POST;
 
 public class API {
     public interface RimotoAPI {
+        @GET("/subscriber/me") void getMe(Callback<Subscriber> cb);
+        @GET("/subscriber/me") Subscriber getMe();
+
         @GET("/subscriber/me/ovpn") void getOvpn(Callback<Response> cb);
         @GET("/subscriber/me/ovpn") Response getOvpn();
 

@@ -10,6 +10,7 @@ import com.squareup.leakcanary.RefWatcher;
 
 import net.rimoto.android.utils.LeakSlackUploadService;
 import net.rimoto.core.RimotoCore;
+import net.rimoto.vpnlib.VpnFileLog;
 
 import org.androidannotations.annotations.EApplication;
 
@@ -17,15 +18,22 @@ import org.androidannotations.annotations.EApplication;
 public class RimotoApplication extends Application {
     private final String rimotoClientID = "1_56hxwnph188wkosoc8c8ccswskkwcwggc4k8o4k0gs4ksgsk08";
     private final String rimoto_authURI = "http://localhost/";
+    private final String instabug_token = "cfad51965edc86000b61bd545c4d84d2";
 
     @Override
     public void onCreate() {
         super.onCreate();
         refWatcher = installLeakCanary();
-        Instabug.initialize(this, "cfad51965edc86000b61bd545c4d84d2");
+        InitializeInstabug();
 
         RimotoCore.init(this, rimotoClientID, rimoto_authURI);
         RimotoCore.setAuthType("token");
+    }
+
+    private void InitializeInstabug() {
+        Instabug.initialize(this, instabug_token);
+        Instabug.getInstance().attachFileAtLocation(VpnFileLog.logFile.getAbsolutePath());
+        Instabug.getInstance().setEmailIsRequired(true);
     }
 
 
