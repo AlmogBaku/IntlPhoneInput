@@ -16,8 +16,8 @@ import de.blinkt.openvpn.core.VpnStatus;
  * Log VPN to file
  */
 public class VpnFileLog implements VpnStatus.LogListener {
-    private static final String LOG_FILENAME = "rimoto.log";
-    private static final File logFile = new File(Environment.getExternalStorageDirectory(), LOG_FILENAME);
+    public static final String LOG_FILENAME = "rimoto.log";
+    public static final File logFile = new File(Environment.getExternalStorageDirectory(), LOG_FILENAME);
     private static final int MAX_LINES=3000;
     private static BufferedWriter bufferedWriter;
     static {
