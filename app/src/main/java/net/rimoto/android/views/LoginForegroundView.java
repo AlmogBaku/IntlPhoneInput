@@ -85,4 +85,14 @@ public class LoginForegroundView extends SurfaceView implements SurfaceHolder.Ca
 
         canvas.drawBitmap(mForeground, null, mDest, mPaint);
     }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mDest       = null;
+        mForeground = null;
+        mHolder     = null;
+        mPaint      = null;
+        mThread     = null;
+    }
 }
