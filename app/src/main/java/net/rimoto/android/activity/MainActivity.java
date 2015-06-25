@@ -1,7 +1,6 @@
 package net.rimoto.android.activity;
 
 import android.content.Intent;
-import android.os.Handler;
 
 import com.instabug.library.Instabug;
 
@@ -27,15 +26,12 @@ public class MainActivity extends RimotoCompatActivity {
 
     @OptionsItem(R.id.action_disconnect)
     protected void disconnect() {
-        VpnUtils.stopVPN(this);
-
-        //Start after the routes have resetted as well
-        final Handler handler = new Handler();
-        handler.postDelayed(() -> {
+        VpnUtils.stopVPN(this,()-> {
             Intent intent = new Intent(this, WizardActivity_.class);
             startActivity(intent);
             this.finish();
-        }, 500);
+        });
+
     }
 
     @OptionsItem(R.id.action_reportbug)

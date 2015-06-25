@@ -85,7 +85,7 @@ public class WizardActivity extends InstabugFragmentActivity {
     protected void connectBtn() {
         connectBtn.setEnabled(false);
 
-        VpnUtils.VpnConnectionSpinner(this, new VpnUtils.RimotoStateCallback() {
+        VpnUtils.VpnConnectionSpinner(this, new VpnUtils.RimotoConnectStateCallback() {
             @Override
             public void connected() {
                 startMainActivity();
@@ -109,5 +109,14 @@ public class WizardActivity extends InstabugFragmentActivity {
         Intent intent = new Intent(this, MainActivity_.class);
         startActivity(intent);
         this.finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPagerAdapter   = null;
+        mPager          = null;
+        mCircleIndicator= null;
+        System.gc();
     }
 }

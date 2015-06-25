@@ -27,6 +27,7 @@ import retrofit.mime.TypedByteArray;
 
 public class VpnUtils {
     public static final String VPN_PROFILE_UUID = "net.rimoto.android.vpn_profile_uuid";
+    private static VpnStatus.StateListener mStateListener;
 
     /**
      * Import VPN Config from CORE
@@ -102,6 +103,52 @@ public class VpnUtils {
     }
 
     /**
+     * Rimoto VPN State Callback
+     */
+    public interface SimpleCallback {
+        void done();
+    }
+
+    /**
+     * VPN State listener
+     */
+    private static class RimotoDisconnectStateListener implements VpnStatus.StateListener {
+        private SimpleCallback mCallback;
+
+        public RimotoDisconnectStateListener(SimpleCallback callback) {
+            mCallback = callback;
+        }
+
+        @Override
+        public void updateState(String state, String logmessage, int localizedResId, VpnStatus.ConnectionStatus level) {
+            if(state.equals("NOPROCESS")) {
+                mCallback.done();
+                this.finish();
+            }
+        }
+
+        private void finish() {
+            VpnStatus.removeStateListener(this);
+            mStateListener=null;
+            mCallback=null;
+        }
+    }
+
+    /**
+     * Stop VPN shortcut
+     * @param context Context
+     */
+    public static void stopVPN(Context context, SimpleCallback callback) {
+        if(VpnManager.isConnected()) {
+            mStateListener = new RimotoDisconnectStateListener(callback);
+            VpnStatus.addStateListener(mStateListener);
+            stopVPN(context);
+        } else {
+            callback.done();
+        }
+    }
+
+    /**
      * Send logs
      * @param context Context
      */
@@ -131,7 +178,7 @@ public class VpnUtils {
     /**
      * Rimoto VPN State Callback
      */
-    public interface RimotoStateCallback {
+    public interface RimotoConnectStateCallback {
         void connected();
         void exiting();
         void shouldntConnect();
@@ -140,10 +187,10 @@ public class VpnUtils {
     /**
      * VPN State listener
      */
-    private static class RimotoStateListener implements VpnStatus.StateListener {
-        private RimotoStateCallback mCallback;
+    private static class RimotoConnectStateListener implements VpnStatus.StateListener {
+        private RimotoConnectStateCallback mCallback;
 
-        public RimotoStateListener(RimotoStateCallback callback) {
+        public RimotoConnectStateListener(RimotoConnectStateCallback callback) {
             mCallback = callback;
         }
 
@@ -167,18 +214,16 @@ public class VpnUtils {
         }
     }
 
-    private static RimotoStateListener mStateListener;
-
     /**
      * Vpn Connection Spinner
      * @param context Context
      * @param callback RimotoStateCallback
      */
-    public static void VpnConnectionSpinner(Context context, RimotoStateCallback callback) {
+    public static void VpnConnectionSpinner(Context context, RimotoConnectStateCallback callback) {
         VpnProfile profile = ProfileManager.get(context, getCurrentProfileUUID(context));
         if(RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(context), profile)) {
             UI.showSpinner(context, "Connecting to rimoto's cloud..");
-            mStateListener = new RimotoStateListener(callback);
+            mStateListener = new RimotoConnectStateListener(callback);
             VpnStatus.addStateListener(mStateListener);
         } else {
             callback.shouldntConnect();
