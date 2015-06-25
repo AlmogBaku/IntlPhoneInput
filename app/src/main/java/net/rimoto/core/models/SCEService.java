@@ -25,6 +25,10 @@ public class SCEService {
     @Expose
     private String androidBundleId;
 
+    @SerializedName("web_app")
+    @Expose
+    private String webApp;
+
     @Expose
     private List<ServiceTag> tags = new ArrayList<>();
 
@@ -115,16 +119,6 @@ public class SCEService {
     }
 
     /**
-     * Check if equals
-     * @param o Object to compare
-     * @return boolean
-     */
-    @Override
-    public boolean equals(Object o) {
-        return (o instanceof SCEService) && (((SCEService) o).getId() == this.getId());
-    }
-
-    /**
      * Get android bundle id
      * @return String
      */
@@ -140,5 +134,33 @@ public class SCEService {
     @SuppressWarnings("unused")
     public void setAndroidBundleId(String androidBundleId) {
         this.androidBundleId = androidBundleId;
+    }
+
+    /**
+     * Get web app url
+     * @return String
+     */
+    @SuppressWarnings("unused")
+    public String getWebApp() {
+        return webApp;
+    }
+
+    /**
+     * Set web app url
+     * @param webApp String
+     */
+    @SuppressWarnings("unused")
+    public void setWebApp(String webApp) {
+        this.webApp = webApp;
+    }
+
+    /**
+     * Check if equals
+     * @param o Object to compare
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object o) {
+        return (o instanceof SCEService) && (((SCEService) o).getId() == this.getId());
     }
 }
