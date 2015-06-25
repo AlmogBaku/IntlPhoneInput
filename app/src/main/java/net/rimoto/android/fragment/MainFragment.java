@@ -35,7 +35,7 @@ public class MainFragment extends Fragment {
 
     private Callback<List<Policy>> policiesCB = new Callback<List<Policy>>() {
         public void success(List<Policy> policies, Response response) {
-            TagsRecycleAdapter adapter = new TagsRecycleAdapter(policies, getActivity());
+            TagsRecycleAdapter adapter = new TagsRecycleAdapter(policies);
             tagsRecycler.setAdapter(adapter);
         }
 

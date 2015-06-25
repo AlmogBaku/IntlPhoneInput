@@ -1,6 +1,5 @@
 package net.rimoto.android.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,15 +17,12 @@ import java.util.List;
 
 public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.ViewHolder> {
     private ArrayList<ServiceTag> mTags;
-    private Context mContext;
 
     /**
      * Constructor
      * @param policies List<Policy>
-     * @param context Context
      */
-    public TagsRecycleAdapter(List<Policy> policies, Context context) {
-        this.mContext = context;
+    public TagsRecycleAdapter(List<Policy> policies) {
         this.mTags = policiesToTagsList(policies);
     }
 
@@ -61,7 +57,7 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
         LinearLayoutManager layoutManager = new LinearLayoutManager(v.getContext(), LinearLayoutManager.HORIZONTAL, false);
         holder.servicesRecycler.setLayoutManager(layoutManager);
 
-        SCEServicesRecycleAdapter adapter = new SCEServicesRecycleAdapter(mContext);
+        SCEServicesRecycleAdapter adapter = new SCEServicesRecycleAdapter();
         holder.servicesRecycler.setAdapter(adapter);
 
         return holder;
@@ -93,11 +89,5 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
             adapter.setServices(tag.getServices());
             adapter.notifyDataSetChanged();
         }
-    }
-
-    @Override
-    public void onViewDetachedFromWindow(ViewHolder holder) {
-        super.onViewDetachedFromWindow(holder);
-        mContext = null;
     }
 }
