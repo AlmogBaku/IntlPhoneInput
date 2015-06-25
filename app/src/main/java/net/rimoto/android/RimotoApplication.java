@@ -11,6 +11,7 @@ import com.squareup.leakcanary.RefWatcher;
 import net.rimoto.android.utils.LeakSlackUploadService;
 import net.rimoto.core.RimotoCore;
 import net.rimoto.vpnlib.VpnFileLog;
+import net.rimoto.vpnlib.VpnLog;
 
 import org.androidannotations.annotations.EApplication;
 
@@ -28,6 +29,7 @@ public class RimotoApplication extends Application {
 
         RimotoCore.init(this, rimotoClientID, rimoto_authURI);
         RimotoCore.setAuthType("token");
+//        VpnLog.getInstance().registerLogcat();
     }
 
     private void InitializeInstabug() {

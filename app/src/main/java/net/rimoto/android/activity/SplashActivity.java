@@ -21,8 +21,6 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        VpnLog.getInstance().registerLogcat();
-
         Intent intent;
         if(Session.getCurrentAccessToken()==null) {
             intent = new Intent(this, LoginActivity_.class);
