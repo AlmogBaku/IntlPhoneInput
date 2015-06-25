@@ -1,5 +1,6 @@
 package net.rimoto.android.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,8 +17,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.ViewHolder> {
-    private ArrayList<ServiceTag> tags;
-    public TagsRecycleAdapter(List<Policy> policies) {
+    private ArrayList<ServiceTag> mTags;
+    private Context mContext;
+
+    /**
+     * Constructor
+     * @param policies List<Policy>
+     * @param context Context
+     */
+    public TagsRecycleAdapter(List<Policy> policies, Context context) {
+        this.mContext = context;
+        this.mTags = policiesToTagsList(policies);
+    }
+
+    /**
+     * Convert policy list to tags->services list
+     * @param policies List<Policy>
+     * @return ArrayList<ServiceTag>
+     */
+    private ArrayList<ServiceTag> policiesToTagsList(List<Policy> policies) {
         ArrayList<ServiceTag> tags = new ArrayList<>();
         for(Policy policy:policies) {
             for(SCEService service:policy.getServices()) {
@@ -32,7 +50,7 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
                 }
             }
         }
-        this.tags = tags;
+        return tags;
     }
 
     @Override
@@ -43,7 +61,7 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
         LinearLayoutManager layoutManager = new LinearLayoutManager(v.getContext(), LinearLayoutManager.HORIZONTAL, false);
         holder.servicesRecycler.setLayoutManager(layoutManager);
 
-        SCEServicesRecycleAdapter adapter = new SCEServicesRecycleAdapter();
+        SCEServicesRecycleAdapter adapter = new SCEServicesRecycleAdapter(mContext);
         holder.servicesRecycler.setAdapter(adapter);
 
         return holder;
@@ -51,12 +69,12 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
 
     @Override
     public void onBindViewHolder(TagsRecycleAdapter.ViewHolder holder, int position) {
-        holder.setTag(tags.get(position));
+        holder.setTag(mTags.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return tags.size();
+        return mTags.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -75,5 +93,11 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
             adapter.setServices(tag.getServices());
             adapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        mContext = null;
     }
 }
