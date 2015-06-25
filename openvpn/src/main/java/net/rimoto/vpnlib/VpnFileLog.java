@@ -18,7 +18,7 @@ import de.blinkt.openvpn.core.VpnStatus;
 public class VpnFileLog implements VpnStatus.LogListener {
     public static final String LOG_FILENAME = "rimoto.log";
     public static final File logFile = new File(Environment.getExternalStorageDirectory(), LOG_FILENAME);
-    private static final int MAX_LINES=3000;
+    private static final int MAX_LINES=2500;
     private static BufferedWriter bufferedWriter;
     static {
         try {
@@ -32,26 +32,7 @@ public class VpnFileLog implements VpnStatus.LogListener {
             logFile.createNewFile();
         }
         bufferedWriter = new BufferedWriter(new FileWriter(logFile, true));
-
-        BufferedReader d = new BufferedReader(new FileReader(logFile));
-        ArrayList<String> logs = new ArrayList<>();
-
-        String log;
-        do {
-            log = d.readLine();
-            logs.add(log);
-        } while(log != null);
-
-
-        if(logs.size()>MAX_LINES) {
-            while(logs.size()>MAX_LINES) logs.remove(0);
-
-            for(String l:logs) {
-                bufferedWriter.append(l);
-                bufferedWriter.newLine();
-            }
-            bufferedWriter.flush();
-        }
+        resizeLogFile();
     }
 
     @Override
@@ -66,15 +47,54 @@ public class VpnFileLog implements VpnStatus.LogListener {
         }
     }
 
-    public static String getLogs() throws IOException {
+    private static Thread mThread;
+    public static void resizeLogFile() {
+        mThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    VpnFileLog.resizedLogs();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        mThread.run();
+    }
+
+    public static ArrayList<String> resizedLogs() throws IOException {
         BufferedReader d = new BufferedReader(new FileReader(logFile));
-        String logs = "";
+
+        ArrayList<String> logs = new ArrayList<>();
 
         String log;
         do {
             log = d.readLine();
-            logs += log  + "\r\n";
+            logs.add(log);
         } while(log != null);
+
+
+        if(logs.size()>MAX_LINES) {
+            while(logs.size()>MAX_LINES) logs.remove(0);
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(logFile));
+            for(String l:logs) {
+                bw.append(l);
+                bw.newLine();
+            }
+            bw.flush();
+        }
+
+        return logs;
+    }
+
+    public static String getLogs() throws IOException {
+        ArrayList<String> logsArr = resizedLogs();
+        String logs = "";
+
+        for(String log : logsArr) {
+            logs += log  + "\r\n";
+        }
 
         return logs;
     }
