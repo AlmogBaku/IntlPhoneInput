@@ -2,6 +2,7 @@ package net.rimoto.android.adapter;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +55,7 @@ public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesR
                 packageName = itemView.getContext().getPackageName();
             }
 
-            itemView.setOnClickListener(launchApp);
+            itemView.setOnClickListener(onClick);
         }
         public void setService(SCEService service) {
             this.service = service;
@@ -64,13 +65,29 @@ public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesR
                 serviceIcon.setImageResource(id);
             }
         }
-        private View.OnClickListener launchApp = (v) -> {
+        private View.OnClickListener onClick = (v) -> {
             String bundleID = service.getAndroidBundleId();
             if(bundleID != null && isPackageInstalled(bundleID)) {
-                Intent LaunchIntent = itemView.getContext().getPackageManager().getLaunchIntentForPackage(bundleID);
-                itemView.getContext().startActivity(LaunchIntent);
+                launchApp(bundleID);
+            } else if(service.getWebApp()!=null) {
+                launchUrl(service.getWebApp());
             }
         };
+
+        private void launchUrl(String url) {
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                url = "http://" + url;
+            }
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(url));
+            itemView.getContext().startActivity(intent);
+        }
+
+        private void launchApp(String bundleID) {
+            Intent LaunchIntent = itemView.getContext().getPackageManager().getLaunchIntentForPackage(bundleID);
+            itemView.getContext().startActivity(LaunchIntent);
+        }
+
         private boolean isPackageInstalled(String bundleID) {
             try {
                 itemView.getContext().getPackageManager().getPackageInfo(bundleID, PackageManager.GET_ACTIVITIES);
