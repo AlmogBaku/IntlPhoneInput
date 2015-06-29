@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.Toast;
 
 import net.rimoto.core.API;
@@ -128,9 +131,12 @@ public class VpnUtils {
         }
 
         private void finish() {
-            VpnStatus.removeStateListener(this);
-            mStateListener=null;
-            mCallback=null;
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(() -> {
+                VpnStatus.removeStateListener(this);
+                mStateListener=null;
+                mCallback=null;
+            }, 400);
         }
     }
 
@@ -196,7 +202,8 @@ public class VpnUtils {
 
         @Override
         public void updateState(String state, String logmessage, int localizedResId, VpnStatus.ConnectionStatus level) {
-            if(state.equals("CONNECTED")) {
+            Log.d("vpn-state", state + "("+level.name()+") : "+ logmessage);
+            if(state.equals("CONNECTED") && level == VpnStatus.ConnectionStatus.LEVEL_CONNECTED) {
                 UI.hideSpinner();
                 mCallback.connected();
                 this.finish();
@@ -208,9 +215,12 @@ public class VpnUtils {
         }
 
         private void finish() {
-            VpnStatus.removeStateListener(this);
-            mStateListener=null;
-            mCallback=null;
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(() -> {
+                VpnStatus.removeStateListener(this);
+                mStateListener=null;
+                mCallback=null;
+            }, 400);
         }
     }
 
