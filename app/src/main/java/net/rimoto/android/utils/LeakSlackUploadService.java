@@ -65,12 +65,14 @@ public final class LeakSlackUploadService extends DisplayLeakService {
         }
 
         String title = name + " has leaked";
+        String initialComment = leakInfo;
         try {
-            slackApi.uploadFile(SlackApi.TOKEN,
-                    new TypedFile("application/octet-stream", heapDump.heapDumpFile), null,
-                    heapDump.heapDumpFile.getName(), title, leakInfo, SlackApi.MEMORY_LEAK_CHANNEL);
+            TypedFile file = new TypedFile("application/octet-stream", heapDump.heapDumpFile);
+            String fileName = heapDump.heapDumpFile.getName();
+            slackApi.uploadFile(SlackApi.TOKEN, file, null, fileName, title, initialComment, SlackApi.MEMORY_LEAK_CHANNEL);
         } catch (RetrofitError e) {
             Log.e(TAG, "Error when uploading heap dump", e);
+            e.printStackTrace();
         }
     }
 }
