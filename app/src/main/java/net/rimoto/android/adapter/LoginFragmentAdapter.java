@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import net.rimoto.android.fragment.LoginSlideFragment;
 import net.rimoto.android.fragment.LoginSlideFragment_;
 
 public class LoginFragmentAdapter extends FragmentPagerAdapter {
@@ -19,7 +20,7 @@ public class LoginFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        LoginSlideFragment_ fragment = new LoginSlideFragment_();
+        LoginSlideFragment fragment = new LoginSlideFragment_();
         fragment.setPosition(position);
 
         return fragment;
