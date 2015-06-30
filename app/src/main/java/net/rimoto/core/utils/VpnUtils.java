@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.widget.Toast;
 
 import net.rimoto.core.API;
@@ -202,7 +201,6 @@ public class VpnUtils {
 
         @Override
         public void updateState(String state, String logmessage, int localizedResId, VpnStatus.ConnectionStatus level) {
-            Log.d("vpn-state", state + "("+level.name()+") : "+ logmessage);
             if(state.equals("CONNECTED") && level == VpnStatus.ConnectionStatus.LEVEL_CONNECTED) {
                 UI.hideSpinner();
                 mCallback.connected();
