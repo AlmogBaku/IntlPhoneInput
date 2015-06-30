@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 import net.rimoto.android.R;
-import net.rimoto.android.activity.LoginActivity_;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="access_token"
+        android:id="@+id/textView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/access_token"
+        android:textIsSelectable="true"
+        android:layout_above="@+id/sid"
+        android:layout_toRightOf="@+id/textView"
+        android:width="240dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="subscriber id"
+        android:id="@+id/textView2"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sid"
+        android:textIsSelectable="true"
+        android:width="240dp"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/access_token"
+        android:layout_alignStart="@+id/access_token" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="internal ip"
+        android:id="@+id/textView3"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/internalIp"
+        android:textIsSelectable="true"
+        android:width="240dp"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_alignLeft="@+id/sid"
+        android:layout_alignStart="@+id/sid" />
+
+</RelativeLayout>
