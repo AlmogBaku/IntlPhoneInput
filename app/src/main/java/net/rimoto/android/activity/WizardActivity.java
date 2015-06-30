@@ -2,6 +2,8 @@ package net.rimoto.android.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.telephony.TelephonyManager;
@@ -85,6 +87,17 @@ public class WizardActivity extends InstabugFragmentActivity {
     protected void connectBtn() {
         connectBtn.setEnabled(false);
 
+        int count_pages = mPagerAdapter.getCount();
+        int currPage = mPager.getCurrentItem();
+        if((currPage+1)==count_pages) {
+            connect();
+        } else {
+            mPager.setCurrentItem(currPage+1, true);
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(this::connect, 2000);
+        }
+    }
+    protected void connect() {
         VpnUtils.VpnConnectionSpinner(this, new VpnUtils.RimotoConnectStateCallback() {
             @Override
             public void connected() {

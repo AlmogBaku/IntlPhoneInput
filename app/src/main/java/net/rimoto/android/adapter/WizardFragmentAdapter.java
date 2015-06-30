@@ -21,12 +21,10 @@ public class WizardFragmentAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if(getCount()==1) {
+        if((position+1)==getCount()) {
             return new WizardVpnFragment_();
-        } else if (position==0) {
-            return new WizardRoamingFragment_();
         } else {
-            return new WizardVpnFragment_();
+            return new WizardRoamingFragment_();
         }
     }
 
