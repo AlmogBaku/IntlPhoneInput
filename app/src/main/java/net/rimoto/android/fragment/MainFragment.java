@@ -35,8 +35,10 @@ public class MainFragment extends Fragment {
 
     private Callback<List<Policy>> policiesCB = new Callback<List<Policy>>() {
         public void success(List<Policy> policies, Response response) {
-            TagsRecycleAdapter adapter = new TagsRecycleAdapter(policies);
-            tagsRecycler.setAdapter(adapter);
+            if(tagsRecycler!=null) {
+                TagsRecycleAdapter adapter = new TagsRecycleAdapter(policies);
+                tagsRecycler.setAdapter(adapter);
+            }
         }
 
         public void failure(RetrofitError error) {
