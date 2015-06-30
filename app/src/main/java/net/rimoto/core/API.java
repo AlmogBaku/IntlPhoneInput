@@ -67,6 +67,6 @@ public class API {
     public static String rimotoOperatorFormat(String networkOperator) {
         int mcc = Integer.parseInt(networkOperator.substring(0, 3));
         int mnc = Integer.parseInt(networkOperator.substring(3));
-        return mcc + "/" + mnc;
+        return String.format("%03d", mcc) + "/" + String.format("%03d", mnc);
     }
 }
