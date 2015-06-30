@@ -70,7 +70,7 @@ public class LoginActivity extends InstabugFragmentActivity {
             Login.getInstance().auth(this, (token, error) -> {
                 if(error==null) {
                     VpnUtils.importVPNConfig(this);
-                    InstabugRimoto.attachUser();
+                    InstabugRimoto.attachUser(this);
                     startWizard();
                 }
             });

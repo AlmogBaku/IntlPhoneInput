@@ -25,7 +25,7 @@ public class SplashActivity extends Activity {
         if(Session.getCurrentAccessToken()==null) {
             intent = new Intent(this, LoginActivity_.class);
         } else {
-            InstabugRimoto.attachUser();
+            InstabugRimoto.attachUser(this);
 
             if(VpnManager.isActive(this)) {
                 intent = new Intent(this, MainActivity_.class);
