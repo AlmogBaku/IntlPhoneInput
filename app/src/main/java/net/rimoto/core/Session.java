@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import net.rimoto.core.models.AccessToken;
+import net.rimoto.core.models.Subscriber;
 
 import java.util.Date;
 
@@ -16,6 +17,8 @@ public class Session {
      * Current AccessToken
      */
     private static AccessToken sCurrentAccessToken = null;
+
+    private static Subscriber sCurrentSubscriber = null;
 
     /**
      * Save AccessToken as current user
@@ -95,5 +98,24 @@ public class Session {
         prefsEditor.remove("RimotoToken[token_type]");
 
         prefsEditor.apply();
+    }
+
+    /**
+     * Get current subscriber
+     * @return Subscriber
+     */
+    public static Subscriber getCurrentSubscriber() {
+        if(sCurrentSubscriber==null) {
+            sCurrentSubscriber = API.getInstance().getMe();
+        }
+        return sCurrentSubscriber;
+    }
+
+    /**
+     * Set current subscriber
+     * @param sCurrentSubscriber Subscriber
+     */
+    public static void setCurrentSubscriber(Subscriber sCurrentSubscriber) {
+        Session.sCurrentSubscriber = sCurrentSubscriber;
     }
 }
