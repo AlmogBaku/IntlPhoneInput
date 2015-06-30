@@ -56,8 +56,8 @@ public class WizardActivity extends InstabugFragmentActivity {
 
     private void addAppPolicy() {
         TelephonyManager tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        String home_operator = rimotoOperatorFormat(tel.getSimOperator());
-        String roaming_operator = rimotoOperatorFormat(tel.getNetworkOperator());
+        String home_operator = API.rimotoOperatorFormat(tel.getSimOperator());
+        String roaming_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
 
         API.getInstance().addAppPolicy(home_operator, roaming_operator, new Callback<Policy>() {
             @Override
@@ -70,11 +70,6 @@ public class WizardActivity extends InstabugFragmentActivity {
                 error.printStackTrace();
             }
         });
-    }
-    private String rimotoOperatorFormat(String networkOperator) {
-        int mcc = Integer.parseInt(networkOperator.substring(0, 3));
-        int mnc = Integer.parseInt(networkOperator.substring(3));
-        return mcc + "/" + mnc;
     }
 
     @Override
