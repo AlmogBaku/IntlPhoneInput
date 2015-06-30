@@ -115,10 +115,14 @@ public class VpnManager extends IntentService {
             return;
         }
 
-        Intent intent = new Intent(this, OpenVPNService.class);
-        intent.setAction(OpenVPNService.START_SERVICE);
-        bindService(intent, mVpnConnection, Context.BIND_AUTO_CREATE);
-        VpnStatus.logDebug(TAG + "Waiting for OpenVPN service..");
+        if(mVpnService==null) {
+            Intent intent = new Intent(this, OpenVPNService.class);
+            intent.setAction(OpenVPNService.START_SERVICE);
+            bindService(intent, mVpnConnection, Context.BIND_AUTO_CREATE);
+            VpnStatus.logDebug(TAG + "Waiting for OpenVPN service..");
+        } else {
+            disconnect();
+        }
     }
 
     /**
