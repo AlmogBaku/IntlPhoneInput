@@ -201,14 +201,20 @@ public class VpnUtils {
 
         @Override
         public void updateState(String state, String logmessage, int localizedResId, VpnStatus.ConnectionStatus level) {
-            if(state.equals("CONNECTED") && level == VpnStatus.ConnectionStatus.LEVEL_CONNECTED) {
-                UI.hideSpinner();
-                mCallback.connected();
-                this.finish();
-            } else if(state.equals("EXITING")) {
-                UI.hideSpinner();
-                mCallback.exiting();
-                this.finish();
+            switch (state) {
+                case "CONNECTED":
+                    UI.hideSpinner();
+                    mCallback.connected();
+                    this.finish();
+                    break;
+                case "USER_VPN_PERMISSION_CANCELLED":
+                    VpnStatus.updateStateString("NOPROCESS","");
+                case "EXITING":
+                    UI.hideSpinner();
+                    mCallback.exiting();
+                    this.finish();
+                    break;
+
             }
         }
 

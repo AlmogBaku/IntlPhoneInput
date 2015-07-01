@@ -102,6 +102,7 @@ public class WizardActivity extends InstabugFragmentActivity {
             public void exiting() {
                 Toast toast = Toast.makeText(WizardActivity.this, "There was some problem with connecting you :\\", Toast.LENGTH_LONG);
                 toast.show();
+                connectBtn.setEnabled(true);
             }
 
             @Override
