@@ -275,7 +275,6 @@ public class VpnManager extends IntentService {
      */
     public static Boolean isConnected() {
         String state = VpnStatus.getLaststate();
-        return (state != "NOPROCESS");
-//        return (state != "NOPROCESS") && (state != "USER_VPN_PERMISSION");
+        return (state.equals("NOPROCESS")) && (state.equals("USER_VPN_PERMISSION"));
     }
 }
