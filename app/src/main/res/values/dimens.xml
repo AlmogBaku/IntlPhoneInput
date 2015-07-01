@@ -24,4 +24,5 @@
     <dimen name="item_service_marginSides">10dp</dimen>
     <dimen name="item_service_icon_padding">10.5dp</dimen>
     <dimen name="item_service_width">65dp</dimen>
+    <dimen name="login_titles_fontSize">13sp</dimen>
 </resources>

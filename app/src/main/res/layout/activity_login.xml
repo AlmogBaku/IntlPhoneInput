@@ -30,6 +30,7 @@
 
         <net.rimoto.android.views.SimpleTitleIndicator
             android:id="@+id/titles"
+            android:textSize="@dimen/login_titles_fontSize"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/login_title_0"
