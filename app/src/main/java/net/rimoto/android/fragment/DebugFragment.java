@@ -34,7 +34,7 @@ public class DebugFragment extends Fragment {
         ipEditTextView.setText(getIpAddress());
     }
 
-    public static String getIpAddress() {
+    private String getIpAddress() {
         try {
             for(Enumeration en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
                 NetworkInterface intf = (NetworkInterface) en.nextElement();
