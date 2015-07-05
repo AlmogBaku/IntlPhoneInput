@@ -17,6 +17,7 @@ import net.rimoto.android.R;
 import net.rimoto.android.adapter.WizardFragmentAdapter;
 import net.rimoto.core.API;
 import net.rimoto.core.models.Policy;
+import net.rimoto.core.utils.UI;
 import net.rimoto.core.utils.VpnUtils;
 
 import org.androidannotations.annotations.AfterViews;
@@ -37,8 +38,8 @@ public class WizardActivity extends InstabugFragmentActivity {
     @ViewById(R.id.indicator)
     protected CirclePageIndicator mCircleIndicator;
 
-    @ViewById
-    protected Button connectBtn;
+    @ViewById(R.id.connectBtn)
+    protected Button mConnectBtn;
 
     PagerAdapter mPagerAdapter;
 
@@ -67,7 +68,9 @@ public class WizardActivity extends InstabugFragmentActivity {
         API.getInstance().addAppPolicy(home_operator, roaming_operator, new Callback<Policy>() {
             @Override
             public void success(Policy policy, Response response) {
-                connectBtn.setEnabled(true);
+                if(mConnectBtn != null) {
+                    mConnectBtn.setEnabled(true);
+                }
             }
 
             @Override
@@ -85,7 +88,7 @@ public class WizardActivity extends InstabugFragmentActivity {
 
     @Click
     protected void connectBtn() {
-        connectBtn.setEnabled(false);
+        mConnectBtn.setEnabled(false);
 
         int count_pages = mPagerAdapter.getCount();
         int currPage = mPager.getCurrentItem();
@@ -107,7 +110,7 @@ public class WizardActivity extends InstabugFragmentActivity {
             public void exiting() {
                 Toast toast = Toast.makeText(WizardActivity.this, "There was some problem with connecting you :\\", Toast.LENGTH_LONG);
                 toast.show();
-                connectBtn.setEnabled(true);
+                mConnectBtn.setEnabled(true);
             }
 
             @Override
@@ -131,6 +134,8 @@ public class WizardActivity extends InstabugFragmentActivity {
         mPagerAdapter   = null;
         mPager          = null;
         mCircleIndicator= null;
+        mConnectBtn     = null;
+        UI.hideSpinner();
         System.gc();
     }
 }
