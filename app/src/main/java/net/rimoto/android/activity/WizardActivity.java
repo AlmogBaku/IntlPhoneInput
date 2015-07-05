@@ -59,6 +59,11 @@ public class WizardActivity extends InstabugFragmentActivity {
         String home_operator = API.rimotoOperatorFormat(tel.getSimOperator());
         String roaming_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
 
+        if(home_operator.equals("N/A") || roaming_operator.equals("N/A")) {
+            Toast toast = Toast.makeText(WizardActivity.this, "You need a sim card in order to use rimoto", Toast.LENGTH_LONG);
+            toast.show();
+        }
+
         API.getInstance().addAppPolicy(home_operator, roaming_operator, new Callback<Policy>() {
             @Override
             public void success(Policy policy, Response response) {
