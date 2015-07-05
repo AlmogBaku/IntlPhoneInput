@@ -24,7 +24,7 @@ public class InstabugRimoto {
             String userData = ""
                                 +"subscriber: " + subscriber.toString() + "\r\n"
                                 +"home_operator: " + home_operator + "\r\n"
-                                +"roaming_operator: " + roaming_operator + "\r\n"
+                                +"visited_operator: " + roaming_operator + "\r\n"
                     ;
             Instabug.getInstance().setUserData(userData);
         });
