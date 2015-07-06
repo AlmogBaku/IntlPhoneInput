@@ -47,7 +47,7 @@ public class LoginActivity extends InstabugFragmentActivity {
         indicatorAggregator.setViewPager(mPager);
 
         mPager.setInterval(6500);
-        mPager.setScrollDurationFactor(10);
+        mPager.setScrollDurationFactor(5);
         mPager.setBorderAnimation(false);
         mPager.startAutoScroll();
     }
