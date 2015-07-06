@@ -39,7 +39,8 @@ android {
 dependencies {
     // Android Support Libs
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile 'com.android.support:recyclerview-v7:22.1.1'
+    compile 'com.android.support:recyclerview-v7:22.2.0'
+    compile 'com.android.support:cardview-v7:22.2.0'
 
     // AndroidAnnotations
     apt "org.androidannotations:androidannotations:3.3"

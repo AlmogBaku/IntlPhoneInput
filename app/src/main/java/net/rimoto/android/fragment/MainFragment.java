@@ -10,6 +10,7 @@ import net.rimoto.core.API;
 import net.rimoto.core.models.Policy;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -44,6 +45,15 @@ public class MainFragment extends Fragment {
             error.printStackTrace();
         }
     };
+
+
+    @Click(R.id.topUpBtn)
+    protected void topUp() {
+        TopUpFragment topUpFragment = new TopUpFragment_();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, topUpFragment).addToBackStack(null)
+                .commit();
+    }
 
     @Override
     public void onDestroy() {
