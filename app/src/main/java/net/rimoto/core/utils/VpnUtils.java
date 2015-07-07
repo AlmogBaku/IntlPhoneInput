@@ -144,11 +144,10 @@ public class VpnUtils {
      * @param context Context
      */
     public static void stopVPN(Context context, SimpleCallback callback) {
-        if(VpnManager.isConnected()) {
-            mStateListener = new RimotoDisconnectStateListener(callback);
-            VpnStatus.addStateListener(mStateListener);
-            stopVPN(context);
-        } else {
+        mStateListener = new RimotoDisconnectStateListener(callback);
+        VpnStatus.addStateListener(mStateListener);
+        stopVPN(context);
+        if(!VpnManager.isConnected()) {
             callback.done();
         }
     }
