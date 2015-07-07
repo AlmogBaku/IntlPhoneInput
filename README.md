@@ -16,7 +16,7 @@ U    1. For the android project: `net.rimoto.android`
 ## Installation
 1. git clone
 1. Initialize the sub modules:
-    1. `git submodules init`
-    1. `git submodules update`
-    1. `cd openvpn-lib && git submodules update`
+    1. `git submodule init`
+    1. `git submodule update`
+    1. `cd openvpn-lib && git submodule update`
 1. follow the [openvpn-lib instructions](openvpn-lib/README.md) to compile the native parts
