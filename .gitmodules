@@ -1,0 +1,3 @@
+[submodule "openvpn-lib"]
+	path = openvpn-lib
+	url = https://bitbucket.org/rimoto/openvpn-android-lib.git
