@@ -101,26 +101,30 @@ public class WizardActivity extends InstabugFragmentActivity {
         }
     }
     protected void connect() {
-        VpnUtils.VpnConnectionSpinner(this, new VpnUtils.RimotoConnectStateCallback() {
+        UI.showSpinner(this, "Connecting to rimoto's cloud..");
+        VpnUtils.startVPN(this, new VpnUtils.RimotoConnectStateCallback() {
             @Override
             public void connected() {
+                UI.hideSpinner();
                 startMainActivity();
             }
             @Override
             public void exiting() {
+                UI.hideSpinner();
                 Toast toast = Toast.makeText(WizardActivity.this, "There was some problem with connecting you :\\", Toast.LENGTH_LONG);
                 toast.show();
                 mConnectBtn.setEnabled(true);
+                VpnUtils.stopVPN(WizardActivity.this);
             }
 
             @Override
             public void shouldntConnect() {
+                UI.hideSpinner();
                 Toast toast = Toast.makeText(WizardActivity.this, "Rimoto will connect to the cloud as soon you'll be abroad on wifi.", Toast.LENGTH_LONG);
                 toast.show();
                 startMainActivity();
             }
         });
-        VpnUtils.startVPN(this);
     }
     private void startMainActivity() {
         Intent intent = new Intent(this, MainActivity_.class);

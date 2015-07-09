@@ -79,6 +79,52 @@ public class VpnUtils {
     }
 
     /**
+     * Rimoto VPN State Callback
+     */
+    public interface RimotoConnectStateCallback {
+        void connected();
+        void exiting();
+        void shouldntConnect();
+    }
+
+    /**
+     * VPN State listener
+     */
+    private static class RimotoConnectStateListener implements VpnStatus.StateListener {
+        private RimotoConnectStateCallback mCallback;
+
+        public RimotoConnectStateListener(RimotoConnectStateCallback callback) {
+            mCallback = callback;
+        }
+
+        @Override
+        public void updateState(String state, String logmessage, int localizedResId, VpnStatus.ConnectionStatus level) {
+            switch (state) {
+                case "CONNECTED":
+                    mCallback.connected();
+                    this.finish();
+                    break;
+                case "USER_VPN_PERMISSION_CANCELLED":
+                    VpnStatus.updateStateString("NOPROCESS","");
+                case "EXITING":
+                    mCallback.exiting();
+                    this.finish();
+                    break;
+
+            }
+        }
+
+        private void finish() {
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(() -> {
+                VpnStatus.removeStateListener(this);
+                mStateListener=null;
+                mCallback=null;
+            }, 400);
+        }
+    }
+
+    /**
      * Start VPN with current profile
      * @param context Context
      */
@@ -91,6 +137,23 @@ public class VpnUtils {
             context.startService(intent);
         } else {
             Toast.makeText(context, "No VPN configuration found.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    /**
+     * Vpn Connection Spinner
+     * @param context Context
+     * @param callback RimotoStateCallback
+     */
+    public static void startVPN(Context context, RimotoConnectStateCallback callback) {
+        VpnProfile profile = ProfileManager.get(context, getCurrentProfileUUID(context));
+        if(RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(context), profile)) {
+            mStateListener = new RimotoConnectStateListener(callback);
+            VpnStatus.addStateListener(mStateListener);
+            startVPN(context);
+        } else {
+            callback.shouldntConnect();
         }
     }
 
@@ -176,70 +239,6 @@ public class VpnUtils {
         } catch (IOException e) {
             Toast.makeText(context, "Error fetching logs.", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
-        }
-    }
-
-    /**
-     * Rimoto VPN State Callback
-     */
-    public interface RimotoConnectStateCallback {
-        void connected();
-        void exiting();
-        void shouldntConnect();
-    }
-
-    /**
-     * VPN State listener
-     */
-    private static class RimotoConnectStateListener implements VpnStatus.StateListener {
-        private RimotoConnectStateCallback mCallback;
-
-        public RimotoConnectStateListener(RimotoConnectStateCallback callback) {
-            mCallback = callback;
-        }
-
-        @Override
-        public void updateState(String state, String logmessage, int localizedResId, VpnStatus.ConnectionStatus level) {
-            switch (state) {
-                case "CONNECTED":
-                    UI.hideSpinner();
-                    mCallback.connected();
-                    this.finish();
-                    break;
-                case "USER_VPN_PERMISSION_CANCELLED":
-                    VpnStatus.updateStateString("NOPROCESS","");
-                case "EXITING":
-                    UI.hideSpinner();
-                    mCallback.exiting();
-                    this.finish();
-                    break;
-
-            }
-        }
-
-        private void finish() {
-            final Handler handler = new Handler(Looper.getMainLooper());
-            handler.postDelayed(() -> {
-                VpnStatus.removeStateListener(this);
-                mStateListener=null;
-                mCallback=null;
-            }, 400);
-        }
-    }
-
-    /**
-     * Vpn Connection Spinner
-     * @param context Context
-     * @param callback RimotoStateCallback
-     */
-    public static void VpnConnectionSpinner(Context context, RimotoConnectStateCallback callback) {
-        VpnProfile profile = ProfileManager.get(context, getCurrentProfileUUID(context));
-        if(RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(context), profile)) {
-            UI.showSpinner(context, "Connecting to rimoto's cloud..");
-            mStateListener = new RimotoConnectStateListener(callback);
-            VpnStatus.addStateListener(mStateListener);
-        } else {
-            callback.shouldntConnect();
         }
     }
 }
