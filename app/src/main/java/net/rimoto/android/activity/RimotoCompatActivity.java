@@ -1,9 +1,6 @@
 package net.rimoto.android.activity;
 
-import android.app.ActionBar;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
 
