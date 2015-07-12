@@ -35,49 +35,46 @@ public class TopUpFragment extends Fragment {
     protected RecyclerView plan1_recycler;
     @ViewById
     protected RecyclerView plan2_recycler;
-    @ViewById
+//    @ViewById
     protected RecyclerView plan3_recycler;
 
     @AfterViews
     protected void afterViews() {
         initPlan1();
         initPlan2();
-        initPlan3();
+//        initPlan3();
+    }
+
+    private void addServiceToPlan(ArrayList<SCEService> plan, String service, String slug) {
+        SCEService srv = new SCEService();
+        srv.setName(service);
+        srv.setSlug(slug);
+        plan.add(srv);
+    }
+    private void addServiceToPlan(ArrayList<SCEService> plan, String service) {
+        addServiceToPlan(plan, service, service);
     }
 
     private void initPlan1() {
-//        SCEService gmail = new SCEService();
-//        gmail.setName("office365");
-//        gmail.setSlug("office365");
-//        plan1.add(gmail);
-
-        SCEService office = new SCEService();
-        office.setName("office365");
-        office.setSlug("office365");
-        plan1.add(office);
+        addServiceToPlan(plan1, "gmail");
+        addServiceToPlan(plan1, "office365");
+        addServiceToPlan(plan1, "waze");
+        addServiceToPlan(plan1, "Google Map", "gmap");
 
         recyclerInit(plan1_recycler, plan1);
     }
 
     private void initPlan2() {
-        SCEService facebook = new SCEService();
-        facebook.setName("Facebook");
-        facebook.setSlug("facebook");
-        plan2.add(facebook);
-
-        SCEService twitter = new SCEService();
-        twitter.setName("twitter");
-        twitter.setSlug("twitter");
-        plan2.add(twitter);
+        addServiceToPlan(plan2, "facebook");
+        addServiceToPlan(plan2, "twitter");
+        addServiceToPlan(plan2, "instagram");
+        addServiceToPlan(plan2, "Google Map", "gmap");
 
         recyclerInit(plan2_recycler, plan2);
     }
 
     private void initPlan3() {
-        SCEService whatsapp = new SCEService();
-        whatsapp.setName("whatsapp");
-        whatsapp.setSlug("whatsapp");
-        plan3.add(whatsapp);
+        addServiceToPlan(plan3, "whatsapp");
 
         recyclerInit(plan3_recycler, plan3);
     }
@@ -99,10 +96,10 @@ public class TopUpFragment extends Fragment {
     protected void plan2_btn() {
         purchase(2);
     }
-    @Click
-    protected void plan3_btn() {
-        purchase(3);
-    }
+//    @Click
+//    protected void plan3_btn() {
+//        purchase(3);
+//    }
 
     private void purchase(int planId) {
         TelephonyManager tel = (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
