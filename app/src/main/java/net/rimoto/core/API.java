@@ -14,7 +14,6 @@ import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
-import retrofit.http.Body;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
@@ -61,6 +60,7 @@ public class API {
             RestAdapter restAdapter = new RestAdapter.Builder()
                     .setEndpoint(RimotoCore.getApiEndpoint())
                     .setRequestInterceptor(sRequestInterceptor)
+                    .setLogLevel(RestAdapter.LogLevel.FULL)
                     .setConverter(new GsonConverter(gson))
                     .build();
 
