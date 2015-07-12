@@ -19,10 +19,16 @@ public final class LeakSlackUploadService extends DisplayLeakService {
 
         String MEMORY_LEAK_CHANNEL = "C06MN9EAC";
 
-        @Multipart @POST("/api/files.upload") UploadFileResponse uploadFile(@Part("token") String token,
-                                                                            @Part("file") TypedFile file, @Part("filetype") String filetype,
-                                                                            @Part("filename") String filename, @Part("title") String title,
-                                                                            @Part("initial_comment") String initialComment, @Part("channels") String channels);
+        @Multipart
+        @POST("/api/files.upload")
+        UploadFileResponse uploadFile(@Part("token") String token,
+                                      @Part("file") TypedFile file,
+                                      @Part("filetype") String filetype,
+                                      @Part("filename") String filename,
+                                      @Part("title") String title,
+                                      @Part("initial_comment") String initialComment,
+                                      @Part("channels") String channels
+        );
     }
 
     public static class UploadFileResponse {
@@ -46,11 +52,13 @@ public final class LeakSlackUploadService extends DisplayLeakService {
 
     private SlackApi slackApi;
 
-    @Override public void onCreate() {
+    @Override
+    public void onCreate() {
         super.onCreate();
-        slackApi = new RestAdapter.Builder() //
-                .setEndpoint("https://slack.com") //
-                .build() //
+        slackApi = new RestAdapter.Builder()
+                .setEndpoint("https://slack.com")
+                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .build()
                 .create(SlackApi.class);
     }
 
