@@ -1,6 +1,8 @@
 package net.rimoto.android.fragment;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +14,8 @@ import net.rimoto.android.adapter.SCEServicesRecycleAdapter;
 import net.rimoto.core.API;
 import net.rimoto.core.models.Policy;
 import net.rimoto.core.models.SCEService;
+import net.rimoto.core.utils.UI;
+import net.rimoto.core.utils.VpnUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -114,7 +118,7 @@ public class TopUpFragment extends Fragment {
         API.getInstance().addAppPolicy(home_operator, visited_operator, planId, new Callback<Policy>() {
             @Override
             public void success(Policy policy, Response response) {
-                getActivity().getSupportFragmentManager().popBackStack();
+                purchaseSucceed(planId);
             }
 
             @Override
@@ -122,5 +126,43 @@ public class TopUpFragment extends Fragment {
                 error.printStackTrace();
             }
         });
+    }
+
+    private void purchaseSucceed(int planId) {
+        UI.showSpinner(getActivity(), "Activating your new plan..");
+        VpnUtils.stopVPN(getActivity(), () -> {
+            final Handler handler = new Handler(Looper.getMainLooper());
+            handler.postDelayed(this::connectToVpn, 400);
+        });
+    }
+
+    private void connectToVpn() {
+        VpnUtils.startVPN(getActivity(), new VpnUtils.RimotoConnectStateCallback() {
+            @Override
+            public void connected() {
+                UI.hideSpinner();
+                gotoMainFragment();
+            }
+
+            @Override
+            public void exiting() {
+                UI.hideSpinner();
+                Toast toast = Toast.makeText(getActivity(), "There was some problem with connecting you :\\", Toast.LENGTH_LONG);
+                toast.show();
+                VpnUtils.stopVPN(getActivity());
+            }
+
+            @Override
+            public void shouldntConnect() {
+                UI.hideSpinner();
+                Toast toast = Toast.makeText(getActivity(), "Rimoto will connect to the cloud as soon you'll be abroad on wifi.", Toast.LENGTH_LONG);
+                toast.show();
+                gotoMainFragment();
+            }
+        });
+    }
+
+    private void gotoMainFragment() {
+        getActivity().getSupportFragmentManager().popBackStack();
     }
 }

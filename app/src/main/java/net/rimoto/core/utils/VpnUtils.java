@@ -198,7 +198,7 @@ public class VpnUtils {
                 VpnStatus.removeStateListener(this);
                 mStateListener=null;
                 mCallback=null;
-            }, 400);
+            }, 200);
         }
     }
 
