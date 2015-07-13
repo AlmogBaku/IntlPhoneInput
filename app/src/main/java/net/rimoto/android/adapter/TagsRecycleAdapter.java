@@ -38,7 +38,12 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
                 for(ServiceTag tag:service.getTags()) {
                     int contains = tags.indexOf(tag);
                     if(contains==-1) {
-                        tags.add(tag);
+                        if(tag.getSlug().equals("paid")) {
+                            tag.setName("**"+tag.getName()+"**");
+                            tags.add(0, tag);
+                        } else {
+                            tags.add(tag);
+                        }
                     } else {
                         tag = tags.get(contains);
                     }
