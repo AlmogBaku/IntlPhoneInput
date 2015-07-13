@@ -151,10 +151,10 @@ public class VpnUtils {
         if(RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(context), profile)) {
             mStateListener = new RimotoConnectStateListener(callback);
             VpnStatus.addStateListener(mStateListener);
-            startVPN(context);
         } else {
             callback.shouldntConnect();
         }
+        startVPN(context);
     }
 
     /**
