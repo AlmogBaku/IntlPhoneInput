@@ -27,7 +27,8 @@
     <string name="action_reportbug">Report a bug</string>
     <string name="action_logout">Logout</string>
     <string name="action_disconnect">Disconnect</string>
-    <string name="main_activity_title">rimoto is on!</string>
+    <string name="main_activity_title_on">rimoto is on!</string>
+    <string name="main_activity_title_off">rimoto is suspended</string>
     <string name="topUpBtn">get full access</string>
     <string name="main_boxa_text">You have free access to:</string>
     <string name="wizard_roaming_settings_text">Please turn on \"data roaming\", to enjoy rimoto\'s free access.</string>
