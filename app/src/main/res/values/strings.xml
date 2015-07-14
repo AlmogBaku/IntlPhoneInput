@@ -30,7 +30,7 @@
     <string name="main_activity_title_on">rimoto is on!</string>
     <string name="main_activity_title_off">rimoto is suspended</string>
     <string name="topUpBtn">get full access</string>
-    <string name="main_boxa_text">You have free access to:</string>
+    <string name="main_boxa_text">You have access to:</string>
     <string name="wizard_roaming_settings_text">Please turn on \"data roaming\", to enjoy rimoto\'s free access.</string>
     <string name="action_debug">Debug info</string>
 </resources>
