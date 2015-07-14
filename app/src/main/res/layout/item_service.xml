@@ -21,6 +21,7 @@
         android:textAllCaps="true"
         android:textColor="@color/orange"
         android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:textSize="@dimen/item_service_textSize"
         android:id="@+id/serviceName" />
 </LinearLayout>
