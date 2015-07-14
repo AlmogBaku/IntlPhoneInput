@@ -187,7 +187,6 @@ public class VpnUtils {
         @Override
         public void updateState(String state, String logmessage, int localizedResId, VpnStatus.ConnectionStatus level) {
             if(state.equals("NOPROCESS")) {
-                mCallback.done();
                 this.finish();
             }
         }
@@ -195,10 +194,11 @@ public class VpnUtils {
         private void finish() {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(() -> {
+                mCallback.done();
                 VpnStatus.removeStateListener(this);
                 mStateListener=null;
                 mCallback=null;
-            }, 200);
+            }, 400);
         }
     }
 

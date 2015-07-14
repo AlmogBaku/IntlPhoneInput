@@ -130,10 +130,7 @@ public class TopUpFragment extends Fragment {
 
     private void purchaseSucceed(int planId) {
         UI.showSpinner(getActivity(), "Activating your new plan..");
-        VpnUtils.stopVPN(getActivity(), () -> {
-            final Handler handler = new Handler(Looper.getMainLooper());
-            handler.postDelayed(this::connectToVpn, 400);
-        });
+        VpnUtils.stopVPN(getActivity(), this::connectToVpn);
     }
 
     private void connectToVpn() {
