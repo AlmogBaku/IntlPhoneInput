@@ -11,6 +11,7 @@ import net.rimoto.core.models.Policy;
 import net.rimoto.core.models.Subscriber;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import retrofit.Callback;
@@ -85,6 +86,13 @@ public class API {
     }
     public static void clearPool() {
         okHttpClient.getConnectionPool().evictAll();
+    }
+    public static void clearCache() {
+        try {
+            okHttpClient.getCache().evictAll();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public static String rimotoOperatorFormat(String networkOperator) {
         if(networkOperator==null || networkOperator.isEmpty()) return "N/A";

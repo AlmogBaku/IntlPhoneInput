@@ -103,6 +103,7 @@ public class VpnUtils {
                 case "CONNECTED":
                     mCallback.connected();
                     API.clearPool();
+                    API.clearCache();
                     this.finish();
                     break;
                 case "USER_VPN_PERMISSION_CANCELLED":
@@ -111,7 +112,6 @@ public class VpnUtils {
                     mCallback.exiting();
                     this.finish();
                     break;
-
             }
         }
 
