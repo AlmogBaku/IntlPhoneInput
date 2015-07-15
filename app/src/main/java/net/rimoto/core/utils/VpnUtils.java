@@ -102,6 +102,7 @@ public class VpnUtils {
             switch (state) {
                 case "CONNECTED":
                     mCallback.connected();
+                    API.clearPool();
                     this.finish();
                     break;
                 case "USER_VPN_PERMISSION_CANCELLED":
@@ -192,6 +193,7 @@ public class VpnUtils {
         }
 
         private void finish() {
+            API.clearPool();
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(() -> {
                 mCallback.done();

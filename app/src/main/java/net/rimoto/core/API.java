@@ -2,16 +2,21 @@ package net.rimoto.core;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.squareup.okhttp.Cache;
+import com.squareup.okhttp.ConnectionPool;
+import com.squareup.okhttp.OkHttpClient;
 
 import net.rimoto.core.models.AccessToken;
 import net.rimoto.core.models.Policy;
 import net.rimoto.core.models.Subscriber;
 
+import java.io.File;
 import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
+import retrofit.client.OkClient;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
 import retrofit.http.Field;
@@ -50,6 +55,15 @@ public class API {
         }
     };
     private static RimotoAPI sInstance;
+    private static OkHttpClient okHttpClient = new OkHttpClient();
+
+    static {
+        okHttpClient.setConnectionPool(ConnectionPool.getDefault());
+        File httpCacheDirectory = new File(
+                RimotoCore.getsApplicationContext().getCacheDir(),
+                "httpCache");
+        okHttpClient.setCache(new Cache(httpCacheDirectory, 10 * 1024 * 1024));
+    }
 
     public static RimotoAPI getInstance() {
         if(sInstance == null) {
@@ -61,12 +75,16 @@ public class API {
                     .setEndpoint(RimotoCore.getApiEndpoint())
                     .setRequestInterceptor(sRequestInterceptor)
                     .setLogLevel(RestAdapter.LogLevel.FULL)
+                    .setClient(new OkClient(okHttpClient))
                     .setConverter(new GsonConverter(gson))
                     .build();
 
             sInstance = restAdapter.create(RimotoAPI.class);
         }
         return sInstance;
+    }
+    public static void clearPool() {
+        okHttpClient.getConnectionPool().evictAll();
     }
     public static String rimotoOperatorFormat(String networkOperator) {
         if(networkOperator==null || networkOperator.isEmpty()) return "N/A";
