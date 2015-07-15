@@ -30,6 +30,9 @@ public class SCEService {
     private String webApp;
 
     @Expose
+    private boolean local;
+
+    @Expose
     private List<ServiceTag> tags = new ArrayList<>();
 
     /**
@@ -152,6 +155,14 @@ public class SCEService {
     @SuppressWarnings("unused")
     public void setWebApp(String webApp) {
         this.webApp = webApp;
+    }
+
+    public boolean isLocal() {
+        return local;
+    }
+
+    public void setLocal(boolean local) {
+        this.local = local;
     }
 
     /**

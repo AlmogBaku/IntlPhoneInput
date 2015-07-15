@@ -18,11 +18,12 @@
     <dimen name="topUpBtn_textSize">27sp</dimen>
     <dimen name="topUpBtn_height">53sp</dimen>
     <dimen name="servicesRecycler_height">87dp</dimen>
-    <dimen name="servicesRecycler_width">220dp</dimen>
+    <dimen name="servicesRecycler_width">255dp</dimen>
     <dimen name="item_servicetag_textSize">12sp</dimen>
     <dimen name="item_service_textSize">10sp</dimen>
-    <dimen name="item_service_marginSides">10dp</dimen>
+    <dimen name="item_service_marginSides">7dp</dimen>
     <dimen name="item_service_icon_padding">10.5dp</dimen>
     <dimen name="item_service_width">65dp</dimen>
     <dimen name="login_titles_fontSize">13sp</dimen>
+    <dimen name="local_tag_fontSize">6sp</dimen>
 </resources>

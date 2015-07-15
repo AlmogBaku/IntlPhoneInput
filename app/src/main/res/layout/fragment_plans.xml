@@ -35,8 +35,6 @@
                     tools:ignore="HardcodedText,UnusedAttribute" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:layout_marginLeft="7sp"
-                    android:layout_marginStart="7sp"
                     android:layout_width="@dimen/servicesRecycler_width"
                     android:layout_height="@dimen/servicesRecycler_height"
                     android:id="@+id/plan1_recycler" />
@@ -44,8 +42,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7sp"
-                    android:layout_marginStart="7sp"
                     android:text="Valid for 3 days"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
@@ -118,8 +114,6 @@
                     tools:ignore="HardcodedText,UnusedAttribute" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:layout_marginLeft="7sp"
-                    android:layout_marginStart="7sp"
                     android:layout_width="@dimen/servicesRecycler_width"
                     android:layout_height="@dimen/servicesRecycler_height"
                     android:id="@+id/plan2_recycler" />
@@ -127,8 +121,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="7sp"
-                    android:layout_marginStart="7sp"
                     android:text="Valid for 3 days"
                     tools:ignore="HardcodedText" />
             </LinearLayout>
@@ -201,8 +193,6 @@
                     <!--tools:ignore="HardcodedText,UnusedAttribute" />-->
 
                 <!--<android.support.v7.widget.RecyclerView-->
-                        <!--android:layout_marginLeft="7sp"-->
-                        <!--android:layout_marginStart="7sp"-->
                         <!--android:layout_width="@dimen/servicesRecycler_width"-->
                         <!--android:layout_height="@dimen/servicesRecycler_height"-->
                     <!--android:id="@+id/plan3_recycler" />-->
@@ -210,8 +200,6 @@
                 <!--<TextView-->
                     <!--android:layout_width="wrap_content"-->
                     <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="7sp"-->
-                    <!--android:layout_marginStart="7sp"-->
                     <!--android:text="Valid for 1 days"-->
                     <!--tools:ignore="HardcodedText" />-->
             <!--</LinearLayout>-->

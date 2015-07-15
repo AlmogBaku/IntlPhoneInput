@@ -44,12 +44,14 @@ public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesR
         public ImageView serviceIcon;
         private SCEService service;
         private static String packageName;
+        private TextView serviceLocalTag;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             serviceName = (TextView) itemView.findViewById(R.id.serviceName);
             serviceIcon = (ImageView) itemView.findViewById(R.id.serviceIcon);
+            serviceLocalTag = (TextView) itemView.findViewById(R.id.local_tag);
 
             if(packageName==null) {
                 packageName = itemView.getContext().getPackageName();
@@ -63,6 +65,11 @@ public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesR
             int id = itemView.getContext().getResources().getIdentifier("service_"+service.getSlug(), "drawable", packageName);
             if(id!=0) {
                 serviceIcon.setImageResource(id);
+            }
+            if(service.isLocal()) {
+                serviceLocalTag.setVisibility(View.VISIBLE);
+            } else {
+                serviceLocalTag.setVisibility(View.GONE);
             }
         }
         private View.OnClickListener onClick = (v) -> {

@@ -33,4 +33,5 @@
     <string name="main_boxa_text">You have access to:</string>
     <string name="wizard_roaming_settings_text">Please turn on \"data roaming\", to enjoy rimoto\'s free access.</string>
     <string name="action_debug">Debug info</string>
+    <string name="local_tag_text">local</string>
 </resources>
