@@ -99,17 +99,18 @@ public class VpnUtils {
 
         @Override
         public void updateState(String state, String logmessage, int localizedResId, VpnStatus.ConnectionStatus level) {
+            final Handler handler = new Handler(Looper.getMainLooper());
             switch (state) {
                 case "CONNECTED":
-                    mCallback.connected();
                     API.clearPool();
                     API.clearCache();
+                    handler.post(mCallback::connected);
                     this.finish();
                     break;
                 case "USER_VPN_PERMISSION_CANCELLED":
-                    VpnStatus.updateStateString("NOPROCESS","");
+                    VpnStatus.updateStateString("NOPROCESS", "");
                 case "EXITING":
-                    mCallback.exiting();
+                    handler.post(mCallback::exiting);
                     this.finish();
                     break;
             }
