@@ -105,7 +105,11 @@ public class TopUpFragment extends Fragment {
 //        purchase(3);
 //    }
 
+    private boolean purchasing=false;
     private void purchase(int planId) {
+        if(purchasing) return;
+        purchasing = true;
+
         TelephonyManager tel = (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
         String home_operator = API.rimotoOperatorFormat(tel.getSimOperator());
         String visited_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
@@ -130,6 +134,7 @@ public class TopUpFragment extends Fragment {
 
     private void purchaseSucceed(int planId) {
         UI.showSpinner(getActivity(), "Activating your new plan..");
+        UI.setNonCanaclableSpinner();
         VpnUtils.stopVPN(getActivity(), this::connectToVpn);
     }
 
@@ -160,6 +165,9 @@ public class TopUpFragment extends Fragment {
     }
 
     private void gotoMainFragment() {
-        getActivity().getSupportFragmentManager().popBackStack();
+        purchasing=false;
+        if(getActivity()!=null) {
+            getActivity().getSupportFragmentManager().popBackStack();
+        }
     }
 }

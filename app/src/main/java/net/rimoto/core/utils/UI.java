@@ -16,6 +16,9 @@ public class UI {
         sSpinner.setCanceledOnTouchOutside(false);
         sSpinner.show();
     }
+    public static void setNonCanaclableSpinner() {
+        sSpinner.setCancelable(false);
+    }
     public static void hideSpinner() {
         if(sSpinner == null) return;
         sSpinner.dismiss();
