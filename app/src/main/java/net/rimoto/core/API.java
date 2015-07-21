@@ -75,7 +75,7 @@ public class API {
             RestAdapter restAdapter = new RestAdapter.Builder()
                     .setEndpoint(RimotoCore.getApiEndpoint())
                     .setRequestInterceptor(sRequestInterceptor)
-                    .setLogLevel(RestAdapter.LogLevel.FULL)
+                    .setLogLevel(RestAdapter.LogLevel.FULL) //TODO remove on prod
                     .setClient(new OkClient(okHttpClient))
                     .setConverter(new GsonConverter(gson))
                     .build();
