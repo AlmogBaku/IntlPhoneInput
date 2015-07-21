@@ -4,118 +4,123 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <net.rimoto.android.views.PacificoTextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/wizard_roaming_title_textSize"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:text="@string/wizard_title_roaming"
-        android:textColor="@color/orange"
+        android:layout_height="80dp"
+        android:background="@color/pink"
         android:id="@+id/main_title"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="@dimen/wizard_title_marginBottom"
+        android:layout_centerHorizontal="true">
+        <net.rimoto.android.views.PacificoTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/wizard_roaming_title_textSize"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="@string/wizard_title_roaming"
+            android:textColor="@color/simplebg" />
+    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="295dp"
+    <TextView
+        android:layout_width="@dimen/wizard_container_width"
         android:layout_height="wrap_content"
-        android:background="@drawable/pink_rounded_bg"
-        android:orientation="vertical"
+        android:textColor="@color/pink"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:fontFamily="@string/wizard_boxa_font"
+        android:textStyle="bold"
+        android:textSize="@dimen/wizard_textSize"
+        android:id="@+id/wizard_roaming_settings_text"
+        android:text="@string/wizard_roaming_settings_text"
+        tools:ignore="UnusedAttribute"
+        android:layout_below="@id/main_title" />
+
+    <RelativeLayout
+        android:layout_below="@id/wizard_roaming_settings_text"
+        android:layout_width="@dimen/wizard_container_width"
+        android:layout_height="wrap_content"
+        android:background="@drawable/orange_rounded_bg"
+        android:orientation="horizontal"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:layout_below="@+id/main_title"
         android:id="@+id/roaming_setting"
+        android:layout_marginTop="18dp"
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:gravity="center_horizontal"
             android:fontFamily="@string/wizard_boxa_font"
-            android:textSize="@dimen/wizard_boxa_title_textSize"
-            android:text="@string/wizard_roaming_settings_text"
-            tools:ignore="UnusedAttribute" />
+            android:textStyle="bold"
+            android:textSize="@dimen/wizard_data_roaming_textSize"
+            android:text="@string/data_roaming"
+            android:textAllCaps="true"
+            tools:ignore="UnusedAttribute"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-        <ImageView
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/switch_illustrate"
-            android:layout_gravity="center_horizontal" />
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/white_rounded_bg"
+                android:textColor="@color/orange"
+                android:gravity="center_horizontal"
+                android:fontFamily="@string/wizard_boxa_font"
+                android:textStyle="bold"
+                android:textSize="@dimen/wizard_data_roaming_textSize"
+                android:text="@string/on"
+                android:textAllCaps="true"
+                tools:ignore="UnusedAttribute"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+    </RelativeLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="295dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/orange_rounded_bg"
-        android:layout_marginTop="25dp"
-        android:orientation="vertical"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
+    <!-- Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@color/orange"
         android:layout_below="@id/roaming_setting"
-        android:layout_centerHorizontal="true">
+        android:id="@+id/line1"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/acme"
+        android:id="@+id/operator_logo"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@id/line1"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:gravity="center_horizontal"
-                android:fontFamily="@string/wizard_boxa_font"
-                android:textSize="@dimen/wizard_boxa_title_textSize"
-                android:text="@string/wizard_roaming_boxa1_title"
-                tools:ignore="UnusedAttribute" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:gravity="center_horizontal"
-                android:fontFamily="@string/wizard_boxa_font"
-                android:textSize="@dimen/wizard_boxa_textSize"
-                android:text="@string/wizard_roaming_boxa1_text"
-                tools:ignore="UnusedAttribute" />
-        </LinearLayout>
+    <TextView
+        android:layout_width="@dimen/wizard_container_width"
+        android:layout_height="wrap_content"
+        android:textColor="@color/orange"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:fontFamily="@string/wizard_boxa_font"
+        android:textStyle="bold"
+        android:textSize="@dimen/wizard_textSize"
+        android:id="@+id/wizard_roaming_partner_text"
+        android:text="@string/wizard_roaming_partner_text"
+        tools:ignore="UnusedAttribute"
+        android:layout_below="@id/operator_logo" />
 
-        <!-- Line -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:background="@color/white" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:gravity="center_horizontal"
-                android:fontFamily="@string/wizard_boxa_font"
-                android:textSize="@dimen/wizard_boxa_title_textSize"
-                android:text="@string/wizard_roaming_boxa2_title"
-                tools:ignore="UnusedAttribute" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:gravity="center_horizontal"
-                android:fontFamily="@string/wizard_boxa_font"
-                android:textSize="@dimen/wizard_boxa_textSize"
-                android:text="@string/wizard_roaming_boxa2_text"
-                tools:ignore="UnusedAttribute" />
-        </LinearLayout>
-
-    </LinearLayout>
+    <!-- Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@color/orange"
+        android:layout_below="@id/wizard_roaming_partner_text"
+        android:id="@+id/line2"/>
 
 </RelativeLayout>

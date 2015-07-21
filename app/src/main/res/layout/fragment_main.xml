@@ -22,7 +22,7 @@
             android:gravity="center_horizontal"
             android:fontFamily="@string/wizard_boxa_font"
             android:textAllCaps="true"
-            android:textSize="@dimen/wizard_boxa_textSize"
+            android:textSize="@dimen/wizard_textSize"
             android:text="@string/main_boxa_text"
             tools:ignore="UnusedAttribute" />
 

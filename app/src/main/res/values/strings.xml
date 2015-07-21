@@ -16,14 +16,9 @@
     <string name="login_main_title">traveling abroad?</string>
     <string name="connect">connect</string>
 
-    <string name="wizard_title_roaming">use for free!</string>
-    <string name="wizard_title_vpn">Complete &amp; activate</string>
+    <string name="wizard_title_roaming">check-in</string>
+    <string name="wizard_title_vpn">get to the clouds</string>
     <string name="wizard_boxa_font">sans-serif-medium</string>
-    <string name="wizard_roaming_boxa1_title">No roaming plan? No worries!</string>
-    <string name="wizard_roaming_boxa1_text">Using the services BELOW will not result in roaming fees.</string>
-    <string name="wizard_roaming_boxa2_title">Already have a roaming plan?</string>
-    <string name="wizard_roaming_boxa2_text">Use rimoto and make your data last longer.</string>
-    <string name="wizard_vpn_boxa_text">To start enjoying the free services, please establish the connection to rimoto\'s cloud</string>
     <string name="action_reportbug">Report a bug</string>
     <string name="action_logout">Logout</string>
     <string name="action_disconnect">Disconnect</string>
@@ -31,7 +26,12 @@
     <string name="main_activity_title_off">rimoto is suspended</string>
     <string name="topUpBtn">get full access</string>
     <string name="main_boxa_text">You have access to:</string>
-    <string name="wizard_roaming_settings_text">Please turn on \"data roaming\", to enjoy rimoto\'s free access.</string>
+    <string name="wizard_roaming_settings_text">Make sure your data-roaming is <b>ON</b>, to get your FREE access.</string>
     <string name="action_debug">Debug info</string>
     <string name="local_tag_text">local</string>
+    <string name="data_roaming">data roaming</string>
+    <string name="on">on</string>
+    <string name="wizard_roaming_partner_text">W\'ve partnered with your operator to make sure you won\'y be charged</string>
+    <string name="wizard_vpn_magic_text">Our cloud is where we make it FREE.</string>
+    <string name="wizard_vpn_connect_text">Connect, and allow us to set up a secure connection with you.</string>
 </resources>

@@ -55,7 +55,6 @@
             android:textColor="@color/orange"
             android:id="@+id/login_main_title"
             android:layout_marginBottom="-22sp"
-            android:layout_marginTop="-25sp"
             android:layout_alignParentTop="true" />
     </RelativeLayout>
 

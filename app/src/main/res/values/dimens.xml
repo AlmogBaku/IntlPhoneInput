@@ -5,15 +5,15 @@
     <dimen name="login_main_title_fontSize">60sp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="login_btn_width">250dp</dimen>
-    <dimen name="login_btn_height">32dp</dimen>
-    <dimen name="login_btn_textSize">18sp</dimen>
+    <dimen name="login_btn_width">260dp</dimen>
+    <dimen name="login_btn_height">33dp</dimen>
+    <dimen name="login_btn_textSize">21sp</dimen>
     <dimen name="tos_btn_textSize">11sp</dimen>
     <dimen name="wizard_boxa_title_textSize">20sp</dimen>
-    <dimen name="wizard_boxa_textSize">15sp</dimen>
+    <dimen name="wizard_textSize">17sp</dimen>
     <dimen name="wizard_roaming_title_textSize">80sp</dimen>
-    <dimen name="wizard_vpn_title_textSize">55sp</dimen>
-    <dimen name="wizard_vpn_title_marginTop">25dp</dimen>
+    <dimen name="wizard_vpn_title_textSize">63sp</dimen>
+    <dimen name="wizard_title_marginBottom">25dp</dimen>
 
     <dimen name="topUpBtn_textSize">27sp</dimen>
     <dimen name="topUpBtn_height">53sp</dimen>
@@ -26,4 +26,6 @@
     <dimen name="item_service_width">65dp</dimen>
     <dimen name="login_titles_fontSize">13sp</dimen>
     <dimen name="local_tag_fontSize">6sp</dimen>
+    <dimen name="wizard_container_width">280dp</dimen>
+    <dimen name="wizard_data_roaming_textSize">20sp</dimen>
 </resources>

@@ -37,7 +37,7 @@
             android:layout_height="@dimen/login_btn_height"
             android:text="@string/connect"
             android:textAllCaps="true"
-            android:background="@drawable/orange_rounded_bg"
+            android:background="@drawable/pink_rounded_bg"
             android:textColor="@color/white"
             android:textSize="@dimen/login_btn_textSize"
             android:fontFamily="sans-serif-medium"
