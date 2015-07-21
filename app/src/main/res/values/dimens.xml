@@ -11,8 +11,7 @@
     <dimen name="tos_btn_textSize">11sp</dimen>
     <dimen name="wizard_boxa_title_textSize">20sp</dimen>
     <dimen name="wizard_textSize">17sp</dimen>
-    <dimen name="wizard_roaming_title_textSize">80sp</dimen>
-    <dimen name="wizard_vpn_title_textSize">63sp</dimen>
+    <dimen name="wizard_title_textSize">80sp</dimen>
     <dimen name="wizard_title_marginBottom">25dp</dimen>
 
     <dimen name="topUpBtn_textSize">27sp</dimen>

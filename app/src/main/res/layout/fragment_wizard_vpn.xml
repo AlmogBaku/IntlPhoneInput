@@ -16,7 +16,7 @@
         <net.rimoto.android.views.PacificoTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/wizard_vpn_title_textSize"
+            android:textSize="@dimen/wizard_title_textSize"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             android:text="@string/wizard_title_vpn"

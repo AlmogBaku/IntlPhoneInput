@@ -17,7 +17,7 @@
     <string name="connect">connect</string>
 
     <string name="wizard_title_roaming">check-in</string>
-    <string name="wizard_title_vpn">get to the clouds</string>
+    <string name="wizard_title_vpn">to the clouds</string>
     <string name="wizard_boxa_font">sans-serif-medium</string>
     <string name="action_reportbug">Report a bug</string>
     <string name="action_logout">Logout</string>
@@ -31,7 +31,7 @@
     <string name="local_tag_text">local</string>
     <string name="data_roaming">data roaming</string>
     <string name="on">on</string>
-    <string name="wizard_roaming_partner_text">W\'ve partnered with your operator to make sure you won\'y be charged</string>
+    <string name="wizard_roaming_partner_text">We\'ve partnered with your operator to make sure you won\'t be charged</string>
     <string name="wizard_vpn_magic_text">Our cloud is where we make it FREE.</string>
     <string name="wizard_vpn_connect_text">Connect, and allow us to set up a secure connection with you.</string>
 </resources>
