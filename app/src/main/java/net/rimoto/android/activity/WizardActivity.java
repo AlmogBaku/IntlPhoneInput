@@ -61,7 +61,7 @@ public class WizardActivity extends InstabugFragmentActivity {
         String visited_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
 
         if(home_operator.equals("N/A") || visited_operator.equals("N/A")) {
-            Toast toast = Toast.makeText(WizardActivity.this, "You need a sim card in order to use rimoto", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(WizardActivity.this, "You need a sim card in order to use Rimoto", Toast.LENGTH_LONG);
             toast.show();
         }
 
@@ -101,7 +101,7 @@ public class WizardActivity extends InstabugFragmentActivity {
         }
     }
     protected void connect() {
-        UI.showSpinner(this, "Connecting to rimoto's cloud..");
+        UI.showSpinner(this, "Connecting to Rimoto's cloud..");
         VpnUtils.startVPN(this, new VpnUtils.RimotoConnectStateCallback() {
             @Override
             public void connected() {
