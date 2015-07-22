@@ -142,6 +142,7 @@ public class TopUpFragment extends Fragment {
             UI.setNonCanaclableSpinner();
             VpnUtils.stopVPN(getActivity(), this::connectToVpn);
         } else {
+            API.clearCache();
             gotoMainFragment();
         }
     }
