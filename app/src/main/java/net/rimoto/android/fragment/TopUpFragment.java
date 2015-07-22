@@ -16,6 +16,7 @@ import net.rimoto.core.models.Policy;
 import net.rimoto.core.models.SCEService;
 import net.rimoto.core.utils.UI;
 import net.rimoto.core.utils.VpnUtils;
+import net.rimoto.vpnlib.VpnManager;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -115,27 +116,34 @@ public class TopUpFragment extends Fragment {
         String visited_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
 
         if(home_operator.equals("N/A") || visited_operator.equals("N/A")) {
-            Toast toast = Toast.makeText(getActivity(), "You need a sim card in order to use rimoto", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getActivity(), "You need a sim card in order to use Rimoto", Toast.LENGTH_LONG);
             toast.show();
         }
 
+        UI.showSpinner(getActivity(), "Purchasing your new plan..");
+        UI.setNonCanaclableSpinner();
         API.getInstance().addAppPolicy(home_operator, visited_operator, planId, new Callback<Policy>() {
             @Override
             public void success(Policy policy, Response response) {
+                UI.hideSpinner();
                 purchaseSucceed(planId);
             }
-
             @Override
             public void failure(RetrofitError error) {
+                UI.hideSpinner();
                 error.printStackTrace();
             }
         });
     }
 
     private void purchaseSucceed(int planId) {
-        UI.showSpinner(getActivity(), "Activating your new plan..");
-        UI.setNonCanaclableSpinner();
-        VpnUtils.stopVPN(getActivity(), this::connectToVpn);
+        if(VpnManager.isConnected()) {
+            UI.showSpinner(getActivity(), "Activating your new plan..");
+            UI.setNonCanaclableSpinner();
+            VpnUtils.stopVPN(getActivity(), this::connectToVpn);
+        } else {
+            gotoMainFragment();
+        }
     }
 
     private void connectToVpn() {
