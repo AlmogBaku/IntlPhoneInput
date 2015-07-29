@@ -1,6 +1,5 @@
 package net.rimoto.android.activity;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -49,7 +48,6 @@ public class RimotoCompatActivity extends InstabugAppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Resources resources= getResources();
 
         VpnProfile profile = ProfileManager.get(this, VpnUtils.getCurrentProfileUUID(this));
         if(RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(this), profile)) {
