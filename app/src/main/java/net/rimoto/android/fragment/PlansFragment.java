@@ -15,14 +15,15 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.Date;
 import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-@EFragment(R.layout.fragment_main)
-public class MainFragment extends Fragment {
+@EFragment(R.layout.fragment_plans)
+public class PlansFragment extends Fragment {
     @ViewById
     protected RecyclerView tagsRecycler;
 
@@ -34,17 +35,15 @@ public class MainFragment extends Fragment {
         tagsRecycler.setLayoutManager(linearLayoutManager);
     }
 
-    private Boolean havePremiumPlan = false;
     private Callback<List<Policy>> policiesCB = new Callback<List<Policy>>() {
         public void success(List<Policy> policies, Response response) {
             if(tagsRecycler!=null) {
-                TagsRecycleAdapter adapter = new TagsRecycleAdapter(policies, true);
+                TagsRecycleAdapter adapter = new TagsRecycleAdapter(policies, false);
                 tagsRecycler.setAdapter(adapter);
             }
             for(Policy policy:policies) {
                 if(!policy.getName().equals(TagsRecycleAdapter.FREE_POLICY_NAME)) {
-                    setPermiumPlan();
-                    break;
+                    setPermiumPlan(policy);
                 }
             }
         }
@@ -54,30 +53,14 @@ public class MainFragment extends Fragment {
         }
     };
 
-    @ViewById(R.id.actionBtn)
-    protected Button actionButton;
+    public void setPermiumPlan(Policy policy) {
+        if(policy.getStartTime()==null) return;
 
-    private void setPermiumPlan() {
-        havePremiumPlan = true;
-        if(actionButton!=null) {
-            actionButton.setText(R.string.actionBtn_seePremium);
-        }
-    }
-
-
-    @Click(R.id.actionBtn)
-    protected void actionBtn() {
-        if(!havePremiumPlan) {
-            TopUpFragment topUpFragment = new TopUpFragment_();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, topUpFragment).addToBackStack(null)
-                    .commit();
-        } else {
-            PlansFragment plansFragment = new PlansFragment_();
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, plansFragment).addToBackStack(null)
-                    .commit();
-        }
+        long now = new Date().getTime();
+        long endTime = policy.getEndTime().getTime();
+        long diffTime = endTime-now;
+        long diffDays = diffTime / (1000 * 60 * 60 * 24);
+        float precentage = (float) (100*diffTime)/(policy.getExpiresIn()*1000*60);
     }
 
     @Override

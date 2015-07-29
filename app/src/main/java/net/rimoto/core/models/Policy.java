@@ -75,7 +75,7 @@ public class Policy {
 
     /**
      *
-     * @return The expiresIn
+     * @return The expiresIn (minutes)
      */
     @SuppressWarnings("unused")
     public int getExpiresIn() {
@@ -115,7 +115,7 @@ public class Policy {
      * @return The endTime
      */
     @SuppressWarnings("unused")
-    public Date endTime() {
+    public Date getEndTime() {
         return endTime;
     }
 

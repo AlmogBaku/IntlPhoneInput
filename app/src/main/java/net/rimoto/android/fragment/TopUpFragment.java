@@ -1,8 +1,6 @@
 package net.rimoto.android.fragment;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,7 +27,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-@EFragment(R.layout.fragment_plans)
+@EFragment(R.layout.fragment_topup)
 public class TopUpFragment extends Fragment {
 
     private ArrayList<SCEService> plan1 = new ArrayList<>();

@@ -4,7 +4,7 @@
     tools:context=".fragment.MainFragment">
 
     <LinearLayout
-        android:layout_width="220dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:background="@drawable/pink_rounded_bg"
         android:orientation="vertical"
@@ -33,7 +33,7 @@
         android:layout_height="match_parent"
         android:id="@+id/tagsRecycler"
         android:layout_gravity="center_horizontal"
-        android:layout_above="@+id/topUpBtn"
+        android:layout_above="@+id/actionBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/linearLayout" />
@@ -43,10 +43,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/topUpBtn_height"
         android:textSize="@dimen/topUpBtn_textSize"
-        android:text="@string/topUpBtn"
+        android:text="@string/actionBtn_topUp"
         android:textColor="@color/white"
         android:textAllCaps="false"
-        android:id="@+id/topUpBtn"
+        android:id="@+id/actionBtn"
         tools:ignore="UnusedAttribute"
         android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"

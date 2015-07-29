@@ -16,14 +16,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.ViewHolder> {
+    public static final String FREE_POLICY_NAME = "appPolicy";
     private ArrayList<ServiceTag> mTags;
-
+    private Boolean mOnlyFree = null; // null: all | false: only paid | true: only free
     /**
      * Constructor
      * @param policies List<Policy>
      */
     public TagsRecycleAdapter(List<Policy> policies) {
         this.mTags = policiesToTagsList(policies);
+    }
+
+    /**
+     * Constructor
+     * @param policies List<Policy>
+     * @param mOnlyFree Boolean ( null: all | false: only paid | true: only free )
+     */
+    public TagsRecycleAdapter(List<Policy> policies, Boolean mOnlyFree) {
+        this.mOnlyFree  = mOnlyFree;
+        this.mTags      = policiesToTagsList(policies);
     }
 
     /**
@@ -34,16 +45,18 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
     private ArrayList<ServiceTag> policiesToTagsList(List<Policy> policies) {
         ArrayList<ServiceTag> tags = new ArrayList<>();
         for(Policy policy:policies) {
+            if(mOnlyFree !=null) {
+                if(mOnlyFree && !policy.getName().equals(FREE_POLICY_NAME)) {
+                    continue;
+                } else if(!mOnlyFree && policy.getName().equals(FREE_POLICY_NAME)) {
+                    continue;
+                }
+            }
             for(SCEService service:policy.getServices()) {
                 for(ServiceTag tag:service.getTags()) {
                     int contains = tags.indexOf(tag);
                     if(contains==-1) {
-                        if(tag.getSlug().equals("paid")) {
-                            tag.setName("**"+tag.getName()+"**");
-                            tags.add(0, tag);
-                        } else {
-                            tags.add(tag);
-                        }
+                        tags.add(tag);
                     } else {
                         tag = tags.get(contains);
                     }
