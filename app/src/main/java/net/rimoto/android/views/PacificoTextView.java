@@ -28,7 +28,7 @@ public class PacificoTextView extends TextView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        super.setMeasuredDimension(getMeasuredWidth(), (int)(getBaseline()*1.3));
+        super.setMeasuredDimension((int)(getMeasuredWidth()*1.025), (int)(getBaseline()*1.3));
     }
 
     @Override

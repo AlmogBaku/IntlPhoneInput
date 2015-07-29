@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <net.rimoto.android.views.PacificoTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/suspension_title"
+        android:textColor="@color/orange"
+        android:layout_above="@+id/boxa"
+        android:textSize="45sp"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_marginTop="-15dp"
+        android:id="@+id/boxa"
+        android:orientation="vertical"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pink_rounded_bg"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            android:fontFamily="@string/wizard_boxa_font"
+            android:textStyle="bold"
+            android:textSize="@dimen/wizard_textSize"
+            android:id="@+id/textView4"
+            android:text="@string/suspension_text"
+            android:layout_gravity="center_horizontal"
+            tools:ignore="UnusedAttribute" />
+    </LinearLayout>
+</RelativeLayout>
