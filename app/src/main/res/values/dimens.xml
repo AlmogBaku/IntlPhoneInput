@@ -27,4 +27,5 @@
     <dimen name="local_tag_fontSize">6sp</dimen>
     <dimen name="wizard_container_width">280dp</dimen>
     <dimen name="wizard_data_roaming_textSize">20sp</dimen>
+    <dimen name="planDetails_height">120dp</dimen>
 </resources>

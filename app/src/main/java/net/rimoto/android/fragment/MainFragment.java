@@ -3,6 +3,7 @@ package net.rimoto.android.fragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 
 import net.rimoto.android.R;
@@ -26,6 +27,9 @@ public class MainFragment extends Fragment {
     @ViewById
     protected RecyclerView tagsRecycler;
 
+    @ViewById(R.id.actionBtn)
+    protected Button actionButton;
+
     @AfterViews
     protected void afterViews() {
         API.getInstance().getPolicies(policiesCB);
@@ -47,15 +51,13 @@ public class MainFragment extends Fragment {
                     break;
                 }
             }
+            actionButton.setVisibility(View.VISIBLE);
         }
 
         public void failure(RetrofitError error) {
             error.printStackTrace();
         }
     };
-
-    @ViewById(R.id.actionBtn)
-    protected Button actionButton;
 
     private void setPermiumPlan() {
         havePremiumPlan = true;

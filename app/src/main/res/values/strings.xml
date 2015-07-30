@@ -37,4 +37,5 @@
     <string name="wizard_vpn_connect_text">Connect, and allow us to set up a secure connection with you.</string>
     <string name="suspension_text">and will turn on automatically as soon as you’ll get off the wifi connection.</string>
     <string name="permium_boxa_text">You have a <b>premium</b> access to:</string>
+    <string name="planDetails_daysLeft">days left in your plan</string>
 </resources>

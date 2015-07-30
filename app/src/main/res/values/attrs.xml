@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleProgressView">
+        <attr name="percentage" format="float" />
+        <attr name="colorBase" format="color" />
+        <attr name="colorBold" format="color" />
+        <attr name="strokeBase" format="float" />
+        <attr name="strokeBold" format="float" />
+    </declare-styleable>
+</resources>
