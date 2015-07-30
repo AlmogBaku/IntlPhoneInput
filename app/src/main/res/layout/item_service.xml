@@ -19,12 +19,12 @@
         <TextView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@drawable/pink_circle"
+            android:background="@drawable/orange_stroke_circle"
             android:textSize="@dimen/local_tag_fontSize"
             android:gravity="center"
             android:text="@string/local_tag_text"
             android:textAllCaps="true"
-            android:textColor="@color/white"
+            android:textColor="@color/orange"
             android:textStyle="bold"
             android:rotation="-30"
             android:id="@+id/local_tag"/>

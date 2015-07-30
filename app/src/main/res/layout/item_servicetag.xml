@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My tag"
+        android:text="My tag:"
         android:id="@+id/tagName"
         android:fontFamily="sans-serif-condensed"
         android:textColor="@color/pink"
@@ -17,16 +17,22 @@
         android:textAllCaps="true"
         android:layout_gravity="center_horizontal"
         tools:ignore="UnusedAttribute"
-        android:layout_marginBottom="7sp" />
+        android:layout_marginBottom="3sp" />
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="@dimen/servicesRecycler_width"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/servicesRecycler_height"
-        android:paddingRight="7dp"
-        android:paddingLeft="7dp"
         android:id="@+id/servicesRecycler"
-        android:background="@drawable/tag_recycler_bg"
         android:layout_gravity="center_horizontal" />
+
+    <!-- Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/orange"
+        android:id="@+id/line1"/>
 
 
 </LinearLayout>

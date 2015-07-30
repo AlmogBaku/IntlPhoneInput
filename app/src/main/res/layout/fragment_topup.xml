@@ -57,7 +57,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12$"
+                    android:text="10$"
                     android:textColor="@color/orange"
                     android:textSize="44sp"
                     android:fontFamily="sans-serif-condensed"
@@ -136,7 +136,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9$"
+                    android:text="7$"
                     android:textColor="@color/orange"
                     android:textSize="44sp"
                     android:fontFamily="sans-serif-condensed"
