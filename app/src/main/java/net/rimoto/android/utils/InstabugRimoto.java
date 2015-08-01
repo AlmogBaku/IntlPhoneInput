@@ -2,6 +2,7 @@ package net.rimoto.android.utils;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import com.instabug.library.Instabug;
 
@@ -26,6 +27,7 @@ public class InstabugRimoto {
                                 +"home_operator: " + home_operator + "\r\n"
                                 +"visited_operator: " + roaming_operator + "\r\n"
                     ;
+            Log.d("testfairy-correlation-id", String.valueOf(subscriber.getId()));
             Instabug.getInstance().setUserData(userData);
         });
     }
