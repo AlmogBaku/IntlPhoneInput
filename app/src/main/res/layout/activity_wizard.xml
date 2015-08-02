@@ -42,7 +42,6 @@
             android:textSize="@dimen/login_btn_textSize"
             android:fontFamily="sans-serif-medium"
             android:id="@+id/connectBtn"
-            android:enabled="false"
             android:layout_gravity="center_horizontal"
             tools:ignore="UnusedAttribute" />
     </LinearLayout>

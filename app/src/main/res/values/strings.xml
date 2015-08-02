@@ -26,7 +26,10 @@
     <string name="suspension_title">rimoto is suspended</string>
     <string name="actionBtn_topUp">get premium access</string>
     <string name="actionBtn_seePremium">your premium plan</string>
+    <string name="actionBtn_preview">activate</string>
     <string name="main_boxa_text">You have <b>free</b> access to:</string>
+    <string name="main_boxa_text_preview">Activate to get <b>free</b> mobile data to:</string>
+    <string name="permium_boxa_text">You have <b>premium</b> access to:</string>
     <string name="wizard_roaming_settings_text">Make sure your data-roaming is <b>ON</b>, to get your FREE access.</string>
     <string name="action_debug">Debug info</string>
     <string name="local_tag_text">local</string>
@@ -36,6 +39,5 @@
     <string name="wizard_vpn_magic_text">Our cloud is where we make it FREE.</string>
     <string name="wizard_vpn_connect_text">Connect, and allow us to set up a secure connection with you.</string>
     <string name="suspension_text">and will turn on automatically as soon as you’ll get off the wifi connection.</string>
-    <string name="permium_boxa_text">You have <b>premium</b> access to:</string>
     <string name="planDetails_daysLeft">days left in your plan</string>
 </resources>

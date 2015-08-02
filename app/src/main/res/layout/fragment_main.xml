@@ -4,7 +4,7 @@
     tools:context=".fragment.MainFragment">
 
     <LinearLayout
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/pink_rounded_bg"
         android:orientation="vertical"
@@ -24,7 +24,8 @@
             android:textAllCaps="true"
             android:textSize="@dimen/wizard_textSize"
             android:text="@string/main_boxa_text"
-            tools:ignore="UnusedAttribute" />
+            tools:ignore="UnusedAttribute"
+            android:id="@+id/main_boxa_text"/>
 
     </LinearLayout>
 

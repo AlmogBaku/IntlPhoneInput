@@ -1,12 +1,10 @@
 package net.rimoto.android.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.telephony.TelephonyManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -15,8 +13,6 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import net.rimoto.android.R;
 import net.rimoto.android.adapter.WizardFragmentAdapter;
-import net.rimoto.core.API;
-import net.rimoto.core.models.Policy;
 import net.rimoto.core.utils.UI;
 import net.rimoto.core.utils.VpnUtils;
 
@@ -24,11 +20,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-
 
 @EActivity(R.layout.activity_wizard)
 public class WizardActivity extends InstabugFragmentActivity {
@@ -51,33 +42,6 @@ public class WizardActivity extends InstabugFragmentActivity {
         mPager.setAdapter(mPagerAdapter);
 
         mCircleIndicator.setViewPager(mPager);
-
-        addAppPolicy();
-    }
-
-    private void addAppPolicy() {
-        TelephonyManager tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        String home_operator = API.rimotoOperatorFormat(tel.getSimOperator());
-        String visited_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
-
-        if(home_operator.equals("N/A") || visited_operator.equals("N/A")) {
-            Toast toast = Toast.makeText(WizardActivity.this, "You need a sim card in order to use Rimoto", Toast.LENGTH_LONG);
-            toast.show();
-        }
-
-        API.getInstance().addAppPolicy(home_operator, visited_operator, new Callback<Policy>() {
-            @Override
-            public void success(Policy policy, Response response) {
-                if(mConnectBtn != null) {
-                    mConnectBtn.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                error.printStackTrace();
-            }
-        });
     }
 
     @Override
