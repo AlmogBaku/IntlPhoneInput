@@ -4,9 +4,12 @@ package net.rimoto.core.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel(Parcel.Serialization.BEAN)
 public class SCEService {
 
     @Expose

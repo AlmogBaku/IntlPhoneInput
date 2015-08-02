@@ -3,9 +3,12 @@ package net.rimoto.core.models;
 
 import com.google.gson.annotations.Expose;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel(Parcel.Serialization.BEAN)
 public class ServiceTag {
 
     @Expose
