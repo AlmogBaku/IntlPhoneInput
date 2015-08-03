@@ -15,6 +15,8 @@ import net.rimoto.vpnlib.VpnLog;
 
 import org.androidannotations.annotations.EApplication;
 
+import de.blinkt.openvpn.core.PRNGFixes;
+
 @EApplication
 public class RimotoApplication extends Application {
     private final String rimotoClientID = "1_56hxwnph188wkosoc8c8ccswskkwcwggc4k8o4k0gs4ksgsk08";
@@ -24,6 +26,8 @@ public class RimotoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        PRNGFixes.apply();
+
         refWatcher = installLeakCanary();
         InitializeInstabug();
 
