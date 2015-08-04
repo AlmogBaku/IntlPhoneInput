@@ -23,6 +23,8 @@ public class RimotoApplication extends Application {
     private final String rimoto_authURI = "http://localhost/";
     private final String instabug_token = "cfad51965edc86000b61bd545c4d84d2";
 
+    private RefWatcher refWatcher;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -49,8 +51,7 @@ public class RimotoApplication extends Application {
     }
 
     protected RefWatcher installLeakCanary() {
-        return LeakCanary.install(this, LeakSlackUploadService.class, AndroidExcludedRefs.createAppDefaults().build());
+        return RefWatcher.DISABLED;
+//        return LeakCanary.install(this, LeakSlackUploadService.class, AndroidExcludedRefs.createAppDefaults().build());
     }
-
-    private RefWatcher refWatcher;
 }
