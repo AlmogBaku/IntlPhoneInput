@@ -64,6 +64,7 @@ public class API {
                 RimotoCore.getsApplicationContext().getCacheDir(),
                 "httpCache");
         okHttpClient.setCache(new Cache(httpCacheDirectory, 10 * 1024 * 1024));
+        System.setProperty("http.keepAlive", "false");
     }
 
     public static RimotoAPI getInstance() {
