@@ -174,6 +174,7 @@ public class TopUpFragment extends Fragment {
     private void gotoMainFragment() {
         purchasing=false;
         if(getActivity()!=null) {
+            getActivity().getIntent().removeExtra(MainFragment.EXTRA_POLICIES);
             getActivity().getSupportFragmentManager().popBackStack();
         }
     }
