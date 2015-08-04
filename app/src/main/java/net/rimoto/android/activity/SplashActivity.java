@@ -1,20 +1,18 @@
 package net.rimoto.android.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
 import net.rimoto.android.fragment.MainFragment;
+import net.rimoto.android.utils.AppPolicies;
 import net.rimoto.android.utils.InstabugRimoto;
 import net.rimoto.core.API;
 import net.rimoto.core.Session;
 import net.rimoto.android.R;
 import net.rimoto.core.models.Policy;
-import net.rimoto.vpnlib.VpnLog;
 import net.rimoto.vpnlib.VpnManager;
 
 import org.androidannotations.annotations.EActivity;
@@ -51,29 +49,20 @@ public class SplashActivity extends Activity {
      * Add app policy, then `getPolicies()`
      */
     private void addAppPolicy() {
-        TelephonyManager tel = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        String home_operator = API.rimotoOperatorFormat(tel.getSimOperator());
-        String visited_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
-
-        if(home_operator.equals("N/A") || visited_operator.equals("N/A")) {
-            Toast toast = Toast.makeText(getApplicationContext(), "You need a sim card in order to use Rimoto", Toast.LENGTH_LONG);
-            toast.show();
-            finish();
-        }
-
-        API.getInstance().addAppPolicy(home_operator, visited_operator, new Callback<Policy>() {
-            @Override
-            public void success(Policy policy, Response response) {
-                getPolicies();
+        AppPolicies.addAppPolicy(this, (policy, error) ->{
+            if(error != null) {
+                if(error.getMessage().equals("NO_SIM")) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "You need a sim card in order to use Rimoto", Toast.LENGTH_LONG);
+                    toast.show();
+                    finish();
+                } else {
+                    error.printStackTrace();
+                    Toast toast = Toast.makeText(getApplicationContext(), "We have an issue with you connection.. please try again later.", Toast.LENGTH_LONG);
+                    toast.show();
+                    finish();
+                }
             }
-
-            @Override
-            public void failure(RetrofitError error) {
-                error.printStackTrace();
-                Toast toast = Toast.makeText(getApplicationContext(), "We have an issue with you connection.. please try again later.", Toast.LENGTH_LONG);
-                toast.show();
-                finish();
-            }
+            getPolicies();
         });
     }
 

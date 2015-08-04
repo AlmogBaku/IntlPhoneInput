@@ -2,10 +2,12 @@ package net.rimoto.android.activity;
 
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
+import android.widget.Toast;
 
 import com.instabug.wrapper.support.activity.InstabugFragmentActivity;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import net.rimoto.android.utils.AppPolicies;
 import net.rimoto.android.utils.InstabugRimoto;
 import net.rimoto.android.views.SimpleTitleIndicator;
 import net.rimoto.android.R;
@@ -79,9 +81,24 @@ public class LoginActivity extends InstabugFragmentActivity {
         }
     }
     private void startWizard() {
-        Intent intent = new Intent(this, WizardActivity_.class);
-        startActivity(intent);
-        finish();
+        AppPolicies.addAppPolicy(this, (policy, error) -> {
+            if (error != null) {
+                if (error.getMessage().equals("NO_SIM")) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "You need a sim card in order to use Rimoto", Toast.LENGTH_LONG);
+                    toast.show();
+                    finish();
+                } else {
+                    error.printStackTrace();
+                    Toast toast = Toast.makeText(getApplicationContext(), "We have an issue with you connection.. please try again later.", Toast.LENGTH_LONG);
+                    toast.show();
+                    finish();
+                }
+            }
+
+            Intent intent = new Intent(this, MainActivity_.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     @Override
