@@ -12,7 +12,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 /**
- * Created by almog on 04/08/15.
+ * Shared code for adding new "appPolicy"
  */
 public class AppPolicies {
     public interface SimpleCallback {
