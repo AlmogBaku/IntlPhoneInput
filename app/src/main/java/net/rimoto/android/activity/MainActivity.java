@@ -49,8 +49,7 @@ public class MainActivity extends RimotoCompatActivity {
     @OptionsItem
     protected void action_disconnect() {
         VpnUtils.stopVPN(this,()-> {
-            Intent intent = new Intent(this, WizardActivity_.class);
-            startActivity(intent);
+            startActivity(getIntent());
             this.finish();
         });
 
