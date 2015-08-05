@@ -1,5 +1,6 @@
 package net.rimoto.android.fragment;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;

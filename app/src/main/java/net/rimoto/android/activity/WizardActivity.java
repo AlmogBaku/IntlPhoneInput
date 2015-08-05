@@ -1,5 +1,6 @@
 package net.rimoto.android.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,6 +16,7 @@ import net.rimoto.android.R;
 import net.rimoto.android.adapter.WizardFragmentAdapter;
 import net.rimoto.core.utils.UI;
 import net.rimoto.core.utils.VpnUtils;
+import net.rimoto.vpnlib.VpnManager;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;

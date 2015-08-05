@@ -40,4 +40,6 @@
     <string name="wizard_vpn_connect_text">Connect, and allow us to set up a secure connection with you.</string>
     <string name="suspension_text">and will turn on automatically as soon as you’ll get off the wifi connection.</string>
     <string name="planDetails_daysLeft">days left in your plan</string>
+    <string name="oops_title">Opps..</string>
+    <string name="connectionFatalError_message">Unfortunately, there is a problem connecting you.\nPlease reboot(restart) your device, and try again.</string>
 </resources>

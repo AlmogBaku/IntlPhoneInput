@@ -1,5 +1,6 @@
 package net.rimoto.core.utils;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+import net.rimoto.android.R;
 import net.rimoto.core.API;
 import net.rimoto.vpnlib.RimotoPolicy;
 import net.rimoto.vpnlib.VpnLog;
@@ -30,6 +32,7 @@ import retrofit.mime.TypedByteArray;
 public class VpnUtils {
     public static final String VPN_PROFILE_UUID = "net.rimoto.android.vpn_profile_uuid";
     private static VpnStatus.StateListener mStateListener;
+    private static VpnStatus.LogListener mLogListener;
 
     /**
      * Import VPN Config from CORE
@@ -92,9 +95,12 @@ public class VpnUtils {
      */
     private static class RimotoConnectStateListener implements VpnStatus.StateListener {
         private RimotoConnectStateCallback mCallback;
+        private VpnStatus.LogListener mLogListener;
 
-        public RimotoConnectStateListener(RimotoConnectStateCallback callback) {
+        public RimotoConnectStateListener(RimotoConnectStateCallback callback,
+                                          VpnStatus.LogListener logListener) {
             mCallback = callback;
+            mLogListener = logListener;
         }
 
         @Override
@@ -122,9 +128,54 @@ public class VpnUtils {
                 VpnStatus.removeStateListener(this);
                 mStateListener=null;
                 mCallback=null;
+                if(mLogListener!=null) {
+                    VpnStatus.removeLogListener(mLogListener);
+                }
             }, 400);
         }
     }
+
+    private static class RimotoCatchFatalLogListener implements VpnStatus.LogListener {
+        private static final String FATAL_ERROR = "Android establish() method returned null (Really broken network configuration?)";
+        private static final String ERROR_TUN = "ERROR: Cannot open TUN";
+        private Context mContext;
+
+        public RimotoCatchFatalLogListener(Context context) {
+            mContext = context;
+        }
+        private boolean fatalDetected = false;
+
+        @Override
+        public void newLog(VpnStatus.LogItem logItem) {
+            if(!fatalDetected) {
+                if(
+                    (logItem.getLogLevel()==VpnStatus.LogLevel.ERROR && logItem.getString(null).equals(FATAL_ERROR))
+                    || (logItem.getLogLevel()==VpnStatus.LogLevel.INFO && logItem.getString(null).equals(ERROR_TUN))
+                ) {
+                    fatalDetected=true;
+                    final Handler handler = new Handler(Looper.getMainLooper());
+                    handler.post(this::fatalCatched);
+                }
+            }
+        }
+
+        private void fatalCatched() {
+            if(mContext==null) {
+                return;
+            }
+
+            VpnManager.setActiveProfileDisconnected(mContext);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+            builder.setTitle(R.string.oops_title)
+                    .setMessage(R.string.connectionFatalError_message)
+                    .setCancelable(false);
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+    }
+
 
     /**
      * Start VPN with current profile
@@ -146,12 +197,14 @@ public class VpnUtils {
     /**
      * Vpn Connection Spinner
      * @param context Context
-     * @param callback RimotoStateCallback
+     * @param callback RimotoConnectStateCallback
      */
     public static void startVPN(Context context, RimotoConnectStateCallback callback) {
         VpnProfile profile = ProfileManager.get(context, getCurrentProfileUUID(context));
         if(RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(context), profile)) {
-            mStateListener = new RimotoConnectStateListener(callback);
+            mLogListener = new RimotoCatchFatalLogListener(context);
+            VpnStatus.addLogListener(mLogListener);
+            mStateListener = new RimotoConnectStateListener(callback, mLogListener);
             VpnStatus.addStateListener(mStateListener);
         } else {
             callback.shouldntConnect();
@@ -199,8 +252,8 @@ public class VpnUtils {
             handler.postDelayed(() -> {
                 mCallback.done();
                 VpnStatus.removeStateListener(this);
-                mStateListener=null;
-                mCallback=null;
+                mStateListener = null;
+                mCallback = null;
             }, 400);
         }
     }

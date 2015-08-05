@@ -9,6 +9,9 @@ public class UI {
         showSpinner(context, "Loading. Please wait...");
     }
     public static void showSpinner(Context context, String message) {
+        if(context==null) {
+            return;
+        }
         sSpinner = new ProgressDialog(context);
         sSpinner.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         sSpinner.setMessage(message);
