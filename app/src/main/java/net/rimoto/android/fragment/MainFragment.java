@@ -48,6 +48,7 @@ public class MainFragment extends Fragment {
         mTagsRecycler.setLayoutManager(linearLayoutManager);
 
         initiatePolicies();
+        getActivity().setTitle(R.string.main_activity_title);
     }
 
 
@@ -129,12 +130,14 @@ public class MainFragment extends Fragment {
         if(mMainBoxaText != null) {
             mMainBoxaText.setText(R.string.main_boxa_text_preview);
         }
+        getActivity().setTitle(R.string.main_activity_title_preview);
     }
     private void setAsConnected() {
         if(mPageState != PageState.Preview) {
             return; //Change only if the state changed from preview
         }
 
+        getActivity().setTitle(R.string.main_activity_title);
         mPageState = PageState.ConnectedFree;
         if(mMainBoxaText != null) {
             mMainBoxaText.setText(R.string.main_boxa_text);

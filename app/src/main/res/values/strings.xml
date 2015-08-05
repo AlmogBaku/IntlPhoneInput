@@ -23,6 +23,7 @@
     <string name="action_logout">Logout</string>
     <string name="action_disconnect">Disconnect</string>
     <string name="main_activity_title">rimoto is on!</string>
+    <string name="main_activity_title_preview">Almost there..</string>
     <string name="suspension_title">rimoto is suspended</string>
     <string name="actionBtn_topUp">get premium access</string>
     <string name="actionBtn_seePremium">your premium plan</string>
@@ -41,5 +42,5 @@
     <string name="suspension_text">and will turn on automatically as soon as you’ll get off the wifi connection.</string>
     <string name="planDetails_daysLeft">days left in your plan</string>
     <string name="oops_title">Opps..</string>
-    <string name="connectionFatalError_message">Unfortunately, there is a problem connecting you.\nPlease reboot(restart) your device, and try again.</string>
+    <string name="connectionFatalError_message">Rimoto is unable to connect to the cloud.\n Please restart your device.</string>
 </resources>
