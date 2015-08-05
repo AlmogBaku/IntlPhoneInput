@@ -9,6 +9,7 @@ import net.rimoto.android.fragment.DebugFragment;
 import net.rimoto.android.fragment.DebugFragment_;
 import net.rimoto.android.fragment.MainFragment;
 import net.rimoto.android.fragment.MainFragment_;
+import net.rimoto.core.API;
 import net.rimoto.core.Session;
 import net.rimoto.core.utils.VpnUtils;
 
@@ -40,6 +41,7 @@ public class MainActivity extends RimotoCompatActivity {
     @OptionsItem
     protected void action_logout() {
         VpnUtils.stopVPN(this);
+        API.clearCache();
         Session.logout();
         Intent intent = new Intent(this, LoginActivity_.class);
         startActivity(intent);
@@ -51,6 +53,7 @@ public class MainActivity extends RimotoCompatActivity {
         VpnUtils.stopVPN(this,()-> {
             startActivity(getIntent());
             this.finish();
+            API.clearCache();
         });
 
     }
