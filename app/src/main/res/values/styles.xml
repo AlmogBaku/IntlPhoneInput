@@ -14,6 +14,8 @@
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar">
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
         <item name="background">@color/transparent</item>
+        <!--<item name="logo">@drawable/rimoto_icon</item>-->
+        <item name="displayOptions">useLogo|showTitle|showHome</item>
     </style>
 
     <!-- ActionBar title text -->

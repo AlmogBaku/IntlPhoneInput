@@ -35,14 +35,15 @@ public class RimotoCompatActivity extends InstabugAppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setRimotoTitle(this.getTitle());
+        setTitle(this.getTitle());
     }
 
-    protected void setRimotoTitle(CharSequence title) {
-        SpannableString spannableString = new SpannableString(title);
-        spannableString.setSpan(new TypefaceSpan(this, "fonts/Pacifico-Old.ttf"), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    @Override
+    public void setTitle(CharSequence title) {
+        SpannableString spannableString = new SpannableString(title+" ");
+        spannableString.setSpan(new TypefaceSpan(this, "fonts/Pacifico-Regular.ttf"), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        setTitle(spannableString);
+        super.setTitle(spannableString);
     }
 
     @Override
