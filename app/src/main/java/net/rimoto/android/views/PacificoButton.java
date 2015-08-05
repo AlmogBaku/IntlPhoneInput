@@ -33,7 +33,7 @@ public class PacificoButton extends Button {
 
     @Override
     protected void onDraw(Canvas canvas){
-        float offset = (getBaseline() - getLineHeight())*0.5f;
+        float offset = (getBaseline() - getLineHeight())*0.3f;
 
         canvas.translate(0, offset);
         super.onDraw(canvas);
