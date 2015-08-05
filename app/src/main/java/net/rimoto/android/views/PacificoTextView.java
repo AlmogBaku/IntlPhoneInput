@@ -37,6 +37,5 @@ public class PacificoTextView extends TextView {
 
         canvas.translate(0, offset);
         super.onDraw(canvas);
-
     }
 }

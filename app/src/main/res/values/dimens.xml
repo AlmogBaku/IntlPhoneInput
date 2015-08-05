@@ -14,7 +14,7 @@
     <dimen name="wizard_title_textSize">80sp</dimen>
     <dimen name="wizard_title_marginBottom">25dp</dimen>
 
-    <dimen name="topUpBtn_textSize">27sp</dimen>
+    <dimen name="topUpBtn_textSize">53sp</dimen>
     <dimen name="topUpBtn_height">53sp</dimen>
     <dimen name="servicesRecycler_height">87dp</dimen>
     <dimen name="servicesRecycler_width">255dp</dimen>
