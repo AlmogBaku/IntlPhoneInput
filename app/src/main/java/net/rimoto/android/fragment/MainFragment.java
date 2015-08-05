@@ -47,11 +47,18 @@ public class MainFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
         mTagsRecycler.setLayoutManager(linearLayoutManager);
 
+        initiatePolicies();
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
         if(!VpnManager.isActive(getActivity())) {
             setAsPreview();
+        } else {
+            setAsConnected();
         }
-
-        initiatePolicies();
     }
 
     /**
@@ -97,14 +104,11 @@ public class MainFragment extends Fragment {
             mTagsRecycler.setAdapter(adapter);
         }
 
-        // Show wizard btn if not connected!
-        if(mPageState != PageState.Preview) {
-            //Set as premium if non "appPolicy" exists
-            for (Policy policy : policies) {
-                if (!policy.getName().equals(TagsRecycleAdapter.FREE_POLICY_NAME)) {
-                    setAsPremium();
-                    break;
-                }
+        //Set as premium if have a non "appPolicy" exists
+        for (Policy policy : policies) {
+            if (!policy.getName().equals(TagsRecycleAdapter.FREE_POLICY_NAME)) {
+                setAsPremium();
+                break;
             }
         }
 
@@ -126,7 +130,31 @@ public class MainFragment extends Fragment {
             mMainBoxaText.setText(R.string.main_boxa_text_preview);
         }
     }
+    private void setAsConnected() {
+        if(mPageState != PageState.Preview) {
+            return; //Change only if the state changed from preview
+        }
+
+        mPageState = PageState.ConnectedFree;
+        if(mMainBoxaText != null) {
+            mMainBoxaText.setText(R.string.main_boxa_text);
+        }
+        if(havePremium) {
+            setAsPremium();
+        } else {
+            if(mActionButton !=null) {
+                mActionButton.setText(R.string.actionBtn_topUp);
+            }
+        }
+    }
+    private boolean havePremium = false;
     private void setAsPremium() {
+        havePremium=true;
+
+        if(mPageState == PageState.Preview) {
+            return; // Don't change anything on preview
+        }
+
         mPageState = PageState.ConnectedPremium;
         if(mActionButton !=null) {
             mActionButton.setText(R.string.actionBtn_seePremium);
@@ -140,7 +168,6 @@ public class MainFragment extends Fragment {
             case Preview:
                 Intent intent = new Intent(getActivity(), WizardActivity_.class);
                 startActivity(intent);
-                getActivity().finish();
                 break;
             case ConnectedFree:
                 TopUpFragment topUpFragment = new TopUpFragment_();

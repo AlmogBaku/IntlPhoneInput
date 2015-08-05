@@ -91,8 +91,6 @@ public class WizardActivity extends InstabugFragmentActivity {
         });
     }
     private void startMainActivity() {
-        Intent intent = new Intent(this, MainActivity_.class);
-        startActivity(intent);
         this.finish();
     }
 
