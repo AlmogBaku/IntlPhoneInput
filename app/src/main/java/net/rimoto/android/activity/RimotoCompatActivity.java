@@ -50,10 +50,11 @@ public class RimotoCompatActivity extends InstabugAppCompatActivity {
         super.onResume();
 
         VpnProfile profile = ProfileManager.get(this, VpnUtils.getCurrentProfileUUID(this));
-        if(RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(this), profile)) {
-            setActive();
-        } else {
+        boolean shouldConnect = RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(this), profile);
+        if(!shouldConnect && VpnManager.isActive(this)) {
             setSuspended();
+        } else {
+            setActive();
         }
     }
 
