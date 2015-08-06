@@ -1,5 +1,6 @@
 package net.rimoto.android.activity;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -137,6 +138,8 @@ public class RimotoCompatActivity extends InstabugAppCompatActivity {
             addSuspendedView();
         }
     }
+    @SuppressLint("NewApi")
+    @SuppressWarnings("deprecation")
     private void addSuspendedView() {
         if(suspendedView != null) return;
 
