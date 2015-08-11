@@ -40,6 +40,7 @@ public class RimotoApplication extends Application {
 
     private void InitializeInstabug() {
         Instabug.initialize(this, instabug_token);
+        Instabug.DEBUG=true;
         Instabug.getInstance().attachFileAtLocation(VpnFileLog.logFile.getAbsolutePath());
         Instabug.getInstance().setEmailIsRequired(true);
     }

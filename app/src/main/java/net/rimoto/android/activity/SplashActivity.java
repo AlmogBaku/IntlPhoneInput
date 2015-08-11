@@ -1,10 +1,11 @@
 package net.rimoto.android.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
+
+import com.instabug.wrapper.support.activity.InstabugActivity;
 
 import net.rimoto.android.fragment.MainFragment;
 import net.rimoto.android.utils.AppPolicies;
@@ -25,7 +26,7 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 @EActivity(R.layout.activity_splash)
-public class SplashActivity extends Activity {
+public class SplashActivity extends InstabugActivity {
     private static final int SPLASH_TIME_OUT = 500;
 
     @Override
