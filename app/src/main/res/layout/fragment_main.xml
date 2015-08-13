@@ -58,11 +58,33 @@
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:id="@+id/actionBtn"
-        android:visibility="invisible"
+        android:visibility="gone"
         tools:ignore="UnusedAttribute"
         android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:background="@drawable/activate"
+        android:layout_centerInParent="true"
+        android:id="@+id/activateBtn"
+        android:visibility="gone">
+        <net.rimoto.android.views.PacificoTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="65sp"
+            android:text="@string/activateBtn"
+            android:layout_marginRight="5dip"
+            android:visibility="visible"
+            android:gravity="center"
+            tools:ignore="RtlHardcoded" />
+    </LinearLayout>
 
 </RelativeLayout>

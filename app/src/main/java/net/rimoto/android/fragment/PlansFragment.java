@@ -44,7 +44,7 @@ public class PlansFragment extends Fragment {
                 }
             }
             if(tagsRecycler!=null) {
-                TagsRecycleAdapter adapter = new TagsRecycleAdapter(policies, false);
+                TagsRecycleAdapter adapter = new TagsRecycleAdapter(policies, false, null);
                 tagsRecycler.setAdapter(adapter);
             }
         }

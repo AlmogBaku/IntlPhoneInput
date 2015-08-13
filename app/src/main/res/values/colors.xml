@@ -19,4 +19,5 @@
     <color name="white">#ffffff</color>
     <color name="transparent">@android:color/transparent</color>
     <color name="simplebg">#f4f4f4</color>
+    <color name="green">#a4e65e</color>
 </resources>

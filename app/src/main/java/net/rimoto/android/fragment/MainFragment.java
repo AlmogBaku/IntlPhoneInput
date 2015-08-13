@@ -1,16 +1,20 @@
 package net.rimoto.android.fragment;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import net.rimoto.android.R;
 import net.rimoto.android.activity.WizardActivity_;
+import net.rimoto.android.adapter.SCEServicesRecycleAdapter;
 import net.rimoto.android.adapter.TagsRecycleAdapter;
 import net.rimoto.core.API;
 import net.rimoto.core.models.Policy;
@@ -38,8 +42,13 @@ public class MainFragment extends Fragment {
     @ViewById(R.id.actionBtn)
     protected Button mActionButton;
 
+    @ViewById(R.id.activateBtn)
+    protected ViewGroup mActivateButton;
+
     @ViewById(R.id.main_boxa_text)
     protected TextView mMainBoxaText;
+
+    private TagsRecycleAdapter mAdapter;
 
     @AfterViews
     protected void afterViews() {
@@ -89,6 +98,7 @@ public class MainFragment extends Fragment {
             public void success(List<Policy> policies, Response response) {
                 setPolicies(policies);
             }
+
             public void failure(RetrofitError error) {
                 error.printStackTrace();
             }
@@ -101,8 +111,13 @@ public class MainFragment extends Fragment {
      */
     public void setPolicies(List<Policy> policies) {
         if(mTagsRecycler !=null) {
-            TagsRecycleAdapter adapter = new TagsRecycleAdapter(policies, true);
-            mTagsRecycler.setAdapter(adapter);
+            mAdapter = new TagsRecycleAdapter(policies, true, serviceCallback);
+            mTagsRecycler.setAdapter(mAdapter);
+        }
+        if(mPageState==PageState.Preview) {
+            mAdapter.setmPreview(true);
+        } else {
+            mAdapter.setmPreview(false);
         }
 
         //Set as premium if have a non "appPolicy" exists
@@ -114,7 +129,7 @@ public class MainFragment extends Fragment {
         }
 
         //Show BTN after data initiated
-        if (mActionButton != null) {
+        if (mActionButton != null && mPageState!=PageState.Preview) {
             mActionButton.setVisibility(View.VISIBLE);
         }
     }
@@ -124,11 +139,17 @@ public class MainFragment extends Fragment {
 
     private void setAsPreview() {
         mPageState = PageState.Preview;
-        if(mActionButton !=null) {
-            mActionButton.setText(R.string.actionBtn_preview);
+        if(mActionButton != null) {
+            mActionButton.setVisibility(View.GONE);
+        }
+        if(mActivateButton != null) {
+            mActivateButton.setVisibility(View.VISIBLE);
         }
         if(mMainBoxaText != null) {
             mMainBoxaText.setText(R.string.main_boxa_text_preview);
+        }
+        if(mAdapter!=null) {
+            mAdapter.setmPreview(true);
         }
         getActivity().setTitle(R.string.main_activity_title_preview);
     }
@@ -142,6 +163,17 @@ public class MainFragment extends Fragment {
         if(mMainBoxaText != null) {
             mMainBoxaText.setText(R.string.main_boxa_text);
         }
+
+        if(mActivateButton != null) {
+            mActivateButton.setVisibility(View.GONE);
+        }
+        if (mActionButton != null && mAdapter!=null) {
+            mActionButton.setVisibility(View.VISIBLE);
+        }
+        if(mAdapter!=null) {
+            mAdapter.setmPreview(false);
+        }
+
         if(havePremium) {
             setAsPremium();
         } else {
@@ -164,13 +196,53 @@ public class MainFragment extends Fragment {
         }
     }
 
+    private SCEServicesRecycleAdapter.ServiceCallback serviceCallback = (view, service) -> {
+        if(mPageState == PageState.Preview) {
+            return;
+        }
+
+        String bundleID = service.getAndroidBundleId();
+        if(bundleID != null && isPackageInstalled(bundleID)) {
+            launchApp(bundleID);
+        } else if(service.getWebApp()!=null) {
+            launchUrl(service.getWebApp());
+        }
+    };
+
+    @Click(R.id.activateBtn)
+    protected void startWizard() {
+        Intent intent = new Intent(getActivity(), WizardActivity_.class);
+        getActivity().startActivity(intent);
+    }
+
+    private void launchUrl(String url) {
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            url = "http://" + url;
+        }
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        getActivity().startActivity(intent);
+    }
+
+    private void launchApp(String bundleID) {
+        Intent LaunchIntent = getActivity().getPackageManager().getLaunchIntentForPackage(bundleID);
+        getActivity().startActivity(LaunchIntent);
+    }
+
+    private boolean isPackageInstalled(String bundleID) {
+        try {
+            getActivity().getPackageManager().getPackageInfo(bundleID, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
+    }
 
     @Click(R.id.actionBtn)
     protected void actionBtn() {
         switch (mPageState) {
             case Preview:
-                Intent intent = new Intent(getActivity(), WizardActivity_.class);
-                startActivity(intent);
+                startWizard();
                 break;
             case ConnectedFree:
                 TopUpFragment topUpFragment = new TopUpFragment_();

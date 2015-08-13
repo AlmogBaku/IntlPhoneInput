@@ -12,6 +12,8 @@ import net.rimoto.core.models.Policy;
 import net.rimoto.core.models.SCEService;
 import net.rimoto.core.models.ServiceTag;
 
+import net.rimoto.android.adapter.SCEServicesRecycleAdapter.ServiceCallback;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,22 +21,19 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
     public static final String FREE_POLICY_NAME = "appPolicy";
     private ArrayList<ServiceTag> mTags;
     private Boolean mOnlyFree = null; // null: all | false: only paid | true: only free
-    /**
-     * Constructor
-     * @param policies List<Policy>
-     */
-    public TagsRecycleAdapter(List<Policy> policies) {
-        this.mTags = policiesToTagsList(policies);
-    }
+    private ServiceCallback mCallback;
+    private boolean mPreview;
 
     /**
      * Constructor
      * @param policies List<Policy>
-     * @param mOnlyFree Boolean ( null: all | false: only paid | true: only free )
+     * @param onlyFree Boolean ( null: all | false: only paid | true: only free )
+     * @param callback ServiceCallback (null = no callback )
      */
-    public TagsRecycleAdapter(List<Policy> policies, Boolean mOnlyFree) {
-        this.mOnlyFree  = mOnlyFree;
+    public TagsRecycleAdapter(List<Policy> policies, Boolean onlyFree, ServiceCallback callback) {
+        this.mOnlyFree  = onlyFree;
         this.mTags      = policiesToTagsList(policies);
+        this.mCallback  = callback;
     }
 
     /**
@@ -75,7 +74,7 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
         LinearLayoutManager layoutManager = new LinearLayoutManager(v.getContext(), LinearLayoutManager.HORIZONTAL, false);
         holder.servicesRecycler.setLayoutManager(layoutManager);
 
-        SCEServicesRecycleAdapter adapter = new SCEServicesRecycleAdapter();
+        SCEServicesRecycleAdapter adapter = new SCEServicesRecycleAdapter(mCallback);
         holder.servicesRecycler.setAdapter(adapter);
 
         return holder;
@@ -83,7 +82,7 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
 
     @Override
     public void onBindViewHolder(TagsRecycleAdapter.ViewHolder holder, int position) {
-        holder.setTag(mTags.get(position));
+        holder.setTag(mTags.get(position), mPreview);
     }
 
     @Override
@@ -91,9 +90,14 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
         return mTags.size();
     }
 
+    public void setmPreview(boolean mPreview) {
+        this.mPreview = mPreview;
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tagName;
-        public RecyclerView servicesRecycler;
+        private TextView tagName;
+        private RecyclerView servicesRecycler;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -101,10 +105,10 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
             tagName = (TextView) itemView.findViewById(R.id.tagName);
             servicesRecycler = (RecyclerView) itemView.findViewById(R.id.servicesRecycler);
         }
-        public void setTag(ServiceTag tag) {
+        public void setTag(ServiceTag tag, boolean preview) {
             tagName.setText(tag.getName() + ":");
             SCEServicesRecycleAdapter adapter = (SCEServicesRecycleAdapter) servicesRecycler.getAdapter();
-            adapter.setServices(tag.getServices());
+            adapter.setServices(tag.getServices(), preview);
             adapter.notifyDataSetChanged();
         }
     }

@@ -88,7 +88,7 @@ public class TopUpFragment extends Fragment {
         recycler.setLayoutManager(linearLayoutManager);
 
         SCEServicesRecycleAdapter adapter = new SCEServicesRecycleAdapter();
-        adapter.setServices(plan);
+        adapter.setServices(plan, false);
         recycler.setAdapter(adapter);
     }
 
