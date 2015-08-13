@@ -20,9 +20,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesRecycleAdapter.ViewHolder> {
-    private boolean mPreview=false;
+    private boolean mPreview          = false;
     private List<SCEService> services = new ArrayList<>();
-    private ServiceCallback mCallback=null;
+    private ServiceCallback mCallback = null;
+
     public interface ServiceCallback {
         void done(View itemView, SCEService service);
     }
@@ -49,6 +50,9 @@ public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesR
         return services.size();
     }
 
+    public void setServices(List<SCEService> services) {
+        this.services = services;
+    }
     public void setServices(List<SCEService> services, boolean preview) {
         this.services = services;
         this.mPreview = preview;
@@ -61,7 +65,7 @@ public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesR
         private SCEService service;
         private static String packageName;
         private TextView serviceLocalTag;
-        private ServiceCallback callack;
+        private ServiceCallback callback;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -78,7 +82,7 @@ public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesR
         }
         public ViewHolder(View itemView, ServiceCallback callback) {
             this(itemView);
-            this.callack = callback;
+            this.callback = callback;
         }
 
         public void setService(SCEService service, boolean preview) {
@@ -112,8 +116,8 @@ public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesR
             }
         }
         private View.OnClickListener onClick = (v) -> {
-            if(callack!=null) {
-                callack.done(itemView, service);
+            if(callback !=null) {
+                callback.done(itemView, service);
             }
         };
     }
