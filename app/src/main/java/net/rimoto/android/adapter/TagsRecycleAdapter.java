@@ -97,7 +97,7 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tagName;
-        private RecyclerView servicesRecycler;
+        public RecyclerView servicesRecycler;
 
         public ViewHolder(View itemView) {
             super(itemView);
