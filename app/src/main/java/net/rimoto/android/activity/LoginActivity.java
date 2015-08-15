@@ -25,6 +25,10 @@ import net.rimoto.android.adapter.LoginFragmentAdapter;
 import net.rimoto.core.utils.VpnUtils;
 
 import cn.trinea.android.view.autoscrollviewpager.AutoScrollViewPager;
+import de.blinkt.openvpn.VpnProfile;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends InstabugFragmentActivity {
@@ -71,9 +75,21 @@ public class LoginActivity extends InstabugFragmentActivity {
         try {
             Login.getInstance().auth(this, (token, error) -> {
                 if(error==null) {
-                    VpnUtils.importVPNConfig(this);
-                    InstabugRimoto.attachUser(this);
-                    startWizard();
+                    InstabugRimoto.attachUser(LoginActivity.this);
+                    VpnUtils.importVPNConfig(this, new Callback<VpnProfile>() {
+                        @Override
+                        public void success(VpnProfile profile, Response response) {
+                            startWizard();
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+                            Toast toast = Toast.makeText(getApplicationContext(), "We have an issue with your connection.. please try again later.", Toast.LENGTH_LONG);
+                            toast.show();
+                            error.printStackTrace();
+                            finish();
+                        }
+                    });
                 }
             });
         } catch (RimotoException e) {
@@ -89,7 +105,7 @@ public class LoginActivity extends InstabugFragmentActivity {
                     finish();
                 } else {
                     error.printStackTrace();
-                    Toast toast = Toast.makeText(getApplicationContext(), "We have an issue with you connection.. please try again later.", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(), "We have an issue with your connection.. please try again later.", Toast.LENGTH_LONG);
                     toast.show();
                     finish();
                 }

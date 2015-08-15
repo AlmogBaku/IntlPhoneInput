@@ -16,6 +16,7 @@ import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.instabug.wrapper.support.activity.InstabugAppCompatActivity;
 
@@ -27,6 +28,9 @@ import net.rimoto.vpnlib.VpnManager;
 
 import de.blinkt.openvpn.VpnProfile;
 import de.blinkt.openvpn.core.ProfileManager;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 /**
  * AppCompactActivity with rimoto enhancements
@@ -52,6 +56,26 @@ public class RimotoCompatActivity extends InstabugAppCompatActivity {
         super.onResume();
 
         VpnProfile profile = ProfileManager.get(this, VpnUtils.getCurrentProfileUUID(this));
+        if(profile==null) {
+            VpnUtils.importVPNConfig(this, new Callback<VpnProfile>() {
+                @Override
+                public void success(VpnProfile vpnProfile, Response response) {
+                    checkSuspension(vpnProfile);
+                }
+                @Override
+                public void failure(RetrofitError error) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "We have an issue with your connection.. please try again later.", Toast.LENGTH_LONG);
+                    toast.show();
+                    error.printStackTrace();
+                    finish();
+                }
+            });
+        } else {
+            checkSuspension(profile);
+        }
+    }
+
+    private void checkSuspension(VpnProfile profile) {
         boolean shouldConnect = RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(this), profile);
         if(!shouldConnect && VpnManager.isActive(this)) {
             setSuspended();

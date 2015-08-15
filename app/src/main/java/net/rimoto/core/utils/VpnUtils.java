@@ -8,6 +8,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.Toast;
 
 import net.rimoto.android.R;
@@ -20,6 +22,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.atomic.AtomicReference;
 
 import de.blinkt.openvpn.VpnProfile;
 import de.blinkt.openvpn.core.ProfileManager;
@@ -35,24 +40,31 @@ public class VpnUtils {
     private static VpnStatus.LogListener mLogListener;
 
     /**
-     * Import VPN Config from CORE
+     * Import VPN Config from CORE [ASYNC]
      * @param context Context
      */
-    public static void importVPNConfig(Context context) {
+    public static void importVPNConfig(Context context, @Nullable Callback<VpnProfile> callback) {
         API.getInstance().getOvpn(new Callback<Response>() {
             @Override
             public void success(Response response, Response response2) {
 //                String ovpn = new String(((TypedByteArray) response.getBody()).getBytes());
                 InputStream inputStream = new ByteArrayInputStream(((TypedByteArray) response.getBody()).getBytes());
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                VpnProfile profile = VpnManager.importConfig(context, inputStreamReader, "rimoto");
 
+                VpnProfile profile = VpnManager.importConfig(context, inputStreamReader, "rimoto");
                 saveCurrentProfileUUID(context, profile);
+
+                if(callback!=null) {
+                    callback.success(profile, response2);
+                }
             }
 
             @Override
             public void failure(RetrofitError error) {
                 error.printStackTrace();
+                if(callback!=null) {
+                    callback.failure(error);
+                }
             }
         });
     }
@@ -62,13 +74,21 @@ public class VpnUtils {
      * @param context Context
      * @param profile VpnProfile
      */
-    private static void saveCurrentProfileUUID(Context context, VpnProfile profile) {
+    private static void saveCurrentProfileUUID(Context context, @Nullable VpnProfile profile) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor prefsEditor = prefs.edit();
 
         String UUID = profile.getUUIDString();
         prefsEditor.putString(VPN_PROFILE_UUID, UUID);
         prefsEditor.apply();
+    }
+
+    /**
+     * Remove current profile UUID to prefs
+     * @param context Context
+     */
+    public static void removeCurrentProfileUUID(Context context) {
+        saveCurrentProfileUUID(context, null);
     }
 
     /**
@@ -201,7 +221,7 @@ public class VpnUtils {
      */
     public static void startVPN(Context context, RimotoConnectStateCallback callback) {
         VpnProfile profile = ProfileManager.get(context, getCurrentProfileUUID(context));
-        if(RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(context), profile)) {
+        if (RimotoPolicy.shouldConnect(VpnManager.getCurrentNetworkInfo(context), profile)) {
             mLogListener = new RimotoCatchFatalLogListener(context);
             VpnStatus.addLogListener(mLogListener);
             mStateListener = new RimotoConnectStateListener(callback, mLogListener);
