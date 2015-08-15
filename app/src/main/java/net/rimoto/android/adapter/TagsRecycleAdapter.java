@@ -90,7 +90,7 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
         return mTags.size();
     }
 
-    public void setmPreview(boolean mPreview) {
+    public void setPreview(boolean mPreview) {
         this.mPreview = mPreview;
         notifyDataSetChanged();
     }

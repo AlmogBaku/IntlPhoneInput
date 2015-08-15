@@ -115,9 +115,9 @@ public class MainFragment extends Fragment {
             mTagsRecycler.setAdapter(mAdapter);
         }
         if(mPageState==PageState.Preview) {
-            mAdapter.setmPreview(true);
+            mAdapter.setPreview(true);
         } else {
-            mAdapter.setmPreview(false);
+            mAdapter.setPreview(false);
         }
 
         //Set as premium if have a non "appPolicy" exists
@@ -149,7 +149,7 @@ public class MainFragment extends Fragment {
             mMainBoxaText.setText(R.string.main_boxa_text_preview);
         }
         if(mAdapter!=null) {
-            mAdapter.setmPreview(true);
+            mAdapter.setPreview(true);
         }
         getActivity().setTitle(R.string.main_activity_title_preview);
     }
@@ -171,7 +171,7 @@ public class MainFragment extends Fragment {
             mActionButton.setVisibility(View.VISIBLE);
         }
         if(mAdapter!=null) {
-            mAdapter.setmPreview(false);
+            mAdapter.setPreview(false);
         }
 
         if(havePremium) {
