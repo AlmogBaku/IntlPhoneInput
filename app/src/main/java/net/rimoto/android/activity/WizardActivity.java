@@ -1,7 +1,5 @@
 package net.rimoto.android.activity;
 
-import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.view.PagerAdapter;
@@ -14,9 +12,8 @@ import com.viewpagerindicator.CirclePageIndicator;
 
 import net.rimoto.android.R;
 import net.rimoto.android.adapter.WizardFragmentAdapter;
-import net.rimoto.core.utils.UI;
+import net.rimoto.core.utils.UI.UiUtils;
 import net.rimoto.core.utils.VpnUtils;
-import net.rimoto.vpnlib.VpnManager;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -67,16 +64,16 @@ public class WizardActivity extends InstabugFragmentActivity {
         }
     }
     protected void connect() {
-        UI.showSpinner(this, "Connecting to Rimoto's cloud..");
+        UiUtils.showSpinner(this, "Connecting to Rimoto's cloud..");
         VpnUtils.startVPN(this, new VpnUtils.RimotoConnectStateCallback() {
             @Override
             public void connected() {
-                UI.hideSpinner();
+                UiUtils.hideSpinner();
                 startMainActivity();
             }
             @Override
             public void exiting() {
-                UI.hideSpinner();
+                UiUtils.hideSpinner();
                 Toast toast = Toast.makeText(WizardActivity.this, "There was some problem with connecting you :\\", Toast.LENGTH_LONG);
                 toast.show();
                 mConnectBtn.setEnabled(true);
@@ -85,7 +82,7 @@ public class WizardActivity extends InstabugFragmentActivity {
 
             @Override
             public void shouldntConnect() {
-                UI.hideSpinner();
+                UiUtils.hideSpinner();
                 Toast toast = Toast.makeText(WizardActivity.this, "Rimoto will connect to the cloud as soon you'll be abroad on wifi.", Toast.LENGTH_LONG);
                 toast.show();
                 startMainActivity();
@@ -103,7 +100,7 @@ public class WizardActivity extends InstabugFragmentActivity {
         mPager          = null;
         mCircleIndicator= null;
         mConnectBtn     = null;
-        UI.hideSpinner();
+        UiUtils.hideSpinner();
         System.gc();
     }
 }

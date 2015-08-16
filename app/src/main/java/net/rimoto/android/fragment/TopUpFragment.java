@@ -1,6 +1,5 @@
 package net.rimoto.android.fragment;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,7 +12,7 @@ import net.rimoto.android.adapter.SCEServicesRecycleAdapter;
 import net.rimoto.core.API;
 import net.rimoto.core.models.Policy;
 import net.rimoto.core.models.SCEService;
-import net.rimoto.core.utils.UI;
+import net.rimoto.core.utils.UI.UiUtils;
 import net.rimoto.core.utils.VpnUtils;
 import net.rimoto.vpnlib.VpnManager;
 
@@ -119,17 +118,17 @@ public class TopUpFragment extends Fragment {
             toast.show();
         }
 
-        UI.showSpinner(getActivity(), "Purchasing your new plan..");
-        UI.setNonCanaclableSpinner();
+        UiUtils.showSpinner(getActivity(), "Purchasing your new plan..");
+        UiUtils.setNonCanaclableSpinner();
         API.getInstance().addAppPolicy(home_operator, visited_operator, planId, new Callback<Policy>() {
             @Override
             public void success(Policy policy, Response response) {
-                UI.hideSpinner();
+                UiUtils.hideSpinner();
                 purchaseSucceed(planId);
             }
             @Override
             public void failure(RetrofitError error) {
-                UI.hideSpinner();
+                UiUtils.hideSpinner();
                 error.printStackTrace();
             }
         });
@@ -137,8 +136,8 @@ public class TopUpFragment extends Fragment {
 
     private void purchaseSucceed(int planId) {
         if(VpnManager.isConnected()) {
-            UI.showSpinner(getActivity(), "Activating your new plan..");
-            UI.setNonCanaclableSpinner();
+            UiUtils.showSpinner(getActivity(), "Activating your new plan..");
+            UiUtils.setNonCanaclableSpinner();
             VpnUtils.stopVPN(getActivity(), this::connectToVpn);
         } else {
             API.clearCache();
@@ -150,13 +149,13 @@ public class TopUpFragment extends Fragment {
         VpnUtils.startVPN(getActivity(), new VpnUtils.RimotoConnectStateCallback() {
             @Override
             public void connected() {
-                UI.hideSpinner();
+                UiUtils.hideSpinner();
                 gotoMainFragment();
             }
 
             @Override
             public void exiting() {
-                UI.hideSpinner();
+                UiUtils.hideSpinner();
                 Toast toast = Toast.makeText(getActivity(), "There was some problem with connecting you :\\", Toast.LENGTH_LONG);
                 toast.show();
                 VpnUtils.stopVPN(getActivity());
@@ -164,7 +163,7 @@ public class TopUpFragment extends Fragment {
 
             @Override
             public void shouldntConnect() {
-                UI.hideSpinner();
+                UiUtils.hideSpinner();
                 Toast toast = Toast.makeText(getActivity(), "Rimoto will connect to the cloud as soon you'll be abroad on wifi.", Toast.LENGTH_LONG);
                 toast.show();
                 gotoMainFragment();

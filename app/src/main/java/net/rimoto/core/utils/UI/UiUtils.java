@@ -1,9 +1,11 @@
-package net.rimoto.core.utils;
+package net.rimoto.core.utils.UI;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 
-public class UI {
+public class UiUtils {
     private static ProgressDialog sSpinner;
     public static void showSpinner(Context context) {
         showSpinner(context, "Loading. Please wait...");
@@ -26,5 +28,14 @@ public class UI {
         if(sSpinner == null) return;
         sSpinner.dismiss();
         sSpinner = null;
+    }
+
+    public static void openHelp(FragmentActivity activityContext) {
+        FragmentTransaction ft = activityContext.getSupportFragmentManager().beginTransaction();
+        ft.addToBackStack(null);
+
+        // Create and show the dialog.
+        HelpDialogMain helpDialog = new HelpDialogMain();
+        helpDialog.show(ft, "dialog");
     }
 }
