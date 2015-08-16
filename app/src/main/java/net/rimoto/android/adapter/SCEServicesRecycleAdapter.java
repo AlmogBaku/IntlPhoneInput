@@ -56,6 +56,7 @@ public class SCEServicesRecycleAdapter extends RecyclerView.Adapter<SCEServicesR
     public void setServices(List<SCEService> services, boolean preview) {
         this.services = services;
         this.mPreview = preview;
+        notifyDataSetChanged();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

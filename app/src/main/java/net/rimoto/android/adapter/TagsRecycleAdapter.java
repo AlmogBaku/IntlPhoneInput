@@ -109,7 +109,6 @@ public class TagsRecycleAdapter extends RecyclerView.Adapter<TagsRecycleAdapter.
             tagName.setText(tag.getName() + ":");
             SCEServicesRecycleAdapter adapter = (SCEServicesRecycleAdapter) servicesRecycler.getAdapter();
             adapter.setServices(tag.getServices(), preview);
-            adapter.notifyDataSetChanged();
         }
     }
 }
