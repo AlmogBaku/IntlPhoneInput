@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +12,8 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 import net.rimoto.android.R;
-import net.rimoto.core.models.FAQ_Category;
 import net.rimoto.core.models.FAQ_Question;
+import net.rimoto.core.utils.UI.adapter.FAQ_categoryRecycleAdapter;
 
 
 public class HelpDialogQuestion extends DialogFragment {

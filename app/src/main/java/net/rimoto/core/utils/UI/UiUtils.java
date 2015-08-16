@@ -5,6 +5,8 @@ import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
+import net.rimoto.core.utils.UI.fragment.HelpDialogFaq;
+
 public class UiUtils {
     private static ProgressDialog sSpinner;
     public static void showSpinner(Context context) {
@@ -35,7 +37,7 @@ public class UiUtils {
         ft.addToBackStack(null);
 
         // Create and show the dialog.
-        HelpDialogMain helpDialog = new HelpDialogMain();
+        HelpDialogFaq helpDialog = new HelpDialogFaq();
         helpDialog.show(ft, "dialog");
     }
 }

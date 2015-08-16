@@ -15,40 +15,34 @@
         android:textColor="@color/orange"
         android:id="@+id/help_title" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/help_content"
-        android:layout_below="@id/help_title"
-        android:layout_above="@+id/contactBtn"
-        android:orientation="vertical">
-
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/faqRecycle"
-            android:visibility="visible"/>
-        <WebView
-            android:layout_marginTop="3dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/answerWebView"
-            android:background="@color/transparent"
-            android:visibility="gone" />
-
-    </LinearLayout>
 
     <net.rimoto.android.views.PacificoButton
-        android:background="@color/pink"
-        android:layout_width="match_parent"
+        android:background="@color/orange"
+        android:layout_width="250sp"
         android:layout_height="@dimen/topUpBtn_height"
         android:textSize="30sp"
-        android:text="Can't find my question"
+        android:text="I have a question"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:id="@+id/contactBtn"
         tools:ignore="UnusedAttribute"
+        android:layout_below="@+id/help_title"
+        android:layout_centerHorizontal="true" />
+
+    <net.rimoto.android.views.PacificoButton
+        android:background="@color/pink"
+        android:layout_width="250sp"
+        android:layout_height="@dimen/topUpBtn_height"
+        android:textSize="30sp"
+        android:text="I want to report a problem"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:id="@+id/bugBtn"
+        tools:ignore="UnusedAttribute"
+        android:layout_below="@+id/contactBtn"
+        android:layout_alignLeft="@+id/contactBtn"
+        android:layout_alignStart="@+id/contactBtn"
         android:layout_marginTop="10dp"
-        android:layout_alignParentBottom="true" />
+        />
 
 </RelativeLayout>

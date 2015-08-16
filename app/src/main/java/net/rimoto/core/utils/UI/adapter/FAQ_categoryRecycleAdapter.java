@@ -1,4 +1,4 @@
-package net.rimoto.core.utils.UI;
+package net.rimoto.core.utils.UI.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
