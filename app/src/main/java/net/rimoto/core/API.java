@@ -7,6 +7,7 @@ import com.squareup.okhttp.ConnectionPool;
 import com.squareup.okhttp.OkHttpClient;
 
 import net.rimoto.core.models.AccessToken;
+import net.rimoto.core.models.FAQ_Question;
 import net.rimoto.core.models.Policy;
 import net.rimoto.core.models.Subscriber;
 
@@ -47,6 +48,9 @@ public class API {
         @FormUrlEncoded
         @POST("/subscriber/me/log")
         void sendLogs(@Field("logs") String logs, @Field("device") String device, Callback<Boolean> cb);
+
+        @GET("/faq") void getFAQ(Callback<List<FAQ_Question>> cb);
+        @GET("/faq") List<FAQ_Question> getFAQ();
     }
 
     private static RequestInterceptor sRequestInterceptor = request -> {

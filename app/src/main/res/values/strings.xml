@@ -19,7 +19,7 @@
     <string name="wizard_title_roaming">check-in</string>
     <string name="wizard_title_vpn">to the clouds</string>
     <string name="wizard_boxa_font">sans-serif-medium</string>
-    <string name="action_reportbug">Report a bug</string>
+    <string name="action_help">Help</string>
     <string name="action_logout">Logout</string>
     <string name="action_disconnect">Disconnect</string>
     <string name="main_activity_title">rimoto is on!</string>

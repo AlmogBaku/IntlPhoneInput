@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <net.rimoto.android.views.PacificoTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Help"
+        android:layout_marginTop="5sp"
+        android:textSize="40sp"
+        android:textColor="@color/orange"
+        android:id="@+id/view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/help_content"
+        android:layout_below="@+id/view"
+        android:layout_above="@+id/contactBtn"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/faqRecycle"
+            android:visibility="visible"/>
+        <WebView
+            android:layout_marginTop="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/answerWebView"
+            android:background="@color/transparent"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <net.rimoto.android.views.PacificoButton
+        android:background="@color/pink"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topUpBtn_height"
+        android:textSize="30sp"
+        android:text="Can't find my question"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:id="@+id/contactBtn"
+        tools:ignore="UnusedAttribute"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

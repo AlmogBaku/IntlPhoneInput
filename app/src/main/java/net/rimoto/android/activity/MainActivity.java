@@ -2,8 +2,6 @@ package net.rimoto.android.activity;
 
 import android.content.Intent;
 
-import com.instabug.library.Instabug;
-
 import net.rimoto.android.R;
 import net.rimoto.android.fragment.DebugFragment;
 import net.rimoto.android.fragment.DebugFragment_;
@@ -11,6 +9,7 @@ import net.rimoto.android.fragment.MainFragment;
 import net.rimoto.android.fragment.MainFragment_;
 import net.rimoto.core.API;
 import net.rimoto.core.Session;
+import net.rimoto.core.utils.UI.UiUtils;
 import net.rimoto.core.utils.VpnUtils;
 
 import org.androidannotations.annotations.AfterViews;
@@ -43,6 +42,7 @@ public class MainActivity extends RimotoCompatActivity {
         VpnUtils.stopVPN(this);
         API.clearCache();
         Session.logout();
+        VpnUtils.removeCurrentProfileUUID(this);
         Intent intent = new Intent(this, LoginActivity_.class);
         startActivity(intent);
         this.finish();
@@ -58,9 +58,9 @@ public class MainActivity extends RimotoCompatActivity {
 
     }
 
-    @OptionsItem(R.id.action_reportbug)
+    @OptionsItem(R.id.action_help)
     protected void reportBug() {
-        Instabug.getInstance().invoke();
+        UiUtils.openHelp(this);
     }
 
     @Override
