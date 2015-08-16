@@ -78,7 +78,7 @@ public class VpnUtils {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor prefsEditor = prefs.edit();
 
-        String UUID = profile.getUUIDString();
+        String UUID = (profile==null)?null:profile.getUUIDString();
         prefsEditor.putString(VPN_PROFILE_UUID, UUID);
         prefsEditor.apply();
     }
