@@ -2,16 +2,30 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <stroke android:color="@color/green" android:width="1dp" />
+            <stroke android:color="@color/green" android:width="2dp" />
             <padding android:left="15dip" android:top="15dip" android:right="15dip" android:bottom="15dip" />
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
-            <stroke android:color="@color/green" android:width="3dp" />
+            <stroke android:color="@color/green" android:width="4dp" />
             <padding android:left="10dip" android:top="10dip" android:right="10dip" android:bottom="10dip" />
         </shape>
     </item>
+
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#55d7d7d7" />
+            <padding android:top="0dp" android:right="2dp" android:bottom="3dp" android:left="2dp" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#96cccccc" />
+            <padding android:top="0dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+        </shape>
+    </item>
+
     <item>
         <shape android:shape="oval">
             <solid android:color="@color/green" />

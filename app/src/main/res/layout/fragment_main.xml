@@ -81,6 +81,7 @@
             android:textColor="@color/white"
             android:textSize="65sp"
             android:text="@string/activateBtn"
+            android:layout_marginTop="5dip"
             android:layout_marginRight="5dip"
             android:visibility="visible"
             android:gravity="center"
