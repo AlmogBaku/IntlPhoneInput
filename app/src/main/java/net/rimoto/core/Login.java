@@ -14,7 +14,7 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 
 import net.rimoto.core.models.AccessToken;
-import net.rimoto.core.utils.UI;
+import net.rimoto.core.utils.UI.UiUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -186,7 +186,7 @@ public class Login {
             callback.done(token, error);
         };
 
-        UI.showSpinner(context);
+        UiUtils.showSpinner(context);
 
         mWebView.setWebViewClient(new RimotoWebViewClient(cb) {
             private boolean shown = false;
@@ -194,7 +194,7 @@ public class Login {
             @Override
             public void onPageFinished(WebView view, String url) {
                 if (!shown) {
-                    UI.hideSpinner();
+                    UiUtils.hideSpinner();
                     showLoginDialog();
                     shown = true;
                 }
