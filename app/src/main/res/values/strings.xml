@@ -41,10 +41,12 @@
     <string name="wizard_vpn_connect_text">Connect, and allow us to set up a secure connection with you.</string>
     <string name="suspension_text">and will turn on automatically as soon as you’ll get off the wifi connection.</string>
     <string name="planDetails_daysLeft">days left in your plan</string>
-    <string name="oops_title">Opps..</string>
+    <string name="oops_title">Oops..</string>
     <string name="connectionFatalError_message">Rimoto is unable to connect to the cloud.\n Please restart your device.</string>
+    <string name="send">Send</string>
     <string name="help">help</string>
-    <string name="help_title_faq">I have a problem in..</string>
+    <string name="help_title_faq">I have a problem in</string>
     <string name="help_title_category">my problem is..</string>
     <string name="help_title_contact">contact us</string>
+    <string name="err_message_required">Message is required....</string>
 </resources>

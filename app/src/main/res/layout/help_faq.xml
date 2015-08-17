@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/help_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/contactBtn">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/faqRecycle"
+            android:visibility="visible"/>
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/answerWebView"
+            android:background="@color/transparent"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <net.rimoto.android.views.PacificoButton
+        android:background="@color/pink"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/topUpBtn_height"
+        android:textSize="35sp"
+        android:text="Can't find my question"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:id="@+id/contactBtn"
+        tools:ignore="UnusedAttribute"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

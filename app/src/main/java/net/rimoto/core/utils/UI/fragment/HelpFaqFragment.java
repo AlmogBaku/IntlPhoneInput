@@ -17,8 +17,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class HelpDialogFaq extends HelpDialog {
-    protected int mLayout = R.layout.help;
+public class HelpFaqFragment extends HelpFragment {
     private FAQ_mainRecycleAdapter mAdapter;
     private RecyclerView mFaqRecycler;
 
@@ -26,7 +25,7 @@ public class HelpDialogFaq extends HelpDialog {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mTitle.setText(R.string.help_title_faq);
+        getActivity().setTitle(R.string.help_title_faq);
 
         mFaqRecycler = (RecyclerView) view.findViewById(R.id.faqRecycle);
         mFaqRecycler.setHasFixedSize(true);
@@ -51,11 +50,10 @@ public class HelpDialogFaq extends HelpDialog {
     private FAQ_mainRecycleAdapter.Callback onSelectCategory = new FAQ_mainRecycleAdapter.Callback() {
         @Override
         public void click(FAQ_Category category, View view) {
-            HelpDialogCategory categoryFragment = new HelpDialogCategory();
+            HelpCategoryFragment categoryFragment = new HelpCategoryFragment();
             categoryFragment.setCategory(category);
 
             changeDialogFragment(categoryFragment);
         }
     };
-
 }

@@ -41,9 +41,15 @@
             android:label="@string/main_activity_title" >
         </activity>
 
+        <activity
+            android:name="net.rimoto.core.utils.UI.HelpActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/help">
+        </activity>
+
         <service
             android:name=".utils.LeakSlackUploadService"
-            android:enabled="false" />
+            android:enabled="true" />
 
     </application>
 </manifest>

@@ -9,10 +9,9 @@ import net.rimoto.android.R;
 import net.rimoto.core.models.FAQ_Category;
 import net.rimoto.core.models.FAQ_Question;
 import net.rimoto.core.utils.UI.adapter.FAQ_categoryRecycleAdapter;
-import net.rimoto.core.utils.UI.HelpDialogQuestion;
 
 
-public class HelpDialogCategory extends HelpDialog {
+public class HelpCategoryFragment extends HelpFragment {
     private FAQ_Category mCategory;
     private FAQ_categoryRecycleAdapter mAdapter;
     private RecyclerView mFaqRecycler;
@@ -21,12 +20,11 @@ public class HelpDialogCategory extends HelpDialog {
         this.mCategory = category;
     }
 
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mTitle.setText(R.string.help_title_category);
+        getActivity().setTitle(R.string.help_title_category);
 
         mFaqRecycler = (RecyclerView) view.findViewById(R.id.faqRecycle);
         mFaqRecycler.setHasFixedSize(true);
@@ -41,7 +39,7 @@ public class HelpDialogCategory extends HelpDialog {
     private FAQ_categoryRecycleAdapter.Callback onSelectQuestion = new FAQ_categoryRecycleAdapter.Callback() {
         @Override
         public void click(FAQ_Question question, View view) {
-            HelpDialogQuestion questionFragment = new HelpDialogQuestion();
+            HelpQuestionFragment questionFragment = new HelpQuestionFragment();
             questionFragment.setQuestion(question);
 
             changeDialogFragment(questionFragment);

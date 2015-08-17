@@ -2,47 +2,55 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:animateLayoutChanges="true">
 
-    <net.rimoto.android.views.PacificoTextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/help"
-        android:layout_marginTop="5sp"
-        android:layout_marginLeft="6sp"
-        android:layout_marginStart="6sp"
-        android:textSize="40sp"
-        android:textColor="@color/orange"
-        android:id="@+id/help_title" />
+        android:orientation="vertical"
+        android:id="@+id/form"
+        android:padding="15dp"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:padding="15dp"
+            android:hint="What's your question?" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/form"
+        android:gravity="center"
+        android:padding="10dp">
 
-    <net.rimoto.android.views.PacificoButton
-        android:background="@color/orange"
-        android:layout_width="250sp"
-        android:layout_height="@dimen/topUpBtn_height"
-        android:textSize="30sp"
-        android:text="I have a question"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:id="@+id/contactBtn"
-        tools:ignore="UnusedAttribute"
-        android:layout_below="@+id/help_title"
-        android:layout_centerHorizontal="true" />
+        <net.rimoto.android.views.PacificoButton
+            android:background="@color/orange"
+            android:layout_width="250sp"
+            android:layout_height="@dimen/topUpBtn_height"
+            android:textSize="30sp"
+            android:text="I have a question"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:id="@+id/sendBtn"
+            tools:ignore="UnusedAttribute" />
 
-    <net.rimoto.android.views.PacificoButton
-        android:background="@color/pink"
-        android:layout_width="250sp"
-        android:layout_height="@dimen/topUpBtn_height"
-        android:textSize="30sp"
-        android:text="I want to report a problem"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:id="@+id/bugBtn"
-        tools:ignore="UnusedAttribute"
-        android:layout_below="@+id/contactBtn"
-        android:layout_alignLeft="@+id/contactBtn"
-        android:layout_alignStart="@+id/contactBtn"
-        android:layout_marginTop="10dp"
-        />
+        <net.rimoto.android.views.PacificoButton
+            android:background="@color/pink"
+            android:layout_width="250sp"
+            android:layout_height="@dimen/topUpBtn_height"
+            android:textSize="30sp"
+            android:text="I want to report a problem"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:id="@+id/bugBtn"
+            tools:ignore="UnusedAttribute"
+            android:layout_marginTop="10dp" />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -2,10 +2,14 @@ package net.rimoto.core.utils.UI;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
-import net.rimoto.core.utils.UI.fragment.HelpDialogFaq;
+import net.rimoto.android.activity.MainActivity_;
+import net.rimoto.android.fragment.MainFragment;
+
+import org.parceler.Parcels;
 
 public class UiUtils {
     private static ProgressDialog sSpinner;
@@ -32,12 +36,8 @@ public class UiUtils {
         sSpinner = null;
     }
 
-    public static void openHelp(FragmentActivity activityContext) {
-        FragmentTransaction ft = activityContext.getSupportFragmentManager().beginTransaction();
-        ft.addToBackStack(null);
-
-        // Create and show the dialog.
-        HelpDialogFaq helpDialog = new HelpDialogFaq();
-        helpDialog.show(ft, "dialog");
+    public static void openHelp(Context context) {
+        Intent intent = new Intent(context, HelpActivity.class);
+        context.startActivity(intent);
     }
 }
