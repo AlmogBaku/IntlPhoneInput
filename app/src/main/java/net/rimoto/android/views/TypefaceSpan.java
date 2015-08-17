@@ -63,6 +63,6 @@ public class TypefaceSpan extends MetricAffectingSpan {
 
         // Note: This flag is required for proper typeface rendering
         tp.setFlags(tp.getFlags() | Paint.SUBPIXEL_TEXT_FLAG);
-        tp.baselineShift -= (int) (tp.getTextSize()*0.3);
+        tp.baselineShift -= (int) (tp.getTextSize()*0.4);
     }
 }
