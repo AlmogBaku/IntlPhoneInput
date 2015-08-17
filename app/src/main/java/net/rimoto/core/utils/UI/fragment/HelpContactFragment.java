@@ -49,6 +49,7 @@ public class HelpContactFragment extends HelpFragment {
             } else {
                 if(mMessage.getText().toString().isEmpty()) {
                     mMessage.setError(getResources().getString(R.string.err_message_required));
+                    return;
                 }
                 mSendBtn.setEnabled(false);
                 Toast toast = Toast.makeText(getActivity().getApplicationContext(), "Thanks, we'll back to you shortly.", Toast.LENGTH_LONG);
