@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="@dimen/item_service_width"
     android:layout_height="wrap_content"
     android:layout_marginTop="3dp"
@@ -9,13 +10,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:background="@drawable/orange_circle"
-            android:padding="@dimen/item_service_icon_padding"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/serviceIcon"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="7dp"
+            tools:ignore="RtlHardcoded" />
         <TextView
             android:layout_width="24dp"
             android:layout_height="24dp"
