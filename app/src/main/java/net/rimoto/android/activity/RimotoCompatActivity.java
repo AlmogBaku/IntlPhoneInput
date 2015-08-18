@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.instabug.wrapper.support.activity.InstabugAppCompatActivity;
 
 import net.rimoto.android.R;
-import net.rimoto.android.views.TypefaceSpan;
+import net.rimoto.android.views.PacificoTypefaceSpan;
 import net.rimoto.core.utils.VpnUtils;
 import net.rimoto.vpnlib.RimotoPolicy;
 import net.rimoto.vpnlib.VpnManager;
@@ -46,7 +46,7 @@ public class RimotoCompatActivity extends InstabugAppCompatActivity {
     @Override
     public void setTitle(CharSequence title) {
         SpannableString spannableString = new SpannableString(title+" ");
-        spannableString.setSpan(new TypefaceSpan(this, "fonts/Pacifico-Regular.ttf"), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new PacificoTypefaceSpan(this), 0, spannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         super.setTitle(spannableString);
     }
