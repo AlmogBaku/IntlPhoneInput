@@ -38,14 +38,14 @@ public class TopUpFragment extends Fragment {
     protected RecyclerView plan1_recycler;
     @ViewById
     protected RecyclerView plan2_recycler;
-//    @ViewById
+    @ViewById
     protected RecyclerView plan3_recycler;
 
     @AfterViews
     protected void afterViews() {
         initPlan1();
         initPlan2();
-//        initPlan3();
+        initPlan3();
     }
 
     private void addServiceToPlan(ArrayList<SCEService> plan, String service, String slug) {
@@ -77,7 +77,7 @@ public class TopUpFragment extends Fragment {
     }
 
     private void initPlan3() {
-        addServiceToPlan(plan3, "whatsapp");
+        addServiceToPlan(plan3, "Full Access", "allopen");
 
         recyclerInit(plan3_recycler, plan3);
     }
@@ -99,10 +99,10 @@ public class TopUpFragment extends Fragment {
     protected void plan2_btn() {
         purchase(2);
     }
-//    @Click
-//    protected void plan3_btn() {
-//        purchase(3);
-//    }
+    @Click
+    protected void plan3_btn() {
+        purchase(3);
+    }
 
     private boolean purchasing=false;
     private void purchase(int planId) {
