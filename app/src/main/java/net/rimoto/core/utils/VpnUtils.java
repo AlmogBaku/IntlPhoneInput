@@ -4,17 +4,19 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
 import net.rimoto.android.R;
 import net.rimoto.core.API;
 import net.rimoto.vpnlib.RimotoPolicy;
+import net.rimoto.vpnlib.VpnFileLog;
 import net.rimoto.vpnlib.VpnLog;
 import net.rimoto.vpnlib.VpnManager;
 
@@ -22,9 +24,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.atomic.AtomicReference;
 
 import de.blinkt.openvpn.VpnProfile;
 import de.blinkt.openvpn.core.ProfileManager;
@@ -33,6 +32,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.TypedByteArray;
+import retrofit.mime.TypedFile;
 
 public class VpnUtils {
     public static final String VPN_PROFILE_UUID = "net.rimoto.android.vpn_profile_uuid";
@@ -288,33 +288,6 @@ public class VpnUtils {
         stopVPN(context);
         if(!VpnManager.isConnected()) {
             callback.done();
-        }
-    }
-
-    /**
-     * Send logs
-     * @param context Context
-     */
-    public static void sendLogs(Context context) {
-        try {
-            String logs = VpnLog.getRecentLogs();
-            String device = String.format("Brand: %s | Model: %s | Product: %s | Manufacturer: %s",
-                    Build.BRAND, Build.MODEL, Build.PRODUCT, Build.MANUFACTURER);
-            API.getInstance().sendLogs(logs, device, new Callback<Boolean>() {
-                @Override
-                public void success(Boolean response, Response response2) {
-                    Toast.makeText(context, "Logs sent", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void failure(RetrofitError error) {
-                    Toast.makeText(context, "Error sending logs.", Toast.LENGTH_SHORT).show();
-                    error.printStackTrace();
-                }
-            });
-        } catch (IOException e) {
-            Toast.makeText(context, "Error fetching logs.", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
         }
     }
 }

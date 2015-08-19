@@ -49,4 +49,6 @@
     <string name="help_title_category">my problem is..</string>
     <string name="help_title_contact">contact us</string>
     <string name="err_message_required">Message is required....</string>
+    <string name="help_support_sent">Thanks, we\'ll back to you shortly.</string>
+    <string name="help_support_problem">Sorry, we had a problem sending your message. Please try again later...</string>
 </resources>

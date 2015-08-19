@@ -1,5 +1,6 @@
 package net.rimoto.core.utils.UI.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -13,6 +14,14 @@ import android.widget.Toast;
 import com.instabug.library.Instabug;
 
 import net.rimoto.android.R;
+import net.rimoto.core.API;
+import net.rimoto.core.utils.UI.UiUtils;
+import net.rimoto.vpnlib.VpnFileLog;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import retrofit.mime.TypedFile;
 
 public class HelpContactFragment extends HelpFragment {
     private Button mSendBtn;
@@ -52,12 +61,28 @@ public class HelpContactFragment extends HelpFragment {
                     return;
                 }
                 mSendBtn.setEnabled(false);
-                Toast toast = Toast.makeText(getActivity().getApplicationContext(), "Thanks, we'll back to you shortly.", Toast.LENGTH_LONG);
-                toast.show();
-                getActivity().finish();
+                UiUtils.showSpinner(getActivity(), "Sending..");
+                API.sendSupportRequest(getActivity(), mMessage.getText().toString(), new Callback<Boolean>() {
+                    @Override
+                    public void success(Boolean aBoolean, Response response) {
+                        UiUtils.hideSpinner();
+                        Toast toast = Toast.makeText(getActivity().getApplicationContext(), R.string.help_support_sent, Toast.LENGTH_LONG);
+                        toast.show();
+                        getActivity().finish();
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        UiUtils.hideSpinner();
+                        Toast toast = Toast.makeText(getActivity().getApplicationContext(), R.string.help_support_problem, Toast.LENGTH_LONG);
+                        toast.show();
+                        mSendBtn.setEnabled(true);
+                    }
+                });
             }
         }
     };
+
     private View.OnClickListener onBugClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

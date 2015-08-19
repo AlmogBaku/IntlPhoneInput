@@ -1,5 +1,12 @@
 package net.rimoto.core;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.os.Build;
+import android.support.annotation.Nullable;
+import android.telephony.TelephonyManager;
+import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.Cache;
@@ -10,6 +17,8 @@ import net.rimoto.core.models.AccessToken;
 import net.rimoto.core.models.FAQ_Question;
 import net.rimoto.core.models.Policy;
 import net.rimoto.core.models.Subscriber;
+import net.rimoto.vpnlib.VpnFileLog;
+import net.rimoto.vpnlib.VpnManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,13 +27,17 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
+import retrofit.RetrofitError;
 import retrofit.client.OkClient;
 import retrofit.client.Response;
 import retrofit.converter.GsonConverter;
 import retrofit.http.Field;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
+import retrofit.http.Multipart;
 import retrofit.http.POST;
+import retrofit.http.Part;
+import retrofit.mime.TypedFile;
 
 public class API {
     public interface RimotoAPI {
@@ -32,10 +45,8 @@ public class API {
         @GET("/subscriber/me") Subscriber getMe();
 
         @GET("/subscriber/me/ovpn") void getOvpn(Callback<Response> cb);
-        @GET("/subscriber/me/ovpn") Response getOvpn();
 
         @GET("/subscriber/me/policy") void getPolicies(Callback<List<Policy>> cb);
-        @GET("/subscriber/me/policy") List<Policy> getPolicies();
 
         @FormUrlEncoded
         @POST("/subscriber/me/appPolicy")
@@ -45,9 +56,18 @@ public class API {
         @POST("/subscriber/me/appPolicy")
         void addAppPolicy(@Field("home_operator") String home_operator, @Field("visited_operator") String visited_operator, @Field("plan") int plan, Callback<Policy> cb);
 
-        @FormUrlEncoded
-        @POST("/subscriber/me/log")
-        void sendLogs(@Field("logs") String logs, @Field("device") String device, Callback<Boolean> cb);
+        @Multipart
+        @POST("/subscriber/me/support")
+        void sendSupportRequest(
+                @Part("message") String message,
+                @Nullable @Part("vpn_logs") TypedFile logs_file,
+                @Nullable @Part("device") String device,
+                @Nullable @Part("wifi") Boolean wifi,
+                @Nullable @Part("home_operator") String home_operator,
+                @Part("visited_operator") String visited_operator,
+                @Nullable @Part("extras") String extras,
+                Callback<Boolean> cb
+        );
 
         @GET("/faq") void getFAQ(Callback<List<FAQ_Question>> cb);
         @GET("/faq") List<FAQ_Question> getFAQ();
@@ -105,5 +125,24 @@ public class API {
         int mcc = Integer.parseInt(networkOperator.substring(0, 3));
         int mnc = Integer.parseInt(networkOperator.substring(3));
         return String.format("%03d", mcc) + "/" + String.format("%03d", mnc);
+    }
+
+    public static void sendSupportRequest(Context context, String message, Callback<Boolean> callback) {
+        String device = String.format("SDK Level %s, %s %s (%s)", Build.VERSION.SDK_INT, Build.BRAND, Build.MODEL, Build.PRODUCT);
+
+        TelephonyManager tel = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        String home_operator = API.rimotoOperatorFormat(tel.getSimOperator());
+        String visited_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
+
+        API.getInstance().sendSupportRequest(
+                message,
+                new TypedFile("text/plain", VpnFileLog.logFile),
+                device,
+                (VpnManager.getCurrentNetworkInfo(context).getType() == ConnectivityManager.TYPE_WIFI),
+                home_operator,
+                visited_operator,
+                null,
+                callback
+        );
     }
 }
