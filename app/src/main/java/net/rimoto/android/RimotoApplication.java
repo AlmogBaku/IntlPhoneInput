@@ -2,6 +2,8 @@ package net.rimoto.android;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
+import android.webkit.WebView;
 
 import com.instabug.library.Instabug;
 import com.squareup.leakcanary.AndroidExcludedRefs;
@@ -36,6 +38,11 @@ public class RimotoApplication extends Application {
         RimotoCore.init(this, rimotoClientID, rimoto_authURI);
         RimotoCore.setAuthType("token");
 //        VpnLog.getInstance().registerLogcat();
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && BuildConfig.DEBUG) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
     }
 
     private void InitializeInstabug() {
