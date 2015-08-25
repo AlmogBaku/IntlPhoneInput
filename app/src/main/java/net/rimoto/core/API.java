@@ -17,6 +17,7 @@ import net.rimoto.core.models.AccessToken;
 import net.rimoto.core.models.FAQ_Question;
 import net.rimoto.core.models.Policy;
 import net.rimoto.core.models.Subscriber;
+import net.rimoto.core.utils.VpnUtils;
 import net.rimoto.vpnlib.VpnFileLog;
 import net.rimoto.vpnlib.VpnManager;
 
@@ -24,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import de.blinkt.openvpn.core.VpnStatus;
 import retrofit.Callback;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
@@ -65,6 +67,9 @@ public class API {
                 @Nullable @Part("wifi") Boolean wifi,
                 @Nullable @Part("home_operator") String home_operator,
                 @Part("visited_operator") String visited_operator,
+                @Part("rimoto_enabled") Boolean rimoto_enabled,
+                @Part("vpn_connected") Boolean vpn_connected,
+                @Part("vpn_state") String vpn_state,
                 @Nullable @Part("extras") String extras,
                 Callback<Boolean> cb
         );
@@ -133,6 +138,8 @@ public class API {
         TelephonyManager tel = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String home_operator = API.rimotoOperatorFormat(tel.getSimOperator());
         String visited_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
+        Boolean rimotoIsEnabled = VpnUtils.getCurrentProfileUUID(context) == null;
+
 
         API.getInstance().sendSupportRequest(
                 message,
@@ -141,6 +148,9 @@ public class API {
                 (VpnManager.getCurrentNetworkInfo(context).getType() == ConnectivityManager.TYPE_WIFI),
                 home_operator,
                 visited_operator,
+                rimotoIsEnabled,
+                VpnManager.isConnected(),
+                VpnStatus.getLaststate(),
                 null,
                 callback
         );

@@ -10,6 +10,7 @@ import com.squareup.leakcanary.AndroidExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
+import net.rimoto.android.utils.InstabugRimoto;
 import net.rimoto.android.utils.LeakSlackUploadService;
 import net.rimoto.core.RimotoCore;
 import net.rimoto.vpnlib.VpnFileLog;
@@ -50,6 +51,7 @@ public class RimotoApplication extends Application {
         Instabug.DEBUG=true;
         Instabug.getInstance().attachFileAtLocation(VpnFileLog.logFile.getAbsolutePath());
         Instabug.getInstance().setEmailIsRequired(true);
+        Instabug.getInstance().setPreSendingRunnable(()->InstabugRimoto.attachUser(this));
     }
 
 
