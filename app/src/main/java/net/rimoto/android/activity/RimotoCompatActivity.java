@@ -36,6 +36,8 @@ import retrofit.client.Response;
  * AppCompactActivity with rimoto enhancements
  */
 public class RimotoCompatActivity extends InstabugAppCompatActivity {
+    private Bitmap mScreenshot;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,26 +155,29 @@ public class RimotoCompatActivity extends InstabugAppCompatActivity {
     }
 
     public void setSuspended() {
-        if(suspendedView != null) return;
-
-        if(firstTime) {
+        if(firstTime && suspendedView==null) {
             final Handler handler = new Handler(Looper.getMainLooper());
             handler.postDelayed(this::addSuspendedView, 1200);
         } else {
             addSuspendedView();
         }
     }
+
     @SuppressLint("NewApi")
     @SuppressWarnings("deprecation")
     private void addSuspendedView() {
-        if(suspendedView != null) return;
+        if(suspendedView == null) {
+            suspendedView = LayoutInflater.from(this).inflate(R.layout.suspended, getRootView(), false);
+            suspendedView.setClickable(true);
+            getRootView().addView(suspendedView);
+        }
 
         firstTime = false;
-        suspendedView = LayoutInflater.from(this).inflate(R.layout.suspended, getRootView(), false);
-        suspendedView.setClickable(true);
-        getRootView().addView(suspendedView);
 
-        BitmapDrawable screenshot = new BitmapDrawable(getResources(), getManipulatedBitmap(getActivityBitmap(), BLURNESS, BRIGHTNESS));
+        if(mScreenshot == null) {
+            mScreenshot = getManipulatedBitmap(getActivityBitmap(), BLURNESS, BRIGHTNESS);
+        }
+        BitmapDrawable screenshot = new BitmapDrawable(getResources(), mScreenshot);
 
         int sdk = android.os.Build.VERSION.SDK_INT;
         if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
@@ -186,5 +191,21 @@ public class RimotoCompatActivity extends InstabugAppCompatActivity {
 
         getRootView().removeView(suspendedView);
         suspendedView = null;
+    }
+
+    @SuppressLint("NewApi")
+    @SuppressWarnings("deprecation")
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if(suspendedView != null) {
+            int sdk = android.os.Build.VERSION.SDK_INT;
+            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                suspendedView.setBackgroundDrawable(null);
+            } else {
+                suspendedView.setBackground(null);
+            }
+        }
     }
 }
