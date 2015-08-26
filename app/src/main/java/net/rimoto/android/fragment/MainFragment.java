@@ -248,7 +248,7 @@ public class MainFragment extends Fragment {
                 TopUpFragment topUpFragment = new TopUpFragment_();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, topUpFragment).addToBackStack(null)
-                        .commit();
+                        .commitAllowingStateLoss();
                 break;
             case ConnectedPremium:
                 PlansFragment plansFragment = new PlansFragment_();
