@@ -35,7 +35,11 @@ public class AppPolicies {
 
             @Override
             public void failure(RetrofitError error) {
-                RimotoException exeption = new RimotoException(error.getResponse().getStatus(), error.getMessage(), error.getUrl());
+                int status = 0;
+                if(error.getResponse() != null) {
+                    status = error.getResponse().getStatus();
+                }
+                RimotoException exeption = new RimotoException(status, error.getMessage(), error.getUrl());
                 exeption.setStackTrace(error.getStackTrace());
                 cb.done(null, exeption);
             }
