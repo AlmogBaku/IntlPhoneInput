@@ -88,7 +88,7 @@ public class API {
     private static OkHttpClient okHttpClient = new OkHttpClient();
 
     static {
-        okHttpClient.setConnectionPool(ConnectionPool.getDefault());
+        okHttpClient.setConnectionPool(null);
         File httpCacheDirectory = new File(
                 RimotoCore.getsApplicationContext().getCacheDir(),
                 "httpCache");
@@ -115,7 +115,10 @@ public class API {
         return sInstance;
     }
     public static void clearPool() {
-        okHttpClient.getConnectionPool().evictAll();
+        ConnectionPool pool = okHttpClient.getConnectionPool();
+        if(pool!=null) {
+            pool.evictAll();
+        }
     }
     public static void clearCache() {
         try {
