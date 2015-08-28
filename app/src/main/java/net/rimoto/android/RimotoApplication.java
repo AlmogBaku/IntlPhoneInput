@@ -51,6 +51,7 @@ public class RimotoApplication extends Application {
         Instabug.DEBUG=true;
         Instabug.getInstance().attachFileAtLocation(VpnFileLog.logFile.getAbsolutePath());
         Instabug.getInstance().setEmailIsRequired(true);
+        Instabug.getInstance().setEnableOverflowMenuItem(false);
         Instabug.getInstance().setPreSendingRunnable(()->InstabugRimoto.attachUser(this));
     }
 
