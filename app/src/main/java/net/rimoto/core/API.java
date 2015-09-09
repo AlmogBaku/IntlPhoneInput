@@ -141,7 +141,7 @@ public class API {
         TelephonyManager tel = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String home_operator = API.rimotoOperatorFormat(tel.getSimOperator());
         String visited_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
-        Boolean rimotoIsEnabled = VpnUtils.getCurrentProfileUUID(context) == null;
+        Boolean rimotoIsEnabled = !(VpnUtils.getCurrentProfileUUID(context) == null);
 
 
         API.getInstance().sendSupportRequest(

@@ -25,7 +25,7 @@ public class InstabugRimoto {
             TelephonyManager tel = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             String home_operator = API.rimotoOperatorFormat(tel.getSimOperator());
             String roaming_operator = API.rimotoOperatorFormat(tel.getNetworkOperator());
-            Boolean rimotoIsEnabled = VpnUtils.getCurrentProfileUUID(context) == null;
+            Boolean rimotoIsEnabled = !(VpnUtils.getCurrentProfileUUID(context) == null);
 
             String userData = ""
                                 +"subscriber: " + subscriber.toString() + "\r\n"
