@@ -1,29 +1,28 @@
 package net.rimoto.core.utils;
 
+import net.rimoto.android.R;
+import net.rimoto.core.API;
+import net.rimoto.core.models.Policy;
+import net.rimoto.core.models.SCEService;
+import net.rimoto.vpnlib.RimotoPolicy;
+import net.rimoto.vpnlib.VpnManager;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.telephony.TelephonyManager;
 import android.widget.Toast;
 
-import net.rimoto.android.R;
-import net.rimoto.core.API;
-import net.rimoto.vpnlib.RimotoPolicy;
-import net.rimoto.vpnlib.VpnFileLog;
-import net.rimoto.vpnlib.VpnLog;
-import net.rimoto.vpnlib.VpnManager;
-
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.List;
 
 import de.blinkt.openvpn.VpnProfile;
 import de.blinkt.openvpn.core.ProfileManager;
@@ -32,7 +31,6 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.TypedByteArray;
-import retrofit.mime.TypedFile;
 
 public class VpnUtils {
     public static final String VPN_PROFILE_UUID = "net.rimoto.android.vpn_profile_uuid";
@@ -74,7 +72,7 @@ public class VpnUtils {
      * @param context Context
      * @param profile VpnProfile
      */
-    private static void saveCurrentProfileUUID(Context context, @Nullable VpnProfile profile) {
+    public static void saveCurrentProfileUUID(Context context, @Nullable VpnProfile profile) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor prefsEditor = prefs.edit();
 
@@ -229,7 +227,16 @@ public class VpnUtils {
         } else {
             callback.shouldntConnect();
         }
-        startVPN(context);
+        API.getInstance().getPolicies(new Callback<List<Policy>>() {
+            public void success(List<Policy> policies, Response response) {
+                saveAllowedAppsVpnAndStartVPN(context, policies, callback);
+            }
+
+            public void failure(RetrofitError error) {
+                error.printStackTrace();
+                callback.exiting();
+            }
+        });
     }
 
     /**
@@ -290,4 +297,49 @@ public class VpnUtils {
             callback.done();
         }
     }
+
+    /**
+     * Obtain set of all android bundle ids (package names) from the list of all policies
+     * @param policies user policies
+     * @return HashSet<String> of all available android bundle ids (package names)
+     */
+    @NonNull
+    public static HashSet<String> getAndroidBundleIdSet(List<Policy> policies) {
+        HashSet<String> allowedApps = new HashSet<>();
+        for (int i = 0; i < policies.size(); i++) {
+            List<SCEService> services = policies.get(i).getServices();
+            for (int j = 0; j < services.size(); j++) {
+                allowedApps.add(services.get(j).getAndroidBundleId());
+            }
+        }
+        return allowedApps;
+    }
+
+
+    public static void saveAllowedAppsVpnAndStartVPN(Context context, List<Policy> policies,
+            RimotoConnectStateCallback callback) {
+        HashSet<String> allowedApps = VpnUtils.getAndroidBundleIdSet(policies);
+        VpnProfile vpnProfile = ProfileManager
+                .get(context, VpnUtils.getCurrentProfileUUID(context));
+        if (vpnProfile == null) {
+            VpnUtils.importVPNConfig(context, new Callback<VpnProfile>() {
+                @Override
+                public void success(VpnProfile vpnProfile, Response response) {
+                    vpnProfile.mAllowedAppsVpn = allowedApps;
+                    VpnUtils.saveCurrentProfileUUID(context, vpnProfile);
+                    startVPN(context);
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    callback.exiting();
+                }
+            });
+        } else {
+            vpnProfile.mAllowedAppsVpn = allowedApps;
+            VpnUtils.saveCurrentProfileUUID(context, vpnProfile);
+            startVPN(context);
+        }
+    }
+
 }
