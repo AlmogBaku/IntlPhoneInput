@@ -303,13 +303,14 @@ public class VpnUtils {
      * @param policies user policies
      * @return HashSet<String> of all available android bundle ids (package names)
      */
-    @NonNull
+    @Nullable
     public static HashSet<String> getAndroidBundleIdSet(List<Policy> policies) {
         HashSet<String> allowedApps = new HashSet<>();
         for (int i = 0; i < policies.size(); i++) {
             List<SCEService> services = policies.get(i).getServices();
             for (int j = 0; j < services.size(); j++) {
                 allowedApps.add(services.get(j).getAndroidBundleId());
+                if(services.get(j).getSlug().equals("allopen")) return null;
             }
         }
         return allowedApps;
@@ -318,14 +319,22 @@ public class VpnUtils {
 
     public static void saveAllowedAppsVpnAndStartVPN(Context context, List<Policy> policies,
             RimotoConnectStateCallback callback) {
+
         HashSet<String> allowedApps = VpnUtils.getAndroidBundleIdSet(policies);
+        if(allowedApps!=null) {
+            allowedApps.add(context.getPackageName());
+        }
+
         VpnProfile vpnProfile = ProfileManager
                 .get(context, VpnUtils.getCurrentProfileUUID(context));
         if (vpnProfile == null) {
             VpnUtils.importVPNConfig(context, new Callback<VpnProfile>() {
                 @Override
                 public void success(VpnProfile vpnProfile, Response response) {
-                    vpnProfile.mAllowedAppsVpn = allowedApps;
+                    if(allowedApps!=null) {
+                        vpnProfile.mAllowedAppsVpn = allowedApps;
+                        vpnProfile.mAllowedAppsVpnAreDisallowed = false;
+                    }
                     VpnUtils.saveCurrentProfileUUID(context, vpnProfile);
                     startVPN(context);
                 }
@@ -336,7 +345,10 @@ public class VpnUtils {
                 }
             });
         } else {
-            vpnProfile.mAllowedAppsVpn = allowedApps;
+            if(allowedApps!=null) {
+                vpnProfile.mAllowedAppsVpn = allowedApps;
+                vpnProfile.mAllowedAppsVpnAreDisallowed = false;
+            }
             VpnUtils.saveCurrentProfileUUID(context, vpnProfile);
             startVPN(context);
         }
