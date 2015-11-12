@@ -320,10 +320,7 @@ public class VpnUtils {
     public static void saveAllowedAppsVpnAndStartVPN(Context context, List<Policy> policies,
             RimotoConnectStateCallback callback) {
 
-        HashSet<String> allowedApps = VpnUtils.getAndroidBundleIdSet(policies);
-        if(allowedApps!=null) {
-            allowedApps.add(context.getPackageName());
-        }
+        HashSet<String> allowedApps = getAllowedApps(context, policies);
 
         VpnProfile vpnProfile = ProfileManager
                 .get(context, VpnUtils.getCurrentProfileUUID(context));
@@ -352,6 +349,20 @@ public class VpnUtils {
             VpnUtils.saveCurrentProfileUUID(context, vpnProfile);
             startVPN(context);
         }
+    }
+
+    private static HashSet<String> getAllowedApps(Context context, List<Policy> policies) {
+        HashSet<String> allowedApps = VpnUtils.getAndroidBundleIdSet(policies);
+        if(allowedApps!=null) {
+            allowedApps.add(context.getPackageName());
+            allowedApps.add("com.android.chrome");
+            allowedApps.add("com.google.android.browser");
+            allowedApps.add("com.android.captiveportallogin");
+            allowedApps.add("com.android.settings");
+            allowedApps.add("com.google.android.gms");
+
+        }
+        return allowedApps;
     }
 
 }
