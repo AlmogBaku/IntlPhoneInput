@@ -66,4 +66,22 @@
         android:layout_alignLeft="@+id/sid"
         android:layout_alignStart="@+id/sid" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wifi policy"
+        android:id="@+id/textView4"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/internalIp"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2" />
+
+    <Spinner
+        android:id="@+id/wifiPolicy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="240dp"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignLeft="@+id/sid"
+        android:layout_alignStart="@+id/sid" />
 </RelativeLayout>
