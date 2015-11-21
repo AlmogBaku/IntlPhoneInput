@@ -332,6 +332,7 @@ public class VpnUtils {
                         vpnProfile.mAllowedAppsVpn = allowedApps;
                         vpnProfile.mAllowedAppsVpnAreDisallowed = false;
                     }
+                    ProfileManager.getInstance(context).saveProfile(context, vpnProfile);
                     VpnUtils.saveCurrentProfileUUID(context, vpnProfile);
                     startVPN(context);
                 }
@@ -346,6 +347,7 @@ public class VpnUtils {
                 vpnProfile.mAllowedAppsVpn = allowedApps;
                 vpnProfile.mAllowedAppsVpnAreDisallowed = false;
             }
+            ProfileManager.getInstance(context).saveProfile(context, vpnProfile);
             VpnUtils.saveCurrentProfileUUID(context, vpnProfile);
             startVPN(context);
         }
