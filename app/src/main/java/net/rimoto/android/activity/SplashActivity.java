@@ -1,23 +1,23 @@
 package net.rimoto.android.activity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.widget.Toast;
-
 import com.instabug.wrapper.support.activity.InstabugActivity;
 
+import net.rimoto.android.R;
 import net.rimoto.android.fragment.MainFragment;
 import net.rimoto.android.utils.AppPolicies;
 import net.rimoto.android.utils.InstabugRimoto;
 import net.rimoto.core.API;
 import net.rimoto.core.Session;
-import net.rimoto.android.R;
 import net.rimoto.core.models.Policy;
 import net.rimoto.vpnlib.VpnManager;
 
 import org.androidannotations.annotations.EActivity;
 import org.parceler.Parcels;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -50,15 +50,18 @@ public class SplashActivity extends InstabugActivity {
      * Add app policy, then `getPolicies()`
      */
     private void addAppPolicy() {
-        AppPolicies.addAppPolicy(this, (policy, error) ->{
-            if(error != null) {
-                if(error.getMessage().equals("NO_SIM")) {
-                    Toast toast = Toast.makeText(getApplicationContext(), "You need a sim card in order to use Rimoto", Toast.LENGTH_LONG);
+        AppPolicies.addAppPolicy(this, (policy, error) -> {
+            if (error != null) {
+                if (error.getMessage().equals("NO_SIM")) {
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "You need a sim card in order to use Rimoto", Toast.LENGTH_LONG);
                     toast.show();
                     finish();
                 } else {
                     error.printStackTrace();
-                    Toast toast = Toast.makeText(getApplicationContext(), "We have an issue with you connection.. please try again later.", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "We have an issue with you connection.. please try again later.",
+                            Toast.LENGTH_LONG);
                     toast.show();
                     finish();
                 }
