@@ -1,2 +1,2 @@
 include ':app'
-include ':openvpn-lib:openvpn' // OpenVPN Library
+include ':openvpn-lib:main' // OpenVPN Library
