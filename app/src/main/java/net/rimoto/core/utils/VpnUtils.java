@@ -49,11 +49,18 @@ public class VpnUtils {
                 InputStream inputStream = new ByteArrayInputStream(((TypedByteArray) response.getBody()).getBytes());
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
 
-                VpnProfile profile = VpnManager.importConfig(context, inputStreamReader, "rimoto");
-                saveCurrentProfileUUID(context, profile);
+                VpnProfile profile = VpnManager.importConfig(context, inputStreamReader, "Rimoto");
+                if(profile != null) {
+                    profile.mProfileCreator = "Rimoto CORE";
+                    saveCurrentProfileUUID(context, profile);
 
-                if(callback!=null) {
-                    callback.success(profile, response2);
+                    if (callback != null) {
+                        callback.success(profile, response2);
+                    }
+                } else {
+                    if(callback!=null) {
+                        callback.failure(RetrofitError.unexpectedError("Cant import config", new Exception()));
+                    }
                 }
             }
 
