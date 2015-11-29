@@ -76,7 +76,9 @@ public class WizardActivity extends InstabugFragmentActivity {
                 UiUtils.hideSpinner();
                 Toast toast = Toast.makeText(WizardActivity.this, "There was some problem with connecting you :\\", Toast.LENGTH_LONG);
                 toast.show();
-                mConnectBtn.setEnabled(true);
+                if(mConnectBtn != null) {
+                    mConnectBtn.setEnabled(true);
+                }
                 VpnUtils.stopVPN(WizardActivity.this);
             }
 
