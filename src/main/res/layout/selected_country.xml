@@ -5,6 +5,6 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/country_us"
+        android:src="@drawable/country_il"
         android:id="@+id/intl_phone_edit__country__selected_image"/>
 </RelativeLayout>

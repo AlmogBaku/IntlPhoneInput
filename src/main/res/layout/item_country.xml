@@ -13,13 +13,14 @@
         android:id="@+id/intl_phone_edit__country__item_image"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/country_il" />
+        android:src="@drawable/country_il"
+        android:contentDescription="@string/item_image_contentDescription" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/intl_phone_edit__country__item_name"
-        android:text="Israel (‫ישראל‬‎)"
+        android:text="@string/item_preview_country"
         android:textColor="?android:textColorPrimary"
         android:gravity="center_horizontal"
         android:layout_toLeftOf="@+id/intl_phone_edit__country__item_dialcode"
@@ -34,5 +35,5 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:textColor="?android:textColorHint"
-        android:text="+972" />
+        android:text="@string/item_preview_dialCode" />
 </RelativeLayout>
