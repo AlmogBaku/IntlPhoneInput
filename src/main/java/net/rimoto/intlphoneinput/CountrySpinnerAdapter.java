@@ -11,11 +11,22 @@ import android.widget.TextView;
 public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
     private LayoutInflater mLayoutInflater;
 
+    /**
+     * Constructor
+     * @param context Context
+     */
     public CountrySpinnerAdapter(Context context) {
         super(context, 0);
         mLayoutInflater = LayoutInflater.from(context);
     }
 
+    /**
+     * Drop down item view
+     * @param position position of item
+     * @param convertView View of item
+     * @param parent parent view of item's view
+     * @return covertView
+     */
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
@@ -37,6 +48,13 @@ public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
         return convertView;
     }
 
+    /**
+     * Drop down selected view
+     * @param position position of selected item
+     * @param convertView View of selected item
+     * @param parent parent of selected view
+     * @return convertView
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Country country = getItem(position);
@@ -51,11 +69,19 @@ public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
         return convertView;
     }
 
+    /**
+     * Fetch flag resource by Country
+     * @param country Country
+     * @return int of resource | 0 value if not exists
+     */
     private int getFlagResource(Country country) {
         return getContext().getResources().getIdentifier("country_" + country.getIso().toLowerCase(), "drawable", getContext().getPackageName());
     }
 
 
+    /**
+     * View holder for caching
+     */
     private static class ViewHolder {
         public ImageView mImageView;
         public TextView mNameView;

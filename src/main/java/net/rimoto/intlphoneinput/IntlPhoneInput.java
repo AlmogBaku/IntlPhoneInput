@@ -36,16 +36,28 @@ public class IntlPhoneInput extends RelativeLayout {
     private Country mSelectedCountry;
     private CountriesFetcher.CountryList mCountries;
 
+    /**
+     * Constructor
+     * @param context Context
+     */
     public IntlPhoneInput(Context context) {
         super(context);
         init();
     }
 
+    /**
+     * Constructor
+     * @param context Context
+     * @param attrs AttributeSet
+     */
     public IntlPhoneInput(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
+    /**
+     * Init after constructor
+     */
     private void init() {
         inflate(getContext(), R.layout.intl_phone_input, this);
 
@@ -66,25 +78,46 @@ public class IntlPhoneInput extends RelativeLayout {
         mPhoneEdit = (EditText) findViewById(R.id.intl_phone_edit__phone);
         mPhoneEdit.addTextChangedListener(mPhoneNumberWatcher);
 
-        //Default
-        int defaultIdx = mCountries.indexOfIso(DEFAULT_COUNTRY);
-        mSelectedCountry = mCountries.get(defaultIdx);
-        mCountrySpinner.setSelection(defaultIdx);
-        setHint();
+        setDefault();
+    }
 
-
-        /**
-         * Setting current number
-         */
+    /**
+     * Set default value
+     *  Will try to retrieve phone number from device
+     */
+    public void setDefault() {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
-            String msisdn = telephonyManager.getLine1Number();
-            if(msisdn != null && !msisdn.isEmpty()) {
-                setNumber(telephonyManager.getLine1Number());
+            String phone = telephonyManager.getLine1Number();
+            if(phone != null && !phone.isEmpty()) {
+                this.setNumber(telephonyManager.getLine1Number());
+            } else {
+                String iso = telephonyManager.getNetworkCountryIso();
+                setEmptyDefault(iso);
             }
         } catch (SecurityException e) {
-            e.printStackTrace();
+            setEmptyDefault();
         }
+    }
+
+    /**
+     * Set default value with
+     * @param iso ISO2 of country
+     */
+    public void setEmptyDefault(String iso) {
+        if(iso == null || iso.isEmpty()) {
+            iso = DEFAULT_COUNTRY;
+        }
+        int defaultIdx = mCountries.indexOfIso(iso);
+        mSelectedCountry = mCountries.get(defaultIdx);
+        mCountrySpinner.setSelection(defaultIdx);
+    }
+
+    /**
+     * Alias for setting empty string of default settings from the device (using locale)
+     */
+    private void setEmptyDefault() {
+        setEmptyDefault(null);
     }
 
     /**
@@ -118,12 +151,12 @@ public class IntlPhoneInput extends RelativeLayout {
      * Phone number watcher
      */
     private class PhoneNumberWatcher extends PhoneNumberFormattingTextWatcher {
+        @SuppressWarnings("unused")
         public PhoneNumberWatcher() {
             super();
         }
 
-        //TODO solve it!
-
+        //TODO solve it! support for android kitkat
         @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         public PhoneNumberWatcher(String countryCode) {
             super(countryCode);
@@ -159,6 +192,7 @@ public class IntlPhoneInput extends RelativeLayout {
      * Get number
      * @return Phone number in E.164 format
      */
+    @SuppressWarnings("unused")
     public String getNumber() {
         try {
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(mPhoneEdit.getText().toString(), mSelectedCountry.getIso());
@@ -172,6 +206,7 @@ public class IntlPhoneInput extends RelativeLayout {
      * Get selected country
      * @return Country
      */
+    @SuppressWarnings("unused")
     public Country getSelectedCountry() {
         return mSelectedCountry;
     }
@@ -180,6 +215,7 @@ public class IntlPhoneInput extends RelativeLayout {
      * Check if number is valid
      * @return boolean
      */
+    @SuppressWarnings("unused")
     public boolean isValid() {
         try {
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(mPhoneEdit.getText().toString(), mSelectedCountry.getIso());
