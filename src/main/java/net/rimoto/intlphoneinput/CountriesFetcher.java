@@ -10,19 +10,24 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public class CountriesFetcher {
     private static CountryList mCountries;
 
-    private static String getCountriesJson(Context context) {
+    /**
+     * Fetch JSON from RAW resource
+     * @param context Context
+     * @param resource Resource int of the RAW file
+     * @return JSON
+     */
+    private static String getJsonFromRaw(Context context, int resource) {
         String json;
         try {
-            InputStream is = context.getResources().openRawResource(R.raw.countries);
-            int size = is.available();
+            InputStream inputStream = context.getResources().openRawResource(resource);
+            int size = inputStream.available();
             byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
+            inputStream.read(buffer);
+            inputStream.close();
             json = new String(buffer, "UTF-8");
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -30,13 +35,19 @@ public class CountriesFetcher {
         }
         return json;
     }
+
+    /**
+     * Import CountryList from RAW resource
+     * @param context Context
+     * @return CountryList
+     */
     public static CountryList getCountries(Context context) {
         if(mCountries != null) {
             return mCountries;
         }
         mCountries = new CountryList();
         try {
-            JSONArray countries = new JSONArray(getCountriesJson(context));
+            JSONArray countries = new JSONArray(getJsonFromRaw(context, R.raw.countries));
             for(int i=0; i<countries.length(); i++) {
                 try {
                     JSONObject country = (JSONObject) countries.get(i);
@@ -53,6 +64,11 @@ public class CountriesFetcher {
 
 
     public static class CountryList extends ArrayList<Country> {
+        /**
+         * Fetch item index on the list by iso
+         * @param iso Country's iso2
+         * @return index of the item in the list
+         */
         public int indexOfIso(String iso) {
             for(int i=0; i<this.size(); i++) {
                 if(this.get(i).getIso().toUpperCase().equals(iso.toUpperCase())) {
@@ -61,6 +77,13 @@ public class CountriesFetcher {
             }
             return -1;
         }
+
+        /**
+         * Fetch item index on the list by dial coder
+         * @param dialCode Country's dial code prefix
+         * @return index of the item in the list
+         */
+        @SuppressWarnings("unused")
         public int indexOfDialCode(int dialCode) {
             for(int i=0; i<this.size(); i++) {
                 if(this.get(i).getDialCode() == dialCode) {
