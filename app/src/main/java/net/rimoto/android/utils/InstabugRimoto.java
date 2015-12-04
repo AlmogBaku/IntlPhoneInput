@@ -49,8 +49,9 @@ public class InstabugRimoto {
                     connections.add(connection.mServerName+":"+connection.mServerPort);
                 }
                 userData += "vpn_profile.servers: [ " + TextUtils.join(", ", connections) + " ]\r\n";
-                userData += "vpn_profile.wifi_policy: " + VpnProfile.WifiPolicy.values()[profile.mWifiPolicy.ordinal()] + " ]\r\n";
-                userData += "vpn_profile.roaming_policy: " + VpnProfile.RoamingPolicy.values()[profile.mRoamingPolicy.ordinal()] + " ]\r\n";
+                userData += "vpn_profile.per_app: [ " + TextUtils.join(", ", profile.mAllowedAppsVpn) + " ]\r\n";
+                userData += "vpn_profile.wifi_policy: " + VpnProfile.WifiPolicy.values()[profile.mWifiPolicy.ordinal()] + " \r\n";
+                userData += "vpn_profile.roaming_policy: " + VpnProfile.RoamingPolicy.values()[profile.mRoamingPolicy.ordinal()] + " \r\n";
             }
 
             Log.d("testfairy-correlation-id", String.valueOf(subscriber.getId()));
