@@ -14,7 +14,6 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
@@ -308,10 +307,10 @@ public class VpnUtils {
     /**
      * Obtain set of all android bundle ids (package names) from the list of all policies
      * @param policies user policies
-     * @return HashSet<String> of all available android bundle ids (package names)
+     * @return HashSet<String> of all available android bundle ids (package names) | null for all open
      */
     @Nullable
-    public static HashSet<String> getAndroidBundleIdSet(List<Policy> policies) {
+    public static HashSet<String> getAndroidBundleIdSetFromPolicies(List<Policy> policies) {
         HashSet<String> allowedApps = new HashSet<>();
         for (int i = 0; i < policies.size(); i++) {
             List<SCEService> services = policies.get(i).getServices();
@@ -361,7 +360,7 @@ public class VpnUtils {
     }
 
     private static HashSet<String> getAllowedApps(Context context, List<Policy> policies) {
-        HashSet<String> allowedApps = VpnUtils.getAndroidBundleIdSet(policies);
+        HashSet<String> allowedApps = VpnUtils.getAndroidBundleIdSetFromPolicies(policies);
         if(allowedApps!=null) {
             allowedApps.add(context.getPackageName());
             allowedApps.add("com.android.chrome");
@@ -369,7 +368,6 @@ public class VpnUtils {
             allowedApps.add("com.android.captiveportallogin");
             allowedApps.add("com.android.settings");
             allowedApps.add("com.google.android.gms");
-
         }
         return allowedApps;
     }
