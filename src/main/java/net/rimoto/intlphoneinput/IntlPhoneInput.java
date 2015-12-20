@@ -36,6 +36,7 @@ public class IntlPhoneInput extends RelativeLayout {
     // Fields
     private Country mSelectedCountry;
     private CountriesFetcher.CountryList mCountries;
+    private IntlPhoneInputListener mIntlPhoneInputListener;
 
     /**
      * Constructor
@@ -160,6 +161,8 @@ public class IntlPhoneInput extends RelativeLayout {
      * Phone number watcher
      */
     private class PhoneNumberWatcher extends PhoneNumberFormattingTextWatcher {
+        private boolean lastValidity;
+
         @SuppressWarnings("unused")
         public PhoneNumberWatcher() {
             super();
@@ -179,8 +182,15 @@ public class IntlPhoneInput extends RelativeLayout {
                 int countryIdx = mCountries.indexOfIso(mPhoneUtil.getRegionCodeForNumber(phoneNumber));
                 mCountrySpinner.setSelection(countryIdx);
             } catch (NumberParseException ignored) {}
-        }
 
+            if(mIntlPhoneInputListener != null) {
+                boolean validity = isValid();
+                if (validity != lastValidity) {
+                    mIntlPhoneInputListener.done(IntlPhoneInput.this, validity);
+                }
+                lastValidity = validity;
+            }
+        }
     }
 
     /**
@@ -199,13 +209,26 @@ public class IntlPhoneInput extends RelativeLayout {
 
     /**
      * Get number
-     * @return Phone number in E.164 format
+     * @return Phone number in E.164 format | null on error
      */
     @SuppressWarnings("unused")
     public String getNumber() {
         try {
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(mPhoneEdit.getText().toString(), mSelectedCountry.getIso());
             return mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
+        } catch (NumberParseException ignored){
+            return null;
+        }
+    }
+
+    /**
+     * Get PhoneNumber object
+     * @return PhonenUmber | null on error
+     */
+    @SuppressWarnings("unused")
+    public Phonenumber.PhoneNumber getPhoneNumber() {
+        try {
+            return mPhoneUtil.parse(mPhoneEdit.getText().toString(), mSelectedCountry.getIso());
         } catch (NumberParseException ignored){
             return null;
         }
@@ -232,5 +255,21 @@ public class IntlPhoneInput extends RelativeLayout {
         } catch (NumberParseException ignored){
             return false;
         }
+    }
+
+    /**
+     * Add validation listener
+     * @param listener IntlPhoneInputListener
+     */
+    public void onValidityChange(IntlPhoneInputListener listener) {
+        mIntlPhoneInputListener = listener;
+    }
+
+
+    /**
+     * Simple validation listener
+     */
+    public interface IntlPhoneInputListener {
+        void done(View view, boolean isValid);
     }
 }
