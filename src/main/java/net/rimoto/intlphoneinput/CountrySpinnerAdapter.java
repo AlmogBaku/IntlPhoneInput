@@ -31,7 +31,7 @@ public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
         if(convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.item_country, null);
+            convertView = mLayoutInflater.inflate(R.layout.item_country, parent, false);
             viewHolder = new ViewHolder();
             viewHolder.mImageView = (ImageView) convertView.findViewById(R.id.intl_phone_edit__country__item_image);
             viewHolder.mNameView = (TextView) convertView.findViewById(R.id.intl_phone_edit__country__item_name);
@@ -60,11 +60,10 @@ public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
         Country country = getItem(position);
 
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.selected_country, null);
+            convertView = new ImageView(getContext());
         }
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.intl_phone_edit__country__selected_image);
-        imageView.setImageResource(getFlagResource(country));
+        ((ImageView) convertView).setImageResource(getFlagResource(country));
 
         return convertView;
     }
