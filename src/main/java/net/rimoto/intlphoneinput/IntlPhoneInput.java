@@ -272,4 +272,11 @@ public class IntlPhoneInput extends RelativeLayout {
     public interface IntlPhoneInputListener {
         void done(View view, boolean isValid);
     }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        mPhoneEdit.setEnabled(enabled);
+        mCountrySpinner.setEnabled(enabled);
+    }
 }
