@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="horizontal">
     <Spinner
         android:layout_width="46dp"
         android:paddingRight="1dp"
         android:paddingEnd="1dp"
         android:layout_height="wrap_content"
         android:id="@+id/intl_phone_edit__country"
-        android:dropDownWidth="350dp" />
+        android:dropDownWidth="350dp"
+        tools:ignore="RtlSymmetry" />
     <EditText
-        android:layout_marginTop="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/intl_phone_edit__phone"
-        android:inputType="phone"
-        android:layout_toEndOf="@id/intl_phone_edit__country"
-        android:layout_toRightOf="@id/intl_phone_edit__country" />
-</RelativeLayout>
+        android:inputType="phone" />
+</LinearLayout>
