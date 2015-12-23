@@ -2,11 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content">
     <Spinner
-        android:layout_width="52dp"
+        android:layout_width="46dp"
+        android:paddingRight="1dp"
+        android:paddingEnd="1dp"
         android:layout_height="wrap_content"
         android:id="@+id/intl_phone_edit__country"
         android:dropDownWidth="350dp" />
     <EditText
+        android:layout_marginTop="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/intl_phone_edit__phone"
