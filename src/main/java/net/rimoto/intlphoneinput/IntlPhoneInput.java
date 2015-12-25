@@ -221,6 +221,10 @@ public class IntlPhoneInput extends RelativeLayout {
         }
     }
 
+    public String getText() {
+        return getNumber();
+    }
+
     /**
      * Get PhoneNumber object
      * @return PhonenUmber | null on error
