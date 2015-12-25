@@ -265,7 +265,7 @@ public class IntlPhoneInput extends RelativeLayout {
      * Add validation listener
      * @param listener IntlPhoneInputListener
      */
-    public void onValidityChange(IntlPhoneInputListener listener) {
+    public void setOnValidityChange(IntlPhoneInputListener listener) {
         mIntlPhoneInputListener = listener;
     }
 
