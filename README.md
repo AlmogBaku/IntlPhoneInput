@@ -24,12 +24,12 @@ Download [the latest JAR]() or grab via Maven:
 <dependency>
   <groupId>net.rimoto.intlphoneinput</groupId>
   <artifactId>intlphoneinput</artifactId>
-  <version>1.0.0</version>
+  <version>0.9.0</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-compile 'net.rimoto.intlphoneinput:intlphoneinput:1.0.0'
+compile 'net.rimoto.intlphoneinput:intlphoneinput:0.9.0'
 ```
 
 ## Usage
