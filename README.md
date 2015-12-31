@@ -17,6 +17,8 @@ country, displays a relevant placeholder and auto formats the number as they typ
 5. Easy embedding as a Custom View
 6. Listener available to detect validity change
 7. Automatically detect phone number when information available
+8. Listen to "done" even on the keyboard
+9. More..
 
 ## Download
 Download [the latest JAR]() or grab via Maven:
@@ -65,7 +67,7 @@ if(phoneInputView.isValid()) {
             void done(View view, boolean isValid);
         }
     ```
-3.
+3. `void setOnKeyboardDone(final IntlPhoneInputListener listener)`
 
 
 ## Attributions

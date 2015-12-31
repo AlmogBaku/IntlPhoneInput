@@ -6,12 +6,15 @@ import android.os.Build;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.TelephonyManager;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -282,5 +285,21 @@ public class IntlPhoneInput extends RelativeLayout {
         super.setEnabled(enabled);
         mPhoneEdit.setEnabled(enabled);
         mCountrySpinner.setEnabled(enabled);
+    }
+
+    /**
+     * Set keyboard done listener to detect when the user click "DONE" on his keyboard
+     * @param listener IntlPhoneInputListener
+     */
+    public void setOnKeyboardDone(final IntlPhoneInputListener listener) {
+        mPhoneEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    listener.done(IntlPhoneInput.this, isValid());
+                }
+                return false;
+            }
+        });
     }
 }
