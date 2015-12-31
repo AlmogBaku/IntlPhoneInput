@@ -4,7 +4,7 @@
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:orientation="horizontal">
     <Spinner
-        android:layout_width="46dp"
+        android:layout_width="40dp"
         android:paddingRight="1dp"
         android:paddingEnd="1dp"
         android:layout_height="wrap_content"
@@ -15,5 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/intl_phone_edit__phone"
+        android:singleLine="true"
+        android:textSize="24sp"
         android:inputType="phone" />
 </LinearLayout>
