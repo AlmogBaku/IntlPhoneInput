@@ -24,9 +24,8 @@ dependencies {
 }
 
 
-group = 'net.rimoto.intlphoneinput.intlphoneinput'  // Maven Group ID for the artifact
+group = 'net.rimoto'  // Maven Group ID for the artifact
 version = '0.9.0'
-
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -38,7 +37,7 @@ install {
         pom {
             project {
                 packaging 'aar'
-                groupId "net.rimoto"
+                groupId 'net.rimoto'
                 artifactId "intlphoneinput"
 
                 // Add your description here
@@ -92,7 +91,7 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
-        repo = 'IntlPhoneInput'
+        repo = 'maven'
         name = 'IntlPhoneInput'
         userOrg = "rimoto"
         licenses = ['Apache-2.0']
@@ -102,7 +101,6 @@ bintray {
         version {
             name = "0.9.0"
             released  = new Date()
-            description = "inital release!"
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
             gpg {
                 sign = true
