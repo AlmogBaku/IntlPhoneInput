@@ -1,0 +1,110 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'IntlPhoneInput'
+    bintrayName = 'IntlPhoneInput'
+
+    publishedGroupId = 'net.rimoto.intlphoneinput.intlphoneinput'
+    libraryName = 'IntlPhoneInput'
+    artifact = 'intlphoneinput'
+
+    libraryDescription = 'A wrapper for Facebook Native Like Button (LikeView) on Android'
+
+    siteUrl = 'https://github.com/rimoto/IntlPhoneInput'
+    gitUrl = 'https://github.com/rimoto/IntlPhoneInput.git'
+
+    libraryVersion = '0.9.0'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.googlecode.libphonenumber:libphonenumber:7.2.1'
+}
+
+
+group = 'net.rimoto.intlphoneinput.intlphoneinput'  // Maven Group ID for the artifact
+version = '0.9.0'
+
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+apply plugin: 'com.github.dcendents.android-maven'
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                groupId publishedGroupId
+                artifactId artifact
+
+                // Add your description here
+                name "IntlPhoneInput"
+                description "A custom view for Android that allows the user to enter his phone number in an elegant and friendly way."
+                url "https://github.com/rimoto/IntlPhoneInput"
+
+                // Set your license
+                licenses {
+                    license {
+                        name "The Apache Software License, Version 2.0"
+                        url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        name "Rimoto"
+                    }
+                }
+                scm {
+                    connection "https://github.com/rimoto/IntlPhoneInput.git"
+                    url "https://github.com/rimoto/IntlPhoneInput"
+                }
+            }
+        }
+    }
+}
+
+apply plugin: 'com.jfrog.bintray'
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        repo = 'IntlPhoneInput'
+        name = 'IntlPhoneInput'
+        userOrg = "rimoto"
+        licenses = ['Apache-2.0']
+        vcsUrl = "https://github.com/rimoto/IntlPhoneInput.git"
+        version {
+            name = "0.9.0"
+            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+            gpg {
+                sign = true
+            }
+        }
+    }
+}
