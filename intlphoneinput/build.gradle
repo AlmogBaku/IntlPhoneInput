@@ -1,26 +1,5 @@
 apply plugin: 'com.android.library'
 
-ext {
-    bintrayRepo = 'IntlPhoneInput'
-    bintrayName = 'IntlPhoneInput'
-
-    publishedGroupId = 'net.rimoto.intlphoneinput.intlphoneinput'
-    libraryName = 'IntlPhoneInput'
-    artifact = 'intlphoneinput'
-
-    libraryDescription = 'A wrapper for Facebook Native Like Button (LikeView) on Android'
-
-    siteUrl = 'https://github.com/rimoto/IntlPhoneInput'
-    gitUrl = 'https://github.com/rimoto/IntlPhoneInput.git'
-
-    libraryVersion = '0.9.0'
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
-
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
