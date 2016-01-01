@@ -24,14 +24,14 @@ country, displays a relevant placeholder and auto formats the number as they typ
 Download [the latest JAR]() or grab via Maven:
 ```xml
 <dependency>
-  <groupId>net.rimoto.intlphoneinput</groupId>
+  <groupId>net.rimoto</groupId>
   <artifactId>intlphoneinput</artifactId>
   <version>0.9.0</version>
 </dependency>
 ```
 or Gradle:
 ```groovy
-compile 'net.rimoto.intlphoneinput:intlphoneinput:0.9.0'
+compile 'net.rimoto:intlphoneinput:0.9.0'
 ```
 
 ## Usage
