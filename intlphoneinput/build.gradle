@@ -38,7 +38,7 @@ install {
         pom {
             project {
                 packaging 'aar'
-                groupId "net.rimoto.intlphoneinput.intlphoneinput"
+                groupId "net.rimoto"
                 artifactId "intlphoneinput"
 
                 // Add your description here
@@ -102,6 +102,7 @@ bintray {
         version {
             name = "0.9.0"
             released  = new Date()
+            description = "inital release!"
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
             gpg {
                 sign = true
