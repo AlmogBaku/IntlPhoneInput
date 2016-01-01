@@ -38,8 +38,8 @@ install {
         pom {
             project {
                 packaging 'aar'
-                groupId publishedGroupId
-                artifactId artifact
+                groupId "net.rimoto.intlphoneinput.intlhoneinput"
+                artifactId "intkphoneinput"
 
                 // Add your description here
                 name "IntlPhoneInput"
@@ -96,6 +96,8 @@ bintray {
         name = 'IntlPhoneInput'
         userOrg = "rimoto"
         licenses = ['Apache-2.0']
+        publish = true
+        publicDownloadNumbers = true
         vcsUrl = "https://github.com/rimoto/IntlPhoneInput.git"
         version {
             name = "0.9.0"
