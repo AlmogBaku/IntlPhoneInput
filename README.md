@@ -66,8 +66,15 @@ if(phoneInputView.isValid()) {
 
     ```java
     public interface IntlPhoneInputListener {
-            void done(View view, boolean isValid);
-        }
+      void done(View view, boolean isValid);
+    }
+    ```
+    
+    This simple structure allows you to use lambda expression! (with [retrolambda](https://github.com/orfjackal/retrolambda)):
+    ```
+    mIntlPhoneInput.setOnValidityChange((view, isValid) - {
+      if(isValid) {...}
+    }
     ```
   
 3. `void setOnKeyboardDone(IntlPhoneInputListener listener)`
