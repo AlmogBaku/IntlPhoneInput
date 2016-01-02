@@ -70,7 +70,7 @@ if(phoneInputView.isValid()) {
         }
     ```
   
-3. `void setOnKeyboardDone(final IntlPhoneInputListener listener)`
+3. `void setOnKeyboardDone(IntlPhoneInputListener listener)`
 4. `void hideKeyboard()`
 5. `void setDefault()` - Set default number: if can detect line by permission(requires `android.permission.READ_PHONE_STATE`), else- example number for country as hint(detect by SIM info if has permission, else by locale). This method automatically invoked on init
 6. `void setEmptyDeafult(String iso)` - Set example hint for iso
