@@ -60,6 +60,7 @@ if(phoneInputView.isValid()) {
 
 ## Public methods
 
+1. `boolean isValid()`
 1. `void setEnabled(boolean enabled)`
 2. `void setOnValidityChange(IntlPhoneInputListener listener)`
     ```java
@@ -68,6 +69,12 @@ if(phoneInputView.isValid()) {
         }
     ```
 3. `void setOnKeyboardDone(final IntlPhoneInputListener listener)`
+4. `void hideKeyboard()`
+5. `void setDefault()` - Set default number: if can detect line by permission(requires `android.permission.READ_PHONE_STATE`), else- example number for country as hint(detect by SIM info if has permission, else by locale). This method automatically invoked on init
+6. `void setEmptyDeafult(String iso)` - Set example hint for iso
+7. `void setEmptyDefault()` - Set example hint by locale
+8. `void setNumber(String number)` - Set number, number in E.164 format(+972501234567)
+9. `String getNumber()` or `String getText()` - Get number in E.164 format
 
 
 ## Attributions
