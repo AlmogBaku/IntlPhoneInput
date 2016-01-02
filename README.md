@@ -72,7 +72,7 @@ if(phoneInputView.isValid()) {
     
     This simple structure allows you to use lambda expression! (with [retrolambda](https://github.com/orfjackal/retrolambda)):
     ```
-    mIntlPhoneInput.setOnValidityChange((view, isValid) - {
+    mIntlPhoneInput.setOnValidityChange((view, isValid) -> {
       if(isValid) {...}
     }
     ```
