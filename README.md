@@ -63,11 +63,13 @@ if(phoneInputView.isValid()) {
 1. `boolean isValid()`
 1. `void setEnabled(boolean enabled)`
 2. `void setOnValidityChange(IntlPhoneInputListener listener)`
+
     ```java
     public interface IntlPhoneInputListener {
             void done(View view, boolean isValid);
         }
     ```
+  
 3. `void setOnKeyboardDone(final IntlPhoneInputListener listener)`
 4. `void hideKeyboard()`
 5. `void setDefault()` - Set default number: if can detect line by permission(requires `android.permission.READ_PHONE_STATE`), else- example number for country as hint(detect by SIM info if has permission, else by locale). This method automatically invoked on init
