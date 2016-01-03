@@ -182,8 +182,11 @@ public class IntlPhoneInput extends RelativeLayout {
             super.onTextChanged(s, start, before, count);
             try {
                 Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(s.toString(), mSelectedCountry.getIso());
-                int countryIdx = mCountries.indexOfIso(mPhoneUtil.getRegionCodeForNumber(phoneNumber));
-                mCountrySpinner.setSelection(countryIdx);
+                String iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
+                if(iso != null) {
+                    int countryIdx = mCountries.indexOfIso(iso);
+                    mCountrySpinner.setSelection(countryIdx);
+                }
             } catch (NumberParseException ignored) {}
 
             if(mIntlPhoneInputListener != null) {
