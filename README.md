@@ -1,4 +1,5 @@
 # International Phone Input #
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-IntlPhoneInput-green.svg?style=true)](https://android-arsenal.com/details/1/2976)
 
 ## What is it?
 **IntlNumberInput** is a custom view for Android that allows the user to enter his phone number in an
