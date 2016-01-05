@@ -23,7 +23,7 @@ dependencies {
     compile 'com.googlecode.libphonenumber:libphonenumber:7.2.1'
 }
 
-set {
+ext {
     groupId = 'net.rimoto'
     versionId = '0.9.1'
     gitProjectUrl = "https://github.com/rimoto/IntlPhoneInput"
