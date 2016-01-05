@@ -22,17 +22,17 @@ country, displays a relevant placeholder and auto formats the number as they typ
 9. More..
 
 ## Download
-Download [the latest JAR](https://repository.sonatype.org/service/local/artifact/maven/redirect?r=central-proxy&g=net.rimoto&a=intlphoneinput&v=LATEST) or grab via Maven:
+Download via Gradle or Maven:
+```groovy
+compile 'net.rimoto:intlphoneinput:0.9.1'
+```
+or Maven:
 ```xml
 <dependency>
   <groupId>net.rimoto</groupId>
   <artifactId>intlphoneinput</artifactId>
   <version>0.9.1</version>
 </dependency>
-```
-or Gradle:
-```groovy
-compile 'net.rimoto:intlphoneinput:0.9.1'
 ```
 
 ## Usage
