@@ -23,9 +23,15 @@ dependencies {
     compile 'com.googlecode.libphonenumber:libphonenumber:7.2.1'
 }
 
+set {
+    groupId = 'net.rimoto'
+    versionId = '0.9.1'
+    gitProjectUrl = "https://github.com/rimoto/IntlPhoneInput"
+    gitUrl = "https://github.com/rimoto/IntlPhoneInput.git"
+}
 
-group = 'net.rimoto'  // Maven Group ID for the artifact
-version = '0.9.0'
+group = groupId  // Maven Group ID for the artifact
+version = versionId
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -37,13 +43,13 @@ install {
         pom {
             project {
                 packaging 'aar'
-                groupId 'net.rimoto'
+                groupId groupId
                 artifactId "intlphoneinput"
 
                 // Add your description here
                 name "IntlPhoneInput"
                 description "A custom view for Android that allows the user to enter his phone number in an elegant and friendly way."
-                url "https://github.com/rimoto/IntlPhoneInput"
+                url gitProjectUrl
 
                 // Set your license
                 licenses {
@@ -58,8 +64,8 @@ install {
                     }
                 }
                 scm {
-                    connection "https://github.com/rimoto/IntlPhoneInput.git"
-                    url "https://github.com/rimoto/IntlPhoneInput"
+                    connection gitUrl
+                    url gitProjectUrl
                 }
             }
         }
@@ -97,9 +103,9 @@ bintray {
         licenses = ['Apache-2.0']
         publish = true
         publicDownloadNumbers = true
-        vcsUrl = "https://github.com/rimoto/IntlPhoneInput.git"
+        vcsUrl = gitUrl
         version {
-            name = "0.9.1"
+            name = versionId
             released  = new Date()
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
             gpg {
