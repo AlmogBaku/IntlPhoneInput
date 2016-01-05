@@ -81,6 +81,7 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
 }
 artifacts {
+    archives jar
     archives javadocJar
     archives sourcesJar
 }
@@ -99,7 +100,7 @@ bintray {
         publicDownloadNumbers = true
         vcsUrl = "https://github.com/rimoto/IntlPhoneInput.git"
         version {
-            name = "0.9.0"
+            name = "0.9.1"
             released  = new Date()
             attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
             gpg {
