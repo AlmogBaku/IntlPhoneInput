@@ -19,13 +19,12 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.googlecode.libphonenumber:libphonenumber:7.2.1'
 }
 
 ext {
     groupId = 'net.rimoto'
-    versionId = '0.9.2'
+    versionId = '0.9.3'
     gitProjectUrl = "https://github.com/rimoto/IntlPhoneInput"
     gitUrl = "https://github.com/rimoto/IntlPhoneInput.git"
 }
