@@ -6,11 +6,11 @@
 elegant and friendly way. It adds a flag dropdown to any input, automatically detects the user's
 country, displays a relevant placeholder and auto formats the number as they type.
 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/vDL6gBtltng" frameborder="0" allowfullscreen></iframe>
-
 ![IntlPhoneInput](intlphoneinput.png)
 
 ![IntlPhoneInput Spinner](intlphoneinput-spinner.png)
+
+Demo Video - https://youtu.be/vDL6gBtltng
 
 ## Features
 1. Automatically format the number as the user types
