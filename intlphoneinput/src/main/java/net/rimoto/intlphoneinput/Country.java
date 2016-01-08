@@ -1,6 +1,6 @@
 package net.rimoto.intlphoneinput;
 
-public class Country{
+public class Country {
     /**
      * Name of country
      */
@@ -15,11 +15,11 @@ public class Country{
     private int dialCode;
 
 
-
     /**
      * Constructor
-     * @param name String
-     * @param iso String of ISO2
+     *
+     * @param name     String
+     * @param iso      String of ISO2
      * @param dialCode int
      */
     public Country(String name, String iso, int dialCode) {
@@ -30,6 +30,7 @@ public class Country{
 
     /**
      * Get name of country
+     *
      * @return String
      */
     public String getName() {
@@ -38,6 +39,7 @@ public class Country{
 
     /**
      * Set name of country
+     *
      * @param name String
      */
     public void setName(String name) {
@@ -46,6 +48,7 @@ public class Country{
 
     /**
      * Get ISO2 of country
+     *
      * @return String
      */
     public String getIso() {
@@ -54,6 +57,7 @@ public class Country{
 
     /**
      * Set ISO2 of country
+     *
      * @param iso String
      */
     public void setIso(String iso) {
@@ -62,6 +66,7 @@ public class Country{
 
     /**
      * Get dial code prefix of country (like +1)
+     *
      * @return int
      */
     public int getDialCode() {
@@ -70,6 +75,7 @@ public class Country{
 
     /**
      * Set dial code prefix of country (like +1)
+     *
      * @param dialCode int (without + prefix!)
      */
     public void setDialCode(int dialCode) {
@@ -78,6 +84,7 @@ public class Country{
 
     /**
      * Check if equals
+     *
      * @param o Object to compare
      * @return boolean
      */

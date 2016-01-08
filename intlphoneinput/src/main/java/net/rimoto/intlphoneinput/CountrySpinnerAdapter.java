@@ -13,6 +13,7 @@ public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
 
     /**
      * Constructor
+     *
      * @param context Context
      */
     public CountrySpinnerAdapter(Context context) {
@@ -22,15 +23,16 @@ public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
 
     /**
      * Drop down item view
-     * @param position position of item
+     *
+     * @param position    position of item
      * @param convertView View of item
-     * @param parent parent view of item's view
+     * @param parent      parent view of item's view
      * @return covertView
      */
     @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
-        if(convertView == null) {
+        if (convertView == null) {
             convertView = mLayoutInflater.inflate(R.layout.item_country, parent, false);
             viewHolder = new ViewHolder();
             viewHolder.mImageView = (ImageView) convertView.findViewById(R.id.intl_phone_edit__country__item_image);
@@ -50,9 +52,10 @@ public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
 
     /**
      * Drop down selected view
-     * @param position position of selected item
+     *
+     * @param position    position of selected item
      * @param convertView View of selected item
-     * @param parent parent of selected view
+     * @param parent      parent of selected view
      * @return convertView
      */
     @Override
@@ -70,6 +73,7 @@ public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
 
     /**
      * Fetch flag resource by Country
+     *
      * @param country Country
      * @return int of resource | 0 value if not exists
      */

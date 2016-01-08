@@ -43,6 +43,7 @@ public class IntlPhoneInput extends RelativeLayout {
 
     /**
      * Constructor
+     *
      * @param context Context
      */
     public IntlPhoneInput(Context context) {
@@ -52,8 +53,9 @@ public class IntlPhoneInput extends RelativeLayout {
 
     /**
      * Constructor
+     *
      * @param context Context
-     * @param attrs AttributeSet
+     * @param attrs   AttributeSet
      */
     public IntlPhoneInput(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -96,13 +98,13 @@ public class IntlPhoneInput extends RelativeLayout {
 
     /**
      * Set default value
-     *  Will try to retrieve phone number from device
+     * Will try to retrieve phone number from device
      */
     public void setDefault() {
         try {
             TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
             String phone = telephonyManager.getLine1Number();
-            if(phone != null && !phone.isEmpty()) {
+            if (phone != null && !phone.isEmpty()) {
                 this.setNumber(phone);
             } else {
                 String iso = telephonyManager.getNetworkCountryIso();
@@ -115,10 +117,11 @@ public class IntlPhoneInput extends RelativeLayout {
 
     /**
      * Set default value with
+     *
      * @param iso ISO2 of country
      */
     public void setEmptyDefault(String iso) {
-        if(iso == null || iso.isEmpty()) {
+        if (iso == null || iso.isEmpty()) {
             iso = DEFAULT_COUNTRY;
         }
         int defaultIdx = mCountries.indexOfIso(iso);
@@ -137,7 +140,7 @@ public class IntlPhoneInput extends RelativeLayout {
      * Set hint number for country
      */
     private void setHint() {
-        if(mPhoneEdit != null && mSelectedCountry != null && mSelectedCountry.getIso() != null) {
+        if (mPhoneEdit != null && mSelectedCountry != null && mSelectedCountry.getIso() != null) {
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.getExampleNumberForType(mSelectedCountry.getIso(), PhoneNumberUtil.PhoneNumberType.MOBILE);
             if (phoneNumber != null) {
                 mPhoneEdit.setHint(mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
@@ -156,8 +159,10 @@ public class IntlPhoneInput extends RelativeLayout {
 
             setHint();
         }
+
         @Override
-        public void onNothingSelected(AdapterView<?> parent) {}
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
     };
 
     /**
@@ -182,18 +187,19 @@ public class IntlPhoneInput extends RelativeLayout {
             super.onTextChanged(s, start, before, count);
             try {
                 String iso = null;
-                if(mSelectedCountry != null) {
+                if (mSelectedCountry != null) {
                     iso = mSelectedCountry.getIso();
                 }
                 Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(s.toString(), iso);
                 iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
-                if(iso != null) {
+                if (iso != null) {
                     int countryIdx = mCountries.indexOfIso(iso);
                     mCountrySpinner.setSelection(countryIdx);
                 }
-            } catch (NumberParseException ignored) {}
+            } catch (NumberParseException ignored) {
+            }
 
-            if(mIntlPhoneInputListener != null) {
+            if (mIntlPhoneInputListener != null) {
                 boolean validity = isValid();
                 if (validity != lastValidity) {
                     mIntlPhoneInputListener.done(IntlPhoneInput.this, validity);
@@ -205,12 +211,13 @@ public class IntlPhoneInput extends RelativeLayout {
 
     /**
      * Set Number
+     *
      * @param number E.164 format or national format(for selected country)
      */
     public void setNumber(String number) {
         try {
             String iso = null;
-            if(mSelectedCountry != null) {
+            if (mSelectedCountry != null) {
                 iso = mSelectedCountry.getIso();
             }
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(number, iso);
@@ -219,18 +226,20 @@ public class IntlPhoneInput extends RelativeLayout {
             mCountrySpinner.setSelection(countryIdx);
 
             mPhoneEdit.setText(mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
-        } catch (NumberParseException ignored){}
+        } catch (NumberParseException ignored) {
+        }
     }
 
     /**
      * Get number
+     *
      * @return Phone number in E.164 format | null on error
      */
     @SuppressWarnings("unused")
     public String getNumber() {
         Phonenumber.PhoneNumber phoneNumber = getPhoneNumber();
 
-        if(phoneNumber == null) {
+        if (phoneNumber == null) {
             return null;
         }
 
@@ -243,23 +252,25 @@ public class IntlPhoneInput extends RelativeLayout {
 
     /**
      * Get PhoneNumber object
+     *
      * @return PhonenUmber | null on error
      */
     @SuppressWarnings("unused")
     public Phonenumber.PhoneNumber getPhoneNumber() {
         try {
             String iso = null;
-            if(mSelectedCountry != null) {
+            if (mSelectedCountry != null) {
                 iso = mSelectedCountry.getIso();
             }
             return mPhoneUtil.parse(mPhoneEdit.getText().toString(), iso);
-        } catch (NumberParseException ignored){
+        } catch (NumberParseException ignored) {
             return null;
         }
     }
 
     /**
      * Get selected country
+     *
      * @return Country
      */
     @SuppressWarnings("unused")
@@ -269,6 +280,7 @@ public class IntlPhoneInput extends RelativeLayout {
 
     /**
      * Check if number is valid
+     *
      * @return boolean
      */
     @SuppressWarnings("unused")
@@ -279,6 +291,7 @@ public class IntlPhoneInput extends RelativeLayout {
 
     /**
      * Add validation listener
+     *
      * @param listener IntlPhoneInputListener
      */
     public void setOnValidityChange(IntlPhoneInputListener listener) {
@@ -302,6 +315,7 @@ public class IntlPhoneInput extends RelativeLayout {
 
     /**
      * Set keyboard done listener to detect when the user click "DONE" on his keyboard
+     *
      * @param listener IntlPhoneInputListener
      */
     public void setOnKeyboardDone(final IntlPhoneInputListener listener) {
