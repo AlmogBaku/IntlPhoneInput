@@ -103,7 +103,7 @@ public class IntlPhoneInput extends RelativeLayout {
             TelephonyManager telephonyManager = (TelephonyManager) getContext().getSystemService(Context.TELEPHONY_SERVICE);
             String phone = telephonyManager.getLine1Number();
             if(phone != null && !phone.isEmpty()) {
-                this.setNumber(telephonyManager.getLine1Number());
+                this.setNumber(phone);
             } else {
                 String iso = telephonyManager.getNetworkCountryIso();
                 setEmptyDefault(iso);
@@ -137,7 +137,7 @@ public class IntlPhoneInput extends RelativeLayout {
      * Set hint number for country
      */
     private void setHint() {
-        if(mPhoneEdit != null) {
+        if(mPhoneEdit != null && mSelectedCountry != null && mSelectedCountry.getIso() != null) {
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.getExampleNumberForType(mSelectedCountry.getIso(), PhoneNumberUtil.PhoneNumberType.MOBILE);
             if (phoneNumber != null) {
                 mPhoneEdit.setHint(mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
@@ -181,8 +181,12 @@ public class IntlPhoneInput extends RelativeLayout {
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             super.onTextChanged(s, start, before, count);
             try {
-                Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(s.toString(), mSelectedCountry.getIso());
-                String iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
+                String iso = null;
+                if(mSelectedCountry != null) {
+                    iso = mSelectedCountry.getIso();
+                }
+                Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(s.toString(), iso);
+                iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
                 if(iso != null) {
                     int countryIdx = mCountries.indexOfIso(iso);
                     mCountrySpinner.setSelection(countryIdx);
@@ -210,10 +214,11 @@ public class IntlPhoneInput extends RelativeLayout {
                 iso = mSelectedCountry.getIso();
             }
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(number, iso);
-            mPhoneEdit.setText(mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
 
             int countryIdx = mCountries.indexOfIso(mPhoneUtil.getRegionCodeForNumber(phoneNumber));
             mCountrySpinner.setSelection(countryIdx);
+
+            mPhoneEdit.setText(mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
         } catch (NumberParseException ignored){}
     }
 
@@ -223,12 +228,13 @@ public class IntlPhoneInput extends RelativeLayout {
      */
     @SuppressWarnings("unused")
     public String getNumber() {
-        try {
-            Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(mPhoneEdit.getText().toString(), mSelectedCountry.getIso());
-            return mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
-        } catch (NumberParseException ignored){
+        Phonenumber.PhoneNumber phoneNumber = getPhoneNumber();
+
+        if(phoneNumber == null) {
             return null;
         }
+
+        return mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.E164);
     }
 
     public String getText() {
@@ -242,7 +248,11 @@ public class IntlPhoneInput extends RelativeLayout {
     @SuppressWarnings("unused")
     public Phonenumber.PhoneNumber getPhoneNumber() {
         try {
-            return mPhoneUtil.parse(mPhoneEdit.getText().toString(), mSelectedCountry.getIso());
+            String iso = null;
+            if(mSelectedCountry != null) {
+                iso = mSelectedCountry.getIso();
+            }
+            return mPhoneUtil.parse(mPhoneEdit.getText().toString(), iso);
         } catch (NumberParseException ignored){
             return null;
         }
@@ -263,12 +273,8 @@ public class IntlPhoneInput extends RelativeLayout {
      */
     @SuppressWarnings("unused")
     public boolean isValid() {
-        try {
-            Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(mPhoneEdit.getText().toString(), mSelectedCountry.getIso());
-            return mPhoneUtil.isValidNumber(phoneNumber);
-        } catch (NumberParseException ignored){
-            return false;
-        }
+        Phonenumber.PhoneNumber phoneNumber = getPhoneNumber();
+        return phoneNumber != null && mPhoneUtil.isValidNumber(phoneNumber);
     }
 
     /**
