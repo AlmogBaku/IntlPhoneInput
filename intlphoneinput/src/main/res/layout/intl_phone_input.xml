@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:orientation="horizontal">
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
+
     <Spinner
-        android:layout_width="40dp"
-        android:paddingRight="1dp"
-        android:paddingEnd="1dp"
-        android:layout_height="wrap_content"
         android:id="@+id/intl_phone_edit__country"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
         android:dropDownWidth="350dp"
-        tools:ignore="RtlSymmetry" />
+        android:paddingEnd="1dp"
+        android:paddingRight="1dp"
+        tools:ignore="RtlSymmetry"/>
+
     <EditText
+        android:id="@+id/intl_phone_edit__phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/intl_phone_edit__phone"
+        android:inputType="phone"
         android:singleLine="true"
-        android:textSize="24sp"
-        android:inputType="phone" />
-</LinearLayout>
+        android:textSize="24sp"/>
+</merge>

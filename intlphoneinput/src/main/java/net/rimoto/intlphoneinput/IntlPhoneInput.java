@@ -12,7 +12,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,7 +22,8 @@ import com.google.i18n.phonenumbers.Phonenumber;
 
 import java.util.Locale;
 
-public class IntlPhoneInput extends RelativeLayout {
+@SuppressWarnings("UnusedDeclaration")
+public class IntlPhoneInput extends LinearLayout {
     private final String DEFAULT_COUNTRY = Locale.getDefault().getCountry();
 
     // UI Views
@@ -94,6 +95,14 @@ public class IntlPhoneInput extends RelativeLayout {
     public void hideKeyboard() {
         InputMethodManager inputMethodManager = (InputMethodManager) getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(mPhoneEdit.getWindowToken(), 0);
+    }
+
+    /**
+     * Show keyboard from phoneEdit field
+     */
+    public void showKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(mPhoneEdit, 0);
     }
 
     /**
@@ -171,7 +180,6 @@ public class IntlPhoneInput extends RelativeLayout {
     private class PhoneNumberWatcher extends PhoneNumberFormattingTextWatcher {
         private boolean lastValidity;
 
-        @SuppressWarnings("unused")
         public PhoneNumberWatcher() {
             super();
         }
@@ -235,7 +243,6 @@ public class IntlPhoneInput extends RelativeLayout {
      *
      * @return Phone number in E.164 format | null on error
      */
-    @SuppressWarnings("unused")
     public String getNumber() {
         Phonenumber.PhoneNumber phoneNumber = getPhoneNumber();
 
@@ -253,9 +260,8 @@ public class IntlPhoneInput extends RelativeLayout {
     /**
      * Get PhoneNumber object
      *
-     * @return PhonenUmber | null on error
+     * @return PhoneNumber | null on error
      */
-    @SuppressWarnings("unused")
     public Phonenumber.PhoneNumber getPhoneNumber() {
         try {
             String iso = null;
@@ -273,7 +279,6 @@ public class IntlPhoneInput extends RelativeLayout {
      *
      * @return Country
      */
-    @SuppressWarnings("unused")
     public Country getSelectedCountry() {
         return mSelectedCountry;
     }
@@ -283,7 +288,6 @@ public class IntlPhoneInput extends RelativeLayout {
      *
      * @return boolean
      */
-    @SuppressWarnings("unused")
     public boolean isValid() {
         Phonenumber.PhoneNumber phoneNumber = getPhoneNumber();
         return phoneNumber != null && mPhoneUtil.isValidNumber(phoneNumber);
