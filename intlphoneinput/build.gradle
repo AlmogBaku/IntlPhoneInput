@@ -19,14 +19,14 @@ android {
 }
 
 dependencies {
-    compile 'com.googlecode.libphonenumber:libphonenumber:7.2.1'
+    compile 'com.googlecode.libphonenumber:libphonenumber:7.2.3'
 }
 
 ext {
-    groupId = 'net.rimoto'
-    versionId = '0.9.3'
-    gitProjectUrl = "https://github.com/rimoto/IntlPhoneInput"
-    gitUrl = "https://github.com/rimoto/IntlPhoneInput.git"
+    groupId = 'com.github.jarrodholliday'
+    versionId = '0.9.4'
+    gitProjectUrl = "https://github.com/jarrodholliday/IntlPhoneInput"
+    gitUrl = "https://github.com/jarrodholliday/IntlPhoneInput.git"
 }
 
 group = groupId  // Maven Group ID for the artifact
@@ -98,7 +98,7 @@ bintray {
     pkg {
         repo = 'maven'
         name = 'IntlPhoneInput'
-        userOrg = "rimoto"
+        userOrg = "jarrodholliday"
         licenses = ['Apache-2.0']
         publish = true
         publicDownloadNumbers = true
