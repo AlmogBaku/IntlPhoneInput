@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:orientation="horizontal">
-    <Spinner
+    <android.support.v7.widget.AppCompatSpinner
         android:layout_width="40dp"
         android:paddingRight="1dp"
         android:paddingEnd="1dp"
@@ -11,7 +11,7 @@
         android:id="@+id/intl_phone_edit__country"
         android:dropDownWidth="350dp"
         tools:ignore="RtlSymmetry" />
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/intl_phone_edit__phone"
