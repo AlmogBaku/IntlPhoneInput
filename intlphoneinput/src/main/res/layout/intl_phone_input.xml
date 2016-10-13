@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/intl_phone_edit__country"
         android:dropDownWidth="350dp"
+        android:background="@android:color/transparent"
         tools:ignore="RtlSymmetry" />
     <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
