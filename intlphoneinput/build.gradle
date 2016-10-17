@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "24.0.3"
 
     defaultConfig {
         minSdkVersion 14
@@ -19,13 +19,13 @@ android {
 }
 
 dependencies {
-    compile 'com.googlecode.libphonenumber:libphonenumber:7.2.1'
+    compile 'com.googlecode.libphonenumber:libphonenumber:7.7.2'
     compile 'com.android.support:appcompat-v7:24.2.1'
 }
 
 ext {
     groupId = 'net.rimoto'
-    versionId = '0.9.3'
+    versionId = '0.9.4'
     gitProjectUrl = "https://github.com/rimoto/IntlPhoneInput"
     gitUrl = "https://github.com/rimoto/IntlPhoneInput.git"
 }
