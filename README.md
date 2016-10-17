@@ -46,12 +46,22 @@ It's easy like 1-2-3!
     android:id="@+id/my_phone_input" />
 ```
 
-2. Find it in your java
+2. Set text size and text color:
+```xml
+<net.rimoto.intlphoneinput.IntlPhoneInput
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:textSize="14sp"
+    app:textColor="#000000"
+    android:id="@+id/my_phone_input" />
+```
+
+3. Find it in your java
 ```java
 IntlPhoneInput phoneInputView = (IntlPhoneInput) findById(R.id.my_phone_input);
 ```
 
-3. Check for validity and get the number!
+4. Check for validity and get the number!
 ```java
 String myInternationalNumber;
 if(phoneInputView.isValid()) {

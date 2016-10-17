@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -20,6 +20,7 @@ android {
 
 dependencies {
     compile 'com.googlecode.libphonenumber:libphonenumber:7.2.1'
+    compile 'com.android.support:appcompat-v7:24.2.1'
 }
 
 ext {

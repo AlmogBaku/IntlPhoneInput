@@ -2,10 +2,12 @@ package net.rimoto.intlphoneinput;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.TelephonyManager;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -48,7 +50,7 @@ public class IntlPhoneInput extends RelativeLayout {
      */
     public IntlPhoneInput(Context context) {
         super(context);
-        init();
+        init(null);
     }
 
     /**
@@ -59,13 +61,13 @@ public class IntlPhoneInput extends RelativeLayout {
      */
     public IntlPhoneInput(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
 
     /**
      * Init after constructor
      */
-    private void init() {
+    private void init(AttributeSet attrs) {
         inflate(getContext(), R.layout.intl_phone_input, this);
 
         /**+
@@ -86,6 +88,21 @@ public class IntlPhoneInput extends RelativeLayout {
         mPhoneEdit.addTextChangedListener(mPhoneNumberWatcher);
 
         setDefault();
+        setEditTextDefaults(attrs);
+    }
+
+    private void setEditTextDefaults(AttributeSet attrs) {
+        if (attrs == null) {
+            return;
+        }
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.IntlPhoneInput);
+        int textSize = a.getDimensionPixelSize(R.styleable.IntlPhoneInput_textSize, getResources().getDimensionPixelSize(R.dimen.text_size_default));
+        mPhoneEdit.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+        int color = a.getColor(R.styleable.IntlPhoneInput_textColor, -1);
+        if (color != -1) {
+            mPhoneEdit.setTextColor(color);
+        }
+        a.recycle();
     }
 
     /**
