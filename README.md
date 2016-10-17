@@ -56,7 +56,7 @@ It's easy like 1-2-3!
     android:id="@+id/my_phone_input" />
 ```
 
-3. Find it in your java
+3. Add it in your java
 ```java
 IntlPhoneInput phoneInputView = (IntlPhoneInput) findById(R.id.my_phone_input);
 ```
