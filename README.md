@@ -104,6 +104,12 @@ if(phoneInputView.isValid()) {
 3. Original country data from mledoze's [World countries in JSON, CSV and XML](https://github.com/mledoze/countries)
 4. Formatting/validation/example number code from [libphonenumber](https://github.com/googlei18n/libphonenumber)
 
+# Sponsors
+Thanks to our sponsors for this project:
+
+1. [Rimoto](http://www.rimoto.com)
+1. [JetBrains](http://www.jetbrains.com/) - for providing the great IDE [PhpStorm](http://www.jetbrains.com/phpstorm/)
+
 # LICENSE
     Copyright 2015 Rimoto LTD, AlmogBaku
     
