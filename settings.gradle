@@ -1,1 +1,1 @@
-include ':intlphoneinput'
+include ':intlphoneinput', ':demo'
