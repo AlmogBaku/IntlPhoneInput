@@ -81,6 +81,8 @@ public class IntlPhoneInput extends RelativeLayout {
         mCountrySpinnerAdapter.addAll(mCountries);
         mCountrySpinner.setOnItemSelectedListener(mCountrySpinnerListener);
 
+        setFlagDefaults(attrs);
+
         /**
          * Phone text field
          */
@@ -89,6 +91,19 @@ public class IntlPhoneInput extends RelativeLayout {
 
         setDefault();
         setEditTextDefaults(attrs);
+    }
+
+    private void setFlagDefaults(AttributeSet attrs) {
+        if (attrs == null) {
+            return;
+        }
+        TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.IntlPhoneInput);
+        int paddingEnd = a.getDimensionPixelSize(R.styleable.IntlPhoneInput_flagPaddingEnd, getResources().getDimensionPixelSize(R.dimen.flag_default_padding_right));
+        int paddingStart = a.getDimensionPixelSize(R.styleable.IntlPhoneInput_flagPaddingStart, getResources().getDimensionPixelSize(R.dimen.flag_default_padding));
+        int paddingTop = a.getDimensionPixelSize(R.styleable.IntlPhoneInput_flagPaddingTop, getResources().getDimensionPixelSize(R.dimen.flag_default_padding));
+        int paddingBottom = a.getDimensionPixelSize(R.styleable.IntlPhoneInput_flagPaddingBottom, getResources().getDimensionPixelSize(R.dimen.flag_default_padding));
+        mCountrySpinner.setPadding(paddingStart, paddingTop, paddingEnd, paddingBottom);
+        a.recycle();
     }
 
     private void setEditTextDefaults(AttributeSet attrs) {
