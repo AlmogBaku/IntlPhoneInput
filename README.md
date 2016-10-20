@@ -46,13 +46,18 @@ It's easy like 1-2-3!
     android:id="@+id/my_phone_input" />
 ```
 
-2. Set text size and text color:
+2. Set text size, text color and flag padding:
 ```xml
 <net.rimoto.intlphoneinput.IntlPhoneInput
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:textSize="14sp"
     app:textColor="#000000"
+    app:flagPaddingBottom="4dp"
+    app:flagPaddingEnd="4dp"
+    app:flagPaddingStart="4dp"
+    app:flagPaddingTop="4dp"
+    app:flagPaddingBottom="4dp"
     android:id="@+id/my_phone_input" />
 ```
 
