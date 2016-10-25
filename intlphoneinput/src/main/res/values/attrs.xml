@@ -3,5 +3,6 @@
     <declare-styleable name="IntlPhoneInput">
         <attr name="textSize" format="dimension" />
         <attr name="textColor" format="color" />
+        <attr name="textColorHint" format="color" />
     </declare-styleable>
 </resources>
