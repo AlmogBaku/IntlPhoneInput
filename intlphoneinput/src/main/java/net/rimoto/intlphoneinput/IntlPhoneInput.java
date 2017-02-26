@@ -102,6 +102,10 @@ public class IntlPhoneInput extends RelativeLayout {
         if (color != -1) {
             mPhoneEdit.setTextColor(color);
         }
+        int hintColor = a.getColor(R.styleable.IntlPhoneInput_textColorHint, -1);
+        if (hintColor != -1) {
+            mPhoneEdit.setHintTextColor(color);
+        }
         a.recycle();
     }
 
