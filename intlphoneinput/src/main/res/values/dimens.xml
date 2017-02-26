@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_size_default">24sp</dimen>
+    <dimen name="flag_default_padding_right">1dp</dimen>
+    <dimen name="flag_default_padding">0dp</dimen>
 </resources>

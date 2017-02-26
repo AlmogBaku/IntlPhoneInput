@@ -3,6 +3,10 @@
     <declare-styleable name="IntlPhoneInput">
         <attr name="textSize" format="dimension" />
         <attr name="textColor" format="color" />
+        <attr name="flagPaddingEnd" format="dimension" />
+        <attr name="flagPaddingStart" format="dimension" />
+        <attr name="flagPaddingBottom" format="dimension" />
+        <attr name="flagPaddingTop" format="dimension" />
         <attr name="textColorHint" format="color" />
     </declare-styleable>
 </resources>
