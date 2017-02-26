@@ -7,5 +7,6 @@
         <attr name="flagPaddingStart" format="dimension" />
         <attr name="flagPaddingBottom" format="dimension" />
         <attr name="flagPaddingTop" format="dimension" />
+        <attr name="textColorHint" format="color" />
     </declare-styleable>
 </resources>
