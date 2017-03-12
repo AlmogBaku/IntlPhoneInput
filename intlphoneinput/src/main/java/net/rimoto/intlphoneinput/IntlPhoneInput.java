@@ -248,7 +248,7 @@ public class IntlPhoneInput extends RelativeLayout {
     /**
      * Set Number
      *
-     * @param number E.164 format or national format(for selected country)
+     * @param number E.164 format or national format
      */
     public void setNumber(String number) {
         try {
@@ -257,10 +257,12 @@ public class IntlPhoneInput extends RelativeLayout {
                 iso = mSelectedCountry.getIso();
             }
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(number, iso);
-
+			
             int countryIdx = mCountries.indexOfIso(mPhoneUtil.getRegionCodeForNumber(phoneNumber));
+			mSelectedCountry = mCountries.get(countryIdx);		
             mCountrySpinner.setSelection(countryIdx);
-
+			
+			
             mPhoneEdit.setText(mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
         } catch (NumberParseException ignored) {
         }
