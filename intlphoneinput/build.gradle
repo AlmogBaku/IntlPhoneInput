@@ -25,7 +25,7 @@ dependencies {
 
 ext {
     groupId = 'net.rimoto'
-    versionId = '0.9.4'
+    versionId = '1.0.1'
     gitProjectUrl = "https://github.com/rimoto/IntlPhoneInput"
     gitUrl = "https://github.com/rimoto/IntlPhoneInput.git"
 }
