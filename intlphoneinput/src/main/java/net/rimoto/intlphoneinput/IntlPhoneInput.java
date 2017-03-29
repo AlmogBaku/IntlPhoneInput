@@ -191,7 +191,12 @@ public class IntlPhoneInput extends RelativeLayout {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             mSelectedCountry = mCountrySpinnerAdapter.getItem(position);
+
+            //Make sure that the watcher is added into the listeners of the edittext
+            //after updating the country selected...
+            mPhoneEdit.removeTextChangedListener(mPhoneNumberWatcher);
             mPhoneNumberWatcher = new PhoneNumberWatcher(mSelectedCountry.getIso());
+            mPhoneEdit.addTextChangedListener(mPhoneNumberWatcher);
 
             setHint();
         }
