@@ -2,6 +2,7 @@ package net.rimoto.intlphoneinput;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -25,7 +26,7 @@ import com.google.i18n.phonenumbers.Phonenumber;
 import java.util.Locale;
 
 public class IntlPhoneInput extends RelativeLayout {
-    private final String DEFAULT_COUNTRY = Locale.getDefault().getCountry();
+    private final String DEFAULT_COUNTRY = Resources.getSystem().getConfiguration().locale.getCountry();
 
     // UI Views
     private Spinner mCountrySpinner;
