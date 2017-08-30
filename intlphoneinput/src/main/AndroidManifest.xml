@@ -1,10 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="net.rimoto.intlphoneinput">
 
-    <application
-        android:label="@string/app_name"
-        android:supportsRtl="true">
+    <!--<application-->
+        <!--android:supportsRtl="true">-->
 
-    </application>
+    <!--</application>-->
 
 </manifest>
