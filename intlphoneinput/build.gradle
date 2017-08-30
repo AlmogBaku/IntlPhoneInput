@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 102
-        versionName "1.0.2"
+        versionCode 103
+        versionName "1.0.3"
     }
     buildTypes {
         release {
@@ -25,7 +25,7 @@ dependencies {
 
 ext {
     groupId = 'net.rimoto'
-    versionId = '1.0.2'
+    versionId = '1.0.3'
     gitProjectUrl = "https://github.com/funambol/IntlPhoneInput"
     gitUrl = "https://github.com/funambol/IntlPhoneInput"
 }
@@ -90,27 +90,3 @@ artifacts {
     archives javadocJar
     archives sourcesJar
 }
-
-//apply plugin: 'com.jfrog.bintray'
-//bintray {
-//    user = properties.getProperty("bintray.user")
-//    key = properties.getProperty("bintray.apikey")
-//    configurations = ['archives']
-//    pkg {
-//        repo = 'maven'
-//        name = 'IntlPhoneInput'
-//        userOrg = "rimoto"
-//        licenses = ['Apache-2.0']
-//        publish = true
-//        publicDownloadNumbers = true
-//        vcsUrl = gitUrl
-//        version {
-//            name = versionId
-//            released  = new Date()
-//            attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
-//            gpg {
-//                sign = true
-//            }
-//        }
-//    }
-//}
