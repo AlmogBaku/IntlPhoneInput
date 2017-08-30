@@ -26,6 +26,7 @@
         app:flagPaddingStart="4dp"
         app:flagPaddingTop="4dp"
         app:textColor="@color/colorAccent"
+        app:hintPrefix="Phone e.g."
         app:textSize="16sp" />
 
     <TextView

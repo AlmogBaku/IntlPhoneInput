@@ -8,5 +8,6 @@
         <attr name="flagPaddingBottom" format="dimension" />
         <attr name="flagPaddingTop" format="dimension" />
         <attr name="textColorHint" format="color" />
+        <attr name="hintPrefix" format="string" />
     </declare-styleable>
 </resources>

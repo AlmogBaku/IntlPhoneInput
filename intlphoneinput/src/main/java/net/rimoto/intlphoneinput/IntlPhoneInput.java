@@ -43,6 +43,7 @@ public class IntlPhoneInput extends RelativeLayout {
     private Country mSelectedCountry;
     private CountriesFetcher.CountryList mCountries;
     private IntlPhoneInputListener mIntlPhoneInputListener;
+    private String hintPrefix;
 
     /**
      * Constructor
@@ -122,6 +123,11 @@ public class IntlPhoneInput extends RelativeLayout {
         if (hintColor != -1) {
             mPhoneEdit.setHintTextColor(color);
         }
+        hintPrefix = "";
+        if(a.hasValue(R.styleable.IntlPhoneInput_hintPrefix)){
+            hintPrefix = a.getString(R.styleable.IntlPhoneInput_hintPrefix);
+        }
+
         a.recycle();
     }
 
@@ -180,7 +186,12 @@ public class IntlPhoneInput extends RelativeLayout {
         if (mPhoneEdit != null && mSelectedCountry != null && mSelectedCountry.getIso() != null) {
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.getExampleNumberForType(mSelectedCountry.getIso(), PhoneNumberUtil.PhoneNumberType.MOBILE);
             if (phoneNumber != null) {
-                mPhoneEdit.setHint(mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
+                String phoneHint = mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
+                if(hintPrefix != null && !hintPrefix.isEmpty()) {
+                    mPhoneEdit.setHint(String.format("%s %s", hintPrefix, phoneHint));
+                }else{
+                    mPhoneEdit.setHint(phoneHint);
+                }
             }
         }
     }
