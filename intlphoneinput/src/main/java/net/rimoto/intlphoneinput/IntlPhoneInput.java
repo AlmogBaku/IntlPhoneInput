@@ -23,8 +23,6 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-import java.util.Locale;
-
 public class IntlPhoneInput extends RelativeLayout {
     private final String DEFAULT_COUNTRY = Resources.getSystem().getConfiguration().locale.getCountry();
 
@@ -361,6 +359,11 @@ public class IntlPhoneInput extends RelativeLayout {
         super.setEnabled(enabled);
         mPhoneEdit.setEnabled(enabled);
         mCountrySpinner.setEnabled(enabled);
+    }
+
+    @Override
+    public void setOnTouchListener(OnTouchListener l) {
+        mPhoneEdit.setOnTouchListener(l);
     }
 
     /**
