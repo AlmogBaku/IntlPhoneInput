@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 104
-        versionName "1.0.4"
+        versionCode 106
+        versionName "1.0.6"
     }
     buildTypes {
         release {
@@ -25,7 +25,7 @@ dependencies {
 
 ext {
     groupId = 'net.rimoto'
-    versionId = '1.0.4'
+    versionId = '1.0.6'
     gitProjectUrl = "https://github.com/funambol/IntlPhoneInput"
     gitUrl = "https://github.com/funambol/IntlPhoneInput"
 }
