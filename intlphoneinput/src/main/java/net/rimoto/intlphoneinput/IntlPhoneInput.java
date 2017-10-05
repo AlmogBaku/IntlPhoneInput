@@ -93,6 +93,14 @@ public class IntlPhoneInput extends RelativeLayout {
         setEditTextDefaults(attrs);
     }
 
+    public Spinner getCountrySpinner(){
+        return mCountrySpinner;
+    }
+
+    public EditText getPhoneEditText(){
+        return mPhoneEdit;
+    }
+
     private void setFlagDefaults(AttributeSet attrs) {
         if (attrs == null) {
             return;

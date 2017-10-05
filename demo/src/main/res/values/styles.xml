@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--<style name="tool_tip_balloon_layout">-->
+        <!--<item name="ttlm_padding">25dip</item>-->
+        <!--<item name="ttlm_strokeColor">#138bc6</item>-->
+        <!--<item name="ttlm_backgroundColor">#ffffff</item>-->
+        <!--<item name="ttlm_strokeWeight">1dip</item>-->
+        <!--<item name="ttlm_cornerRadius">8dip</item>-->
+    <!--</style>-->
+
 </resources>
