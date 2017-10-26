@@ -11,7 +11,7 @@ country, displays a relevant placeholder and auto formats the number as they typ
 
 
 ## Features
-1. Automatically format the number as the user types
+1. Formatting the number as the user types Aautomatically
 2. Automatically set the input placeholder to an example number for the selected country
 3. Selecting a country from the dropdown will update the dial code in the input
 4. Typing a different dial code will automatically update the displayed flag
@@ -112,8 +112,8 @@ if(phoneInputView.isValid()) {
 # Sponsors
 Thanks to our sponsors for this project:
 
-1. [Rimoto](http://www.rimoto.com)
 1. [JetBrains](http://www.jetbrains.com/) - for providing the great IDE [PhpStorm](http://www.jetbrains.com/phpstorm/)
+1. [Rimoto](http://www.rimoto.com)
 
 # LICENSE
     Copyright 2015 Rimoto LTD, AlmogBaku
