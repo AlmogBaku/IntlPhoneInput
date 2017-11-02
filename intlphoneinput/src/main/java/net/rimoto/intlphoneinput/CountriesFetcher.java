@@ -73,8 +73,8 @@ public class CountriesFetcher {
          * @return index of the item in the list
          */
         public int indexOfIso(String iso) {
-            for (int i = 0; i < this.size(); i++) {
-                if (this.get(i).getIso().toUpperCase().equals(iso.toUpperCase())) {
+            for (int i = 0; i < size(); i++) {
+                if (iso.equalsIgnoreCase(get(i).getIso())) {
                     return i;
                 }
             }
@@ -89,8 +89,8 @@ public class CountriesFetcher {
          */
         @SuppressWarnings("unused")
         public int indexOfDialCode(int dialCode) {
-            for (int i = 0; i < this.size(); i++) {
-                if (this.get(i).getDialCode() == dialCode) {
+            for (int i = 0; i < size(); i++) {
+                if (get(i).getDialCode() == dialCode) {
                     return i;
                 }
             }
