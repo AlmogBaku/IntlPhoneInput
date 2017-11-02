@@ -1,39 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:padding="5dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="?android:attr/spinnerDropDownItemStyle"
-    android:maxLines="1"
     android:layout_width="match_parent"
-    android:ellipsize="marquee">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp">
 
     <ImageView
+        android:id="@+id/intl_phone_edit__country__item_image"
         android:layout_width="25.5dp"
         android:layout_height="15dp"
-        android:id="@+id/intl_phone_edit__country__item_image"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/country_il"
-        android:contentDescription="@string/item_image_contentDescription" />
+        android:contentDescription="@string/item_image_contentDescription"
+        tools:src="@drawable/country_il" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:layout_weight="1"
         android:id="@+id/intl_phone_edit__country__item_name"
-        android:text="@string/item_preview_country"
-        android:textColor="?android:textColorPrimary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_toLeftOf="@+id/intl_phone_edit__country__item_dialcode"
-        android:layout_toStartOf="@+id/intl_phone_edit__country__item_dialcode"
-        android:layout_toRightOf="@+id/intl_phone_edit__country__item_image"
-        android:layout_toEndOf="@+id/intl_phone_edit__country__item_image" />
+        tools:text="@string/item_preview_country"
+        android:textColor="?android:textColorPrimary" />
 
     <TextView
+        android:id="@+id/intl_phone_edit__country__item_dialcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/intl_phone_edit__country__item_dialcode"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:textColor="?android:textColorHint"
-        android:text="@string/item_preview_dialCode" />
-</RelativeLayout>
+        tools:text="@string/item_preview_dialCode"
+        android:textColor="?android:textColorHint" />
+</LinearLayout>
