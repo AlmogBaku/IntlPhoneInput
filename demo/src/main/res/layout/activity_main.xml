@@ -28,6 +28,7 @@
         app:flagPaddingTop="4dp"
         app:textColor="@color/colorAccent"
         app:hintPrefix="Phone e.g."
+        app:hintNumber="(00) 122 5561"
         app:textSize="16sp" />
 
     <TextView
