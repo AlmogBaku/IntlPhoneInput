@@ -43,7 +43,6 @@ public class IntlPhoneInput extends RelativeLayout {
     private CountriesFetcher.CountryList mCountries;
     private IntlPhoneInputListener mIntlPhoneInputListener;
 
-    // DarushDev's
     private String mHint;
 
     /**
@@ -188,9 +187,9 @@ public class IntlPhoneInput extends RelativeLayout {
     }
 
     /**
-     * Append user defined string to hing
+     * Append user defined string to hint
      */
-    private void setHint(String hint) {
+    public void setHint(String hint) {
         if (hint != null) {
             mHint = hint;
         } else {
