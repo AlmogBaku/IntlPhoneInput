@@ -43,6 +43,9 @@ public class IntlPhoneInput extends RelativeLayout {
     private CountriesFetcher.CountryList mCountries;
     private IntlPhoneInputListener mIntlPhoneInputListener;
 
+    // DarushDev's
+    private String mHint;
+
     /**
      * Constructor
      *
@@ -179,8 +182,19 @@ public class IntlPhoneInput extends RelativeLayout {
         if (mPhoneEdit != null && mSelectedCountry != null && mSelectedCountry.getIso() != null) {
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.getExampleNumberForType(mSelectedCountry.getIso(), PhoneNumberUtil.PhoneNumberType.MOBILE);
             if (phoneNumber != null) {
-                mPhoneEdit.setHint(mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
+                mPhoneEdit.setHint(mHint + mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
             }
+        }
+    }
+
+    /**
+     * Append user defined string to hing
+     */
+    private void setHint(String hint) {
+        if (hint != null) {
+            mHint = hint;
+        } else {
+            mHint = "";
         }
     }
 
