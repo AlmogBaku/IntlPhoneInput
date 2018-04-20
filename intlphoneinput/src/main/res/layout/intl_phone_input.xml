@@ -15,5 +15,5 @@
         android:id="@+id/intl_phone_edit__phone"
         android:lines="1"
         android:textSize="@dimen/text_size_default"
-        android:inputType="phone" />
+        android:inputType="number" />
 </LinearLayout>
