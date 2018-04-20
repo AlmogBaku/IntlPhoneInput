@@ -341,6 +341,38 @@ public class IntlPhoneInput extends RelativeLayout {
         mIntlPhoneInputListener = listener;
     }
 
+    /**
+     * Returns the error message that was set to be displayed with
+     * {@link #setError}, or <code>null</code> if no error was set
+     * or if it the error was cleared by the widget after user input.
+     *
+     * @return error message if known, null otherwise
+     */
+    @SuppressWarnings("unused")
+    public CharSequence getError() {
+        return mPhoneEdit.getError();
+    }
+
+    /**
+     * Sets an error message that will be displayed in a popup when the EditText has focus.
+     *
+     * @param error error message to show
+     */
+    @SuppressWarnings("unused")
+    public void setError(CharSequence error) {
+        mPhoneEdit.setError(error);
+    }
+
+    /**
+     * Sets an error message that will be displayed in a popup when the EditText has focus along
+     * with an icon displayed at the right-hand side.
+     *
+     * @param error error message to show
+     */
+    @SuppressWarnings("unused")
+    public void setError(CharSequence error, Drawable icon) {
+        mPhoneEdit.setError(error, icon);
+    }
 
     /**
      * Simple validation listener
