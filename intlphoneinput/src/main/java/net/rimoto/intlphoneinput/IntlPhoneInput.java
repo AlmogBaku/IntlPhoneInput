@@ -324,13 +324,13 @@ public class IntlPhoneInput extends RelativeLayout {
 	
 	
     /**
-     * Get Edittext
+     * Get Edittext object
      *
-     * @return mEditText
+     * @return mPhoneEdit
      */
     @SuppressWarnings("unused")
-    public Country getEdittext() {
-        return mEdittext;
+    public Country getPhoneEdit() {
+        return mPhoneEdit;
     }
 
     /**
