@@ -321,6 +321,17 @@ public class IntlPhoneInput extends RelativeLayout {
     public Country getSelectedCountry() {
         return mSelectedCountry;
     }
+	
+	
+    /**
+     * Get Edittext object
+     *
+     * @return mPhoneEdit
+     */
+    @SuppressWarnings("unused")
+    public Country getPhoneEdit() {
+        return mPhoneEdit;
+    }
 
     /**
      * Check if number is valid
