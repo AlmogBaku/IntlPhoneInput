@@ -42,6 +42,7 @@ public class IntlPhoneInput extends RelativeLayout {
     private CountriesFetcher.CountryList mCountries;
     private IntlPhoneInputListener mIntlPhoneInputListener;
     private String hintPrefix;
+    private String hintNumber;
 
     /**
      * Constructor
@@ -133,6 +134,10 @@ public class IntlPhoneInput extends RelativeLayout {
         if(a.hasValue(R.styleable.IntlPhoneInput_hintPrefix)){
             hintPrefix = a.getString(R.styleable.IntlPhoneInput_hintPrefix);
         }
+        hintNumber = "";
+        if(a.hasValue(R.styleable.IntlPhoneInput_hintNumber)){
+            hintNumber = a.getString(R.styleable.IntlPhoneInput_hintNumber);
+        }
 
         a.recycle();
     }
@@ -196,17 +201,28 @@ public class IntlPhoneInput extends RelativeLayout {
      */
     private void setHint() {
         if (mPhoneEdit != null && mSelectedCountry != null && mSelectedCountry.getIso() != null) {
-            Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.getExampleNumberForType(mSelectedCountry.getIso(), PhoneNumberUtil.PhoneNumberType.MOBILE);
-            if (phoneNumber != null) {
-                String phoneHint = mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
-                if(hintPrefix != null && !hintPrefix.isEmpty()) {
+            String phoneHint = getPhoneHint();
+            if(hintPrefix != null && !hintPrefix.isEmpty()) {
                     mPhoneEdit.setHint(String.format("%s %s", hintPrefix, phoneHint));
                 }else{
                     mPhoneEdit.setHint(phoneHint);
                 }
             }
-        }
     }
+
+    private String getPhoneHint() {
+        String phoneHint = "";
+        if (!hintNumber.isEmpty()) {
+            phoneHint = hintNumber;
+        } else {
+            Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.getExampleNumberForType(mSelectedCountry.getIso(), PhoneNumberUtil.PhoneNumberType.MOBILE);
+            if (phoneNumber != null) {
+                phoneHint = mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
+            }
+        }
+        return phoneHint;
+    }
+
 
     /**
      * Spinner listener
