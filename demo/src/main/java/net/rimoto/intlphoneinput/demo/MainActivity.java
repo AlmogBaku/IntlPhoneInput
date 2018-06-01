@@ -15,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
         net.rimoto.intlphoneinput.IntlPhoneInput phoneInput = (net.rimoto.intlphoneinput.IntlPhoneInput) findViewById(R.id.phone_input);
 
+        phoneInput.setDefaultByDialCode(39);
+        phoneInput.getCountrySpinner().setEnabled(false);
+
         Spinner spinner = phoneInput.getCountrySpinner();
     }
 

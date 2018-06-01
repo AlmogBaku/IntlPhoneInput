@@ -164,6 +164,12 @@ public class IntlPhoneInput extends RelativeLayout {
         }
     }
 
+    public void setDefaultByDialCode(int DialCode){
+        int defaultIdx = mCountries.indexOfDialCode(DialCode);
+        mSelectedCountry = mCountries.get(defaultIdx);
+        mCountrySpinner.setSelection(defaultIdx);
+    }
+
     /**
      * Set default value with
      *
@@ -244,11 +250,13 @@ public class IntlPhoneInput extends RelativeLayout {
                 if (mSelectedCountry != null) {
                     iso = mSelectedCountry.getIso();
                 }
-                Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(s.toString(), iso);
-                iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
-                if (iso != null) {
-                    int countryIdx = mCountries.indexOfIso(iso);
-                    mCountrySpinner.setSelection(countryIdx);
+                if(mCountrySpinner.isEnabled()) {
+                    Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(s.toString(), iso);
+                    iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
+                    if (iso != null) {
+                        int countryIdx = mCountries.indexOfIso(iso);
+                        mCountrySpinner.setSelection(countryIdx);
+                    }
                 }
             } catch (NumberParseException ignored) {
             }
