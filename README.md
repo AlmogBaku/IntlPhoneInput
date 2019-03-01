@@ -57,7 +57,6 @@ It's easy like 1-2-3!
     app:flagPaddingEnd="4dp"
     app:flagPaddingStart="4dp"
     app:flagPaddingTop="4dp"
-    app:flagPaddingBottom="4dp"
     android:id="@+id/my_phone_input" />
 ```
 
