@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -28,6 +29,7 @@ public class IntlPhoneInput extends RelativeLayout {
 
     // UI Views
     private Spinner mCountrySpinner;
+    private TextInputLayout mPhoneEditLayout;
     private EditText mPhoneEdit;
 
     //Adapters
@@ -87,8 +89,10 @@ public class IntlPhoneInput extends RelativeLayout {
         /**
          * Phone text field
          */
-        mPhoneEdit = (EditText) findViewById(R.id.intl_phone_edit__phone);
+        mPhoneEdit = findViewById(R.id.intl_phone_edit__phone);
         mPhoneEdit.addTextChangedListener(mPhoneNumberWatcher);
+
+        mPhoneEditLayout = findViewById(R.id.intl_phone_edit__phone_layout);
 
         setDefault();
         setEditTextDefaults(attrs);
@@ -137,6 +141,9 @@ public class IntlPhoneInput extends RelativeLayout {
         hintNumber = "";
         if(a.hasValue(R.styleable.IntlPhoneInput_hintNumber)){
             hintNumber = a.getString(R.styleable.IntlPhoneInput_hintNumber);
+        }
+        if (a.hasValue(R.styleable.IntlPhoneInput_label)) {
+            mPhoneEditLayout.setHint(a.getString(R.styleable.IntlPhoneInput_label));
         }
 
         a.recycle();
@@ -199,13 +206,13 @@ public class IntlPhoneInput extends RelativeLayout {
     /**
      * Set hint number for country
      */
-    private void setHint() {
-        if (mPhoneEdit != null && mSelectedCountry != null && mSelectedCountry.getIso() != null) {
+    private void setHelperText() {
+        if (mPhoneEditLayout != null && mSelectedCountry != null && mSelectedCountry.getIso() != null) {
             String phoneHint = getPhoneHint();
             if(hintPrefix != null && !hintPrefix.isEmpty()) {
-                    mPhoneEdit.setHint(String.format("%s %s", hintPrefix, phoneHint));
+                    mPhoneEditLayout.setHelperText(String.format("%s %s", hintPrefix, phoneHint));
                 }else{
-                    mPhoneEdit.setHint(phoneHint);
+                    mPhoneEditLayout.setHelperText(phoneHint);
                 }
             }
     }
@@ -233,7 +240,7 @@ public class IntlPhoneInput extends RelativeLayout {
             mSelectedCountry = mCountrySpinnerAdapter.getItem(position);
             mPhoneNumberWatcher = new PhoneNumberWatcher(mSelectedCountry.getIso());
 
-            setHint();
+            setHelperText();
         }
 
         @Override

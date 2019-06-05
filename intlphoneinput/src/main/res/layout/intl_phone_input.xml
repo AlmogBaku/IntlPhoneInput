@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical">
+    android:orientation="horizontal">
+
     <androidx.appcompat.widget.AppCompatSpinner
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:id="@+id/intl_phone_edit__country"
         android:dropDownWidth="350dp"
         android:background="@android:color/transparent" />
-    <androidx.appcompat.widget.AppCompatEditText
-        android:layout_width="match_parent"
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/intl_phone_edit__phone_layout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/intl_phone_edit__phone"
-        android:lines="1"
-        android:textSize="@dimen/text_size_default"
-        android:inputType="phone" />
+        android:layout_weight="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/intl_phone_edit__phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:textSize="@dimen/text_size_default"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 </LinearLayout>

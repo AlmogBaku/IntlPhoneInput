@@ -10,5 +10,6 @@
         <attr name="textColorHint" format="color" />
         <attr name="hintPrefix" format="string" />
         <attr name="hintNumber" format="string" />
+        <attr name="label" format="string"/>
     </declare-styleable>
 </resources>
