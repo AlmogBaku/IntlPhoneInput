@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
 
 android {
     compileSdkVersion 28
@@ -24,54 +25,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0-alpha07'
 }
 
-ext {
-    groupId = 'net.rimoto'
-    versionId = '1.0.7'
-    gitProjectUrl = "https://github.com/funambol/IntlPhoneInput"
-    gitUrl = "https://github.com/funambol/IntlPhoneInput"
-}
-
-group = groupId  // Maven Group ID for the artifact
-version = versionId
+group = 'com.github.funambol'
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-apply plugin: 'com.github.dcendents.android-maven'
-install {
-    repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-                groupId groupId
-                artifactId "intlphoneinput"
-
-                // Add your description here
-                name "IntlPhoneInput"
-                description "A custom view for Android that allows the user to enter his phone number in an elegant and friendly way."
-                url gitProjectUrl
-
-                // Set your license
-                licenses {
-                    license {
-                        name "The Apache Software License, Version 2.0"
-                        url "http://www.apache.org/licenses/LICENSE-2.0.txt"
-                    }
-                }
-                developers {
-                    developer {
-                        name "Rimoto"
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    url gitProjectUrl
-                }
-            }
-        }
-    }
-}
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
