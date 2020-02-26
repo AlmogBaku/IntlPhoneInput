@@ -4,11 +4,11 @@
     android:orientation="horizontal">
 
     <androidx.appcompat.widget.AppCompatSpinner
-        android:layout_width="40dp"
-        android:layout_height="match_parent"
         android:id="@+id/intl_phone_edit__country"
-        android:dropDownWidth="350dp"
-        android:background="@android:color/transparent" />
+        android:layout_width="48dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:dropDownWidth="350dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/intl_phone_edit__phone_layout"
