@@ -1,6 +1,7 @@
 package net.rimoto.intlphoneinput;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,14 +31,14 @@ public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
      * @return covertView
      */
     @Override
-    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+    public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
         final ViewHolder viewHolder;
         if (convertView == null) {
             convertView = mLayoutInflater.inflate(R.layout.item_country, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.mImageView = (ImageView) convertView.findViewById(R.id.intl_phone_edit__country__item_image);
-            viewHolder.mNameView = (TextView) convertView.findViewById(R.id.intl_phone_edit__country__item_name);
-            viewHolder.mDialCode = (TextView) convertView.findViewById(R.id.intl_phone_edit__country__item_dialcode);
+            viewHolder.mImageView = convertView.findViewById(R.id.intl_phone_edit__country__item_image);
+            viewHolder.mNameView = convertView.findViewById(R.id.intl_phone_edit__country__item_name);
+            viewHolder.mDialCode = convertView.findViewById(R.id.intl_phone_edit__country__item_dialcode);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -58,8 +59,9 @@ public class CountrySpinnerAdapter extends ArrayAdapter<Country> {
      * @param parent      parent of selected view
      * @return convertView
      */
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         Country country = getItem(position);
 
         if (convertView == null) {

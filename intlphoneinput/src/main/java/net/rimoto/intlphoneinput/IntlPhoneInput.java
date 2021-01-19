@@ -74,7 +74,7 @@ public class IntlPhoneInput extends RelativeLayout {
         /**+
          * Country spinner
          */
-        mCountrySpinner = (Spinner) findViewById(R.id.intl_phone_edit__country);
+        mCountrySpinner = findViewById(R.id.intl_phone_edit__country);
         mCountrySpinnerAdapter = new CountrySpinnerAdapter(getContext());
         mCountrySpinner.setAdapter(mCountrySpinnerAdapter);
 
@@ -87,7 +87,7 @@ public class IntlPhoneInput extends RelativeLayout {
         /**
          * Phone text field
          */
-        mPhoneEdit = (EditText) findViewById(R.id.intl_phone_edit__phone);
+        mPhoneEdit = findViewById(R.id.intl_phone_edit__phone);
         mPhoneEdit.addTextChangedListener(mPhoneNumberWatcher);
 
         setDefault();
@@ -266,9 +266,20 @@ public class IntlPhoneInput extends RelativeLayout {
                 iso = mSelectedCountry.getIso();
             }
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(number, iso);
+	
+	    String iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
+	    if(iso == null) {
+		return;
+	    }
+            int countryIdx = mCountries.indexOfIso(iso);
+		
+		
+	    if (countryIdx < 0) {
+		return;
+	    }
 			
-            int countryIdx = mCountries.indexOfIso(mPhoneUtil.getRegionCodeForNumber(phoneNumber));
-			mSelectedCountry = mCountries.get(countryIdx);		
+	    mSelectedCountry = mCountries.get(countryIdx);		
+		
             mCountrySpinner.setSelection(countryIdx);
 			
 			
@@ -300,7 +311,7 @@ public class IntlPhoneInput extends RelativeLayout {
     /**
      * Get PhoneNumber object
      *
-     * @return PhonenUmber | null on error
+     * @return PhoneNumber | null on error
      */
     @SuppressWarnings("unused")
     public Phonenumber.PhoneNumber getPhoneNumber() {
