@@ -112,7 +112,6 @@ if(phoneInputView.isValid()) {
 # Sponsors
 Thanks to our sponsors for this project:
 
-1. [JetBrains](http://www.jetbrains.com/) - for providing the great IDE [PhpStorm](http://www.jetbrains.com/phpstorm/)
 1. [Rimoto](http://www.rimoto.com)
 
 # LICENSE
