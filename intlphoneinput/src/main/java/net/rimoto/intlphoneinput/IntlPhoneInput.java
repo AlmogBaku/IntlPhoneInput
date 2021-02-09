@@ -267,7 +267,7 @@ public class IntlPhoneInput extends RelativeLayout {
             }
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(number, iso);
 	
-	    String iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
+	    iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
 	    if(iso == null) {
 		return;
 	    }
