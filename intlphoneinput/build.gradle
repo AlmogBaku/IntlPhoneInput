@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    compile 'com.googlecode.libphonenumber:libphonenumber:8.8.5'
+    compile 'com.googlecode.libphonenumber:libphonenumber:8.12.31'
     compile 'com.android.support:appcompat-v7:27.0.0'
 }
 
