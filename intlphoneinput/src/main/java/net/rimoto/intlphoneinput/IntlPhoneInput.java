@@ -316,12 +316,20 @@ public class IntlPhoneInput extends RelativeLayout {
                 iso = mSelectedCountry.getIso();
             }
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(number, iso);
-			
-            int countryIdx = mCountries.indexOfIso(mPhoneUtil.getRegionCodeForNumber(phoneNumber));
-			mSelectedCountry = mCountries.get(countryIdx);		
+
+            iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
+            if(iso == null) {
+                return;
+            }
+
+            int countryIdx = mCountries.indexOfIso(iso);
+            if (countryIdx < 0) {
+                return;
+            }
+
+            mSelectedCountry = mCountries.get(countryIdx);
             mCountrySpinner.setSelection(countryIdx);
-			
-			
+
             mPhoneEdit.setText(mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
         } catch (NumberParseException ignored) {
         }
