@@ -7,6 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 30
+        versionCode 103
+        versionName "1.0.3"
     }
     buildTypes {
         release {
@@ -25,7 +27,7 @@ dependencies {
 
 ext {
     groupId = 'net.rimoto'
-    versionId = '1.0.1'
+    versionId = '1.0.3'
     gitProjectUrl = "https://github.com/rimoto/IntlPhoneInput"
     gitUrl = "https://github.com/rimoto/IntlPhoneInput.git"
 }
@@ -114,4 +116,5 @@ bintray {
             }
         }
     }
+
 }*/

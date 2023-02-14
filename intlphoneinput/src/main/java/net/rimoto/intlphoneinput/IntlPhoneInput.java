@@ -44,6 +44,8 @@ public class IntlPhoneInput extends RelativeLayout {
     private CountriesFetcher.CountryList mCountries;
     private IntlPhoneInputListener mIntlPhoneInputListener;
 
+    private String mHint;
+
     /**
      * Constructor
      *
@@ -74,7 +76,7 @@ public class IntlPhoneInput extends RelativeLayout {
         /**+
          * Country spinner
          */
-        mCountrySpinner = (Spinner) findViewById(R.id.intl_phone_edit__country);
+        mCountrySpinner = findViewById(R.id.intl_phone_edit__country);
         mCountrySpinnerAdapter = new CountrySpinnerAdapter(getContext());
         mCountrySpinner.setAdapter(mCountrySpinnerAdapter);
 
@@ -87,7 +89,7 @@ public class IntlPhoneInput extends RelativeLayout {
         /**
          * Phone text field
          */
-        mPhoneEdit = (EditText) findViewById(R.id.intl_phone_edit__phone);
+        mPhoneEdit = findViewById(R.id.intl_phone_edit__phone);
         mPhoneEdit.addTextChangedListener(mPhoneNumberWatcher);
 
         setDefault();
@@ -162,6 +164,9 @@ public class IntlPhoneInput extends RelativeLayout {
             iso = DEFAULT_COUNTRY;
         }
         int defaultIdx = mCountries.indexOfIso(iso);
+	if (defaultIdx == -1) {
+	    defaultIdx = 0;
+	}    
         mSelectedCountry = mCountries.get(defaultIdx);
         mCountrySpinner.setSelection(defaultIdx);
     }
@@ -180,8 +185,19 @@ public class IntlPhoneInput extends RelativeLayout {
         if (mPhoneEdit != null && mSelectedCountry != null && mSelectedCountry.getIso() != null) {
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.getExampleNumberForType(mSelectedCountry.getIso(), PhoneNumberUtil.PhoneNumberType.MOBILE);
             if (phoneNumber != null) {
-                mPhoneEdit.setHint(mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
+                mPhoneEdit.setHint(mHint + mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
             }
+        }
+    }
+
+    /**
+     * Append user defined string to hint
+     */
+    public void setHint(String hint) {
+        if (hint != null) {
+            mHint = hint;
+        } else {
+            mHint = "";
         }
     }
 
@@ -263,9 +279,20 @@ public class IntlPhoneInput extends RelativeLayout {
                 iso = mSelectedCountry.getIso();
             }
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.parse(number, iso);
+	
+	    iso = mPhoneUtil.getRegionCodeForNumber(phoneNumber);
+	    if(iso == null) {
+		return;
+	    }
+            int countryIdx = mCountries.indexOfIso(iso);
+		
+		
+	    if (countryIdx < 0) {
+		return;
+	    }
 			
-            int countryIdx = mCountries.indexOfIso(mPhoneUtil.getRegionCodeForNumber(phoneNumber));
-			mSelectedCountry = mCountries.get(countryIdx);		
+	    mSelectedCountry = mCountries.get(countryIdx);		
+		
             mCountrySpinner.setSelection(countryIdx);
 			
 			
@@ -297,7 +324,7 @@ public class IntlPhoneInput extends RelativeLayout {
     /**
      * Get PhoneNumber object
      *
-     * @return PhonenUmber | null on error
+     * @return PhoneNumber | null on error
      */
     @SuppressWarnings("unused")
     public Phonenumber.PhoneNumber getPhoneNumber() {

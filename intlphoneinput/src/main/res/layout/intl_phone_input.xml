@@ -6,8 +6,8 @@
     <androidx.appcompat.widget.AppCompatSpinner
         android:layout_width="40dp"
         android:layout_height="match_parent"
+        android:dropDownWidth="wrap_content"
         android:id="@+id/intl_phone_edit__country"
-        android:dropDownWidth="350dp"
         android:background="@android:color/transparent" />
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="match_parent"
