@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.0'
+    compileSdkVersion 33
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 33
         versionCode 103
         versionName "1.0.3"
     }
@@ -19,8 +19,10 @@ android {
 }
 
 dependencies {
-    compile 'com.googlecode.libphonenumber:libphonenumber:8.12.31'
-    compile 'com.android.support:appcompat-v7:27.0.0'
+    // https://mvnrepository.com/artifact/com.googlecode.libphonenumber/libphonenumber
+    implementation group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.12.32'
+
+    api 'androidx.appcompat:appcompat:1.6.0'
 }
 
 ext {
@@ -36,7 +38,7 @@ version = versionId
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-apply plugin: 'com.github.dcendents.android-maven'
+/*apply plugin: 'com.github.dcendents.android-maven'
 install {
     repositories.mavenInstaller {
         // This generates POM.xml with proper parameters
@@ -70,7 +72,7 @@ install {
             }
         }
     }
-}
+}*//*
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -89,9 +91,10 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
-}
+}*/
 
-apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.jfrog.bintray'
+/*
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
@@ -113,4 +116,5 @@ bintray {
             }
         }
     }
-}
+
+}*/

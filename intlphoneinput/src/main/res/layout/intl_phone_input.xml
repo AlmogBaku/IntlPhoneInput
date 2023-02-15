@@ -3,13 +3,13 @@
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center_vertical">
-    <android.support.v7.widget.AppCompatSpinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:dropDownWidth="wrap_content"
         android:id="@+id/intl_phone_edit__country"
         android:background="@android:color/transparent" />
-    <android.support.v7.widget.AppCompatEditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/intl_phone_edit__phone"
