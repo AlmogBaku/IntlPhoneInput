@@ -47,6 +47,8 @@ public class IntlPhoneInput extends RelativeLayout {
     private String hintPrefix;
     private String hintNumber;
 
+    private String mHint;
+
     /**
      * Constructor
      *
@@ -77,7 +79,7 @@ public class IntlPhoneInput extends RelativeLayout {
         /**+
          * Country spinner
          */
-        mCountrySpinner = (Spinner) findViewById(R.id.intl_phone_edit__country);
+        mCountrySpinner = findViewById(R.id.intl_phone_edit__country);
         mCountrySpinnerAdapter = new CountrySpinnerAdapter(getContext());
         mCountrySpinner.setAdapter(mCountrySpinnerAdapter);
 
@@ -229,12 +231,23 @@ public class IntlPhoneInput extends RelativeLayout {
         } else {
             Phonenumber.PhoneNumber phoneNumber = mPhoneUtil.getExampleNumberForType(mSelectedCountry.getIso(), PhoneNumberUtil.PhoneNumberType.MOBILE);
             if (phoneNumber != null) {
-                phoneHint = mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
+                mPhoneEdit.setHint(mHint + mPhoneUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL));
             }
         }
         return phoneHint;
     }
 
+
+    /**
+     * Append user defined string to hint
+     */
+    public void setHint(String hint) {
+        if (hint != null) {
+            mHint = hint;
+        } else {
+            mHint = "";
+        }
+    }
 
     /**
      * Spinner listener
@@ -358,7 +371,7 @@ public class IntlPhoneInput extends RelativeLayout {
     /**
      * Get PhoneNumber object
      *
-     * @return PhonenUmber | null on error
+     * @return PhoneNumber | null on error
      */
     @SuppressWarnings("unused")
     public Phonenumber.PhoneNumber getPhoneNumber() {
